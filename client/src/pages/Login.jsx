@@ -101,18 +101,18 @@ export default function Login() {
                 before they slip away.
               </span>
             </h1>
-            <p className="text-slate-600 dark:text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
               EduWings transforms academic records, attendance trends, and behavioral signals into actionable, explainable insights — empowering faculty and counsellors to intervene early and retain learners.
             </p>
 
             {/* Three Feature Chips */}
             <div className="flex flex-wrap gap-3 mb-10">
-              <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/25 text-purple-800 dark:text-purple-200 text-xs sm:text-sm font-medium">
+              <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-purple-500/10 border border-purple-500/25 text-purple-200 text-xs sm:text-sm font-medium">
                 <Sparkles className="w-4 h-4 text-purple-400" />
                 <span>Early detection</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-pink-50 dark:bg-pink-500/10 border border-pink-500/25 text-pink-200 text-xs sm:text-sm font-medium">
-                <ShieldCheck className="w-4 h-4 text-pink-600 dark:text-pink-400" />
+              <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-pink-500/10 border border-pink-500/25 text-pink-200 text-xs sm:text-sm font-medium">
+                <ShieldCheck className="w-4 h-4 text-pink-400" />
                 <span>Explainable risk</span>
               </div>
               <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/25 text-indigo-200 text-xs sm:text-sm font-medium">
@@ -124,9 +124,9 @@ export default function Login() {
         </div>
 
         {/* Supportive Institutional Trust Badge */}
-        <div className="mt-8 pt-6 border-t border-purple-200 dark:border-purple-500/15 flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+        <div className="mt-8 pt-6 border-t border-purple-500/15 flex items-center gap-4 text-xs text-slate-400">
           <div className="flex -space-x-2">
-            <div className="w-8 h-8 rounded-full border border-purple-400/30 bg-purple-900/60 flex items-center justify-center font-bold text-purple-800 dark:text-purple-200">
+            <div className="w-8 h-8 rounded-full border border-purple-400/30 bg-purple-900/60 flex items-center justify-center font-bold text-purple-200">
               CS
             </div>
             <div className="w-8 h-8 rounded-full border border-pink-400/30 bg-pink-900/60 flex items-center justify-center font-bold text-pink-200">
@@ -148,7 +148,7 @@ export default function Login() {
           {/* Glass Card Container */}
           <div className="glass-panel rounded-3xl p-8 sm:p-10 shadow-2xl relative border border-purple-300 dark:border-purple-500/30">
             <div className="mb-6 text-center sm:text-left">
-              <h2 className="text-2xl font-bold text-white tracking-tight mb-1.5">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-1.5">
                 Sign in securely
               </h2>
               <p className="text-sm text-slate-500 dark:text-slate-400">
@@ -176,7 +176,7 @@ export default function Login() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@eduwings.edu"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-[#110A2E]/80 border border-purple-200 dark:border-purple-500/25 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 text-white placeholder-slate-500 text-sm transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-[#110A2E]/80 border border-purple-200 dark:border-purple-500/25 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 text-sm transition-all"
                   />
                 </div>
               </div>
@@ -193,7 +193,7 @@ export default function Login() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white dark:bg-[#110A2E]/80 border border-purple-200 dark:border-purple-500/25 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 text-white placeholder-slate-500 text-sm transition-all"
+                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white dark:bg-[#110A2E]/80 border border-purple-200 dark:border-purple-500/25 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 text-sm transition-all"
                   />
                   <button
                     type="button"
