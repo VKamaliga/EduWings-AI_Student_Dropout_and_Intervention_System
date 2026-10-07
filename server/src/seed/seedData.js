@@ -45,7 +45,7 @@ const seedDatabase = async () => {
 
     // 1. Seed System Settings
     const setting = await Setting.create({
-      institutionName: 'EduCare Institute of Technology',
+      institutionName: 'EduWings Institute of Technology',
       academicYear: '2025 – 2026',
       riskThresholdLow: 35,
       riskThresholdHigh: 65,
@@ -56,7 +56,7 @@ const seedDatabase = async () => {
     // 2. Seed Users
     const adminUser = await User.create({
       name: 'Dr. Elizabeth Warren',
-      email: 'admin@educare.edu',
+      email: 'admin@eduwings.edu',
       password: 'Admin@123',
       role: 'admin',
       department: 'Academic Affairs',
@@ -66,7 +66,7 @@ const seedDatabase = async () => {
 
     const facultyUser = await User.create({
       name: 'Prof. Ramesh Kulkarni',
-      email: 'faculty@educare.edu',
+      email: 'faculty@eduwings.edu',
       password: 'Faculty@123',
       role: 'faculty',
       department: 'Computer Science',
@@ -76,7 +76,7 @@ const seedDatabase = async () => {
 
     const counsellorUser = await User.create({
       name: 'Dr. Sarah Jenkins',
-      email: 'counsellor@educare.edu',
+      email: 'counsellor@eduwings.edu',
       password: 'Counsellor@123',
       role: 'counsellor',
       department: 'Student Wellness Centre',
@@ -86,7 +86,7 @@ const seedDatabase = async () => {
 
     const mechFaculty = await User.create({
       name: 'Prof. Ananya Sen',
-      email: 'mech.faculty@educare.edu',
+      email: 'mech.faculty@eduwings.edu',
       password: 'Faculty@123',
       role: 'faculty',
       department: 'Mechanical Engineering',
@@ -105,7 +105,7 @@ const seedDatabase = async () => {
       {
         studentId: 'S1024',
         name: 'Aarav Sharma',
-        email: 'aarav.s1024@educare.edu',
+        email: 'aarav.s1024@eduwings.edu',
         department: 'Computer Science',
         semester: 4,
         year: 2,
@@ -123,7 +123,7 @@ const seedDatabase = async () => {
       {
         studentId: 'S1042',
         name: 'Priya Patel',
-        email: 'priya.s1042@educare.edu',
+        email: 'priya.s1042@eduwings.edu',
         department: 'Computer Science',
         semester: 4,
         year: 2,
@@ -141,7 +141,7 @@ const seedDatabase = async () => {
       {
         studentId: 'S1078',
         name: 'Rohan Iyer',
-        email: 'rohan.s1078@educare.edu',
+        email: 'rohan.s1078@eduwings.edu',
         department: 'Computer Science',
         semester: 4,
         year: 2,
@@ -159,7 +159,7 @@ const seedDatabase = async () => {
       {
         studentId: 'S1101',
         name: 'Kavya Reddy',
-        email: 'kavya.s1101@educare.edu',
+        email: 'kavya.s1101@eduwings.edu',
         department: 'Electronics & Comm.',
         semester: 6,
         year: 3,
@@ -224,7 +224,7 @@ const seedDatabase = async () => {
       allRawStudents.push({
         studentId,
         name: `${fName} ${lName}`,
-        email: `${fName.toLowerCase()}.${studentId.toLowerCase()}@educare.edu`,
+        email: `${fName.toLowerCase()}.${studentId.toLowerCase()}@eduwings.edu`,
         department: dept,
         semester,
         year,

@@ -1,7 +1,7 @@
-# EduCare Architecture Plan & Project Blueprint
+# EduWings Architecture Plan & Project Blueprint
 **Tagline:** *Predict. Support. Retain.*
 
-EduCare is an AI-powered student dropout prediction and intervention system designed for educational institutions to proactively detect students at risk of attrition, explain the driving risk factors, and coordinate targeted interventions.
+EduWings is an AI-powered student dropout prediction and intervention system designed for educational institutions to proactively detect students at risk of attrition, explain the driving risk factors, and coordinate targeted interventions.
 
 ---
 

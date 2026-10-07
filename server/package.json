@@ -1,7 +1,7 @@
 {
-  "name": "educare-server",
+  "name": "eduwings-server",
   "version": "1.0.0",
-  "description": "Backend API for EduCare Student Dropout Prediction & Intervention System",
+  "description": "Backend API for EduWings Student Dropout Prediction & Intervention System",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

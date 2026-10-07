@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 let mongod = null;
 
 const connectDB = async () => {
-  const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/educare';
+  const uri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/eduwings';
   
   try {
     // Attempt standard connection first with 2.5s server selection timeout
@@ -16,7 +16,7 @@ const connectDB = async () => {
       const { MongoMemoryServer } = require('mongodb-memory-server');
       mongod = await MongoMemoryServer.create({
         instance: {
-          dbName: 'educare',
+          dbName: 'eduwings',
         },
       });
       const memoryUri = mongod.getUri();

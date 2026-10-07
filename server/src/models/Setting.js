@@ -4,7 +4,7 @@ const settingSchema = new mongoose.Schema(
   {
     institutionName: {
       type: String,
-      default: 'EduCare Institute of Technology',
+      default: 'EduWings Institute of Technology',
     },
     academicYear: {
       type: String,

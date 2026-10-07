@@ -508,7 +508,7 @@ function AddStudentModal({ onClose, onAdded }) {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                placeholder="maya.s1250@educare.edu"
+                placeholder="maya.s1250@eduwings.edu"
                 className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
               />
             </div>
@@ -693,9 +693,9 @@ function BulkUploadModal({ onClose, onUploaded }) {
   const [error, setError] = useState('');
 
   const sampleCSV = `studentId,name,email,department,year,semester,attendance,cgpa,backlogCount,assignmentSubmissionRate,lmsEngagementScore,feePaymentStatus
-S2001,Aakash Varma,aakash.s2001@educare.edu,Computer Science,2,3,68,6.1,1,65,55,Paid
-S2002,Divya Rao,divya.s2002@educare.edu,Mechanical Engineering,1,2,54,4.9,3,50,42,Pending
-S2003,Tanvi Joshi,tanvi.s2003@educare.edu,Electronics & Comm.,3,5,91,8.4,0,94,88,Paid`;
+S2001,Aakash Varma,aakash.s2001@eduwings.edu,Computer Science,2,3,68,6.1,1,65,55,Paid
+S2002,Divya Rao,divya.s2002@eduwings.edu,Mechanical Engineering,1,2,54,4.9,3,50,42,Pending
+S2003,Tanvi Joshi,tanvi.s2003@eduwings.edu,Electronics & Comm.,3,5,91,8.4,0,94,88,Paid`;
 
   const handleFileUpload = (e) => {
     const file = e.target.files?.[0];

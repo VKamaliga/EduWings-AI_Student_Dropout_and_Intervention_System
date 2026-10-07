@@ -1,7 +1,7 @@
 const http = require('http');
 
 async function testAll() {
-  console.log('🚀 Running Full-Stack EduCare Integration Verification...\n');
+  console.log('🚀 Running Full-Stack EduWings Integration Verification...\n');
 
   // Helper for requests
   const request = (method, path, body = null, token = null) => {
@@ -43,7 +43,7 @@ async function testAll() {
 
     // 2. Auth - Admin Login
     const adminLogin = await request('POST', '/auth/login', {
-      email: 'admin@educare.edu',
+      email: 'admin@eduwings.edu',
       password: 'Admin@123'
     });
     console.log(`✅ Admin Login: HTTP ${adminLogin.status} - User: ${adminLogin.data.user?.name} (${adminLogin.data.user?.role})`);
@@ -51,7 +51,7 @@ async function testAll() {
 
     // 3. Auth - Faculty Login
     const facultyLogin = await request('POST', '/auth/login', {
-      email: 'faculty@educare.edu',
+      email: 'faculty@eduwings.edu',
       password: 'Faculty@123'
     });
     console.log(`✅ Faculty Login: HTTP ${facultyLogin.status} - Dept: ${facultyLogin.data.user?.department}`);
@@ -59,7 +59,7 @@ async function testAll() {
 
     // 4. Auth - Counsellor Login
     const counsellorLogin = await request('POST', '/auth/login', {
-      email: 'counsellor@educare.edu',
+      email: 'counsellor@eduwings.edu',
       password: 'Counsellor@123'
     });
     console.log(`✅ Counsellor Login: HTTP ${counsellorLogin.status} - Role: ${counsellorLogin.data.user?.role}`);

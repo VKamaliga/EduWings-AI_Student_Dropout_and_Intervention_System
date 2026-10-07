@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 app = FastAPI(
-    title="EduCare ML Inference Service",
+    title="EduWings ML Inference Service",
     description="Student Dropout Prediction & Explainable AI Service",
     version="1.0.0"
 )
@@ -193,7 +193,7 @@ def explain_prediction(item: StudentFeatureInput, prob: float) -> tuple:
 def health_check():
     return {
         "status": "ok",
-        "service": "EduCare ML Service",
+        "service": "EduWings ML Service",
         "model_loaded": MODEL is not None,
         "metadata": METADATA
     }

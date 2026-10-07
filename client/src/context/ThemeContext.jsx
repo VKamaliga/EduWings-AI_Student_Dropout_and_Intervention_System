@@ -5,7 +5,7 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     // 1. Check saved localStorage
-    const saved = localStorage.getItem('educare_theme');
+    const saved = localStorage.getItem('eduwings_theme');
     if (saved === 'dark' || saved === 'light') return saved;
     // 2. Check system preference
     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
@@ -23,7 +23,7 @@ export const ThemeProvider = ({ children }) => {
       root.classList.add('light');
       root.classList.remove('dark');
     }
-    localStorage.setItem('educare_theme', theme);
+    localStorage.setItem('eduwings_theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {

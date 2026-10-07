@@ -4,7 +4,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api'
  * Standard fetch wrapper with JWT authentication and JSON error handling
  */
 async function request(endpoint, options = {}) {
-  const token = localStorage.getItem('educare_token');
+  const token = localStorage.getItem('eduwings_token');
 
   const headers = {
     'Content-Type': 'application/json',
@@ -25,8 +25,8 @@ async function request(endpoint, options = {}) {
 
   // Handle unauthorized expired token
   if (response.status === 401 && !endpoint.includes('/auth/login')) {
-    localStorage.removeItem('educare_token');
-    localStorage.removeItem('educare_user');
+    localStorage.removeItem('eduwings_token');
+    localStorage.removeItem('eduwings_user');
     if (window.location.pathname !== '/login') {
       window.location.href = '/login';
     }

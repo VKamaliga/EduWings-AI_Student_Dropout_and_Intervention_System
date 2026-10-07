@@ -10,7 +10,7 @@ router.get('/', authenticate, async (req, res) => {
     let setting = await Setting.findOne();
     if (!setting) {
       setting = await Setting.create({
-        institutionName: 'EduCare Institute of Technology',
+        institutionName: 'EduWings Institute of Technology',
         academicYear: '2025 – 2026',
         riskThresholdLow: 35,
         riskThresholdHigh: 65,

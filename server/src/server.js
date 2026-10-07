@@ -34,7 +34,7 @@ app.use('/api/reports', reportRoutes);
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
-    system: 'EduCare Backend Service',
+    system: 'EduWings Backend Service',
     time: new Date().toISOString(),
   });
 });
@@ -67,7 +67,7 @@ const startServer = async () => {
     }
 
     app.listen(PORT, () => {
-      console.log(`🚀 EduCare API Server running on http://localhost:${PORT}`);
+      console.log(`🚀 EduWings API Server running on http://localhost:${PORT}`);
     });
   } catch (err) {
     console.error('Failed to initialize server:', err);

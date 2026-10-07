@@ -8,7 +8,7 @@ export default function Login() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const [email, setEmail] = useState('admin@educare.edu');
+  const [email, setEmail] = useState('admin@eduwings.edu');
   const [password, setPassword] = useState('Admin@123');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ export default function Login() {
     {
       role: 'Admin',
       name: 'Dr. Warren',
-      email: 'admin@educare.edu',
+      email: 'admin@eduwings.edu',
       pass: 'Admin@123',
       color: 'border-purple-500/40 hover:border-purple-500 text-purple-400 bg-purple-500/10',
       badge: 'All Access',
@@ -26,7 +26,7 @@ export default function Login() {
     {
       role: 'Faculty',
       name: 'Prof. Kulkarni',
-      email: 'faculty@educare.edu',
+      email: 'faculty@eduwings.edu',
       pass: 'Faculty@123',
       color: 'border-blue-500/40 hover:border-blue-500 text-blue-400 bg-blue-500/10',
       badge: 'CS Dept',
@@ -34,7 +34,7 @@ export default function Login() {
     {
       role: 'Counsellor',
       name: 'Dr. Jenkins',
-      email: 'counsellor@educare.edu',
+      email: 'counsellor@eduwings.edu',
       pass: 'Counsellor@123',
       color: 'border-pink-500/40 hover:border-pink-500 text-pink-400 bg-pink-500/10',
       badge: 'At-Risk Support',
@@ -85,7 +85,7 @@ export default function Login() {
             </div>
             <div>
               <div className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-purple-100 to-pink-200">
-                EduCare
+                EduWings
               </div>
               <div className="text-xs uppercase tracking-widest text-purple-300/80 font-medium">
                 Predict • Support • Retain
@@ -102,7 +102,7 @@ export default function Login() {
               </span>
             </h1>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
-              EduCare transforms academic records, attendance trends, and behavioral signals into actionable, explainable insights — empowering faculty and counsellors to intervene early and retain learners.
+              EduWings transforms academic records, attendance trends, and behavioral signals into actionable, explainable insights — empowering faculty and counsellors to intervene early and retain learners.
             </p>
 
             {/* Three Feature Chips */}
@@ -175,7 +175,7 @@ export default function Login() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@educare.edu"
+                    placeholder="name@eduwings.edu"
                     className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-[#110A2E]/80 border border-purple-500/25 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 text-white placeholder-slate-500 text-sm transition-all"
                   />
                 </div>

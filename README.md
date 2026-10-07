@@ -1,13 +1,13 @@
-# EduCare — AI-Powered Student Dropout Prediction & Intervention System
+# EduWings — AI-Powered Student Dropout Prediction & Intervention System
 > **Tagline:** *Predict. Support. Retain.*
 
-EduCare is a production-grade full stack web platform built for higher education institutions to detect students at risk of attrition early, explain the underlying causes with machine learning, and track personalized interventions from inception to positive resolution.
+EduWings is a production-grade full stack web platform built for higher education institutions to detect students at risk of attrition early, explain the underlying causes with machine learning, and track personalized interventions from inception to positive resolution.
 
 ---
 
 ## 🌟 Visual Preview & Design System
 
-EduCare features an ultra-premium visual aesthetic matching modern educational SaaS platforms:
+EduWings features an ultra-premium visual aesthetic matching modern educational SaaS platforms:
 
 - **Dark Theme (Default, matches institutional command center spec):**
   - Deep space indigo-violet gradient background (`#0D0822` → `#150E34`)
@@ -58,9 +58,9 @@ ai_student_dropout/
 ### 1. Split-Screen Login & 1-Click Demo Access
 - **Brand Panel:** Headline *"Support every student before they slip away."*, subline, and 3 feature chips (*Early detection*, *Explainable risk*, *Timely intervention*).
 - **Demo Access Chips:** Instant 1-click credential auto-fill for:
-  - **Administrator:** `admin@educare.edu` / `Admin@123` (Full institutional control)
-  - **Faculty Mentor:** `faculty@educare.edu` / `Faculty@123` (Computer Science cohort)
-  - **Student Counsellor:** `counsellor@educare.edu` / `Counsellor@123` (Cross-department at-risk support)
+  - **Administrator:** `admin@eduwings.edu` / `Admin@123` (Full institutional control)
+  - **Faculty Mentor:** `faculty@eduwings.edu` / `Faculty@123` (Computer Science cohort)
+  - **Student Counsellor:** `counsellor@eduwings.edu` / `Counsellor@123` (Cross-department at-risk support)
 
 ### 2. Executive Student Risk Dashboard
 - **4 KPI Metric Cards:** Total Students (200), Low Risk, Medium Risk, High Risk with percentages and color-coded icons.
@@ -191,4 +191,4 @@ Click any **Quick Demo Access** button on the login screen to explore as **Admin
 ---
 
 ## 📜 License
-MIT License. Built for EduCare Academic Retention Systems.
+MIT License. Built for EduWings Academic Retention Systems.

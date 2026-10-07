@@ -9,7 +9,7 @@ const authenticate = async (req, res, next) => {
     }
 
     const token = authHeader.split(' ')[1];
-    const secret = process.env.JWT_SECRET || 'educare_super_secure_jwt_secret_key_2026_xyz';
+    const secret = process.env.JWT_SECRET || 'eduwings_super_secure_jwt_secret_key_2026_xyz';
     const decoded = jwt.verify(token, secret);
 
     const user = await User.findById(decoded.id).select('-password');

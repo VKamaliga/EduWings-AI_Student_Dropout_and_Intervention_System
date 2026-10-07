@@ -105,7 +105,7 @@ router.get('/export-csv', authenticate, async (req, res) => {
     const csvContent = [headers.join(','), ...rows].join('\n');
 
     res.setHeader('Content-Type', 'text/csv');
-    res.setHeader('Content-Disposition', `attachment; filename="EduCare_Student_Risk_Report_${new Date().toISOString().slice(0, 10)}.csv"`);
+    res.setHeader('Content-Disposition', `attachment; filename="EduWings_Student_Risk_Report_${new Date().toISOString().slice(0, 10)}.csv"`);
 
     return res.send(csvContent);
   } catch (err) {

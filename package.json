@@ -1,7 +1,7 @@
 {
-  "name": "educare-monorepo",
+  "name": "eduwings-monorepo",
   "version": "1.0.0",
-  "description": "EduCare — AI-Powered Student Dropout Prediction & Intervention System",
+  "description": "EduWings — AI-Powered Student Dropout Prediction & Intervention System",
   "scripts": {
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
@@ -11,6 +11,6 @@
     "test:ml": "cd ml-service && python3 test_predict.py"
   },
   "keywords": ["dropout-prediction", "machine-learning", "edtech", "intervention-system"],
-  "author": "EduCare Team",
+  "author": "EduWings Team",
   "license": "MIT"
 }

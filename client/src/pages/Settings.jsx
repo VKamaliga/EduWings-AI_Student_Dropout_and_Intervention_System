@@ -16,7 +16,7 @@ import { useAuth } from '../context/AuthContext';
 export default function Settings() {
   const { user } = useAuth();
   const [settings, setSettings] = useState({
-    institutionName: 'EduCare Institute of Technology',
+    institutionName: 'EduWings Institute of Technology',
     academicYear: '2025 – 2026',
     riskThresholdLow: 35,
     riskThresholdHigh: 65,
@@ -360,7 +360,7 @@ function AddUserModal({ onClose, onAdded }) {
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              placeholder="anand@educare.edu"
+              placeholder="anand@eduwings.edu"
               className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
             />
           </div>

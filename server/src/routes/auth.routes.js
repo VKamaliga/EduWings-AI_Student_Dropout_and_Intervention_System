@@ -7,7 +7,7 @@ const { authenticate, authorizeRoles } = require('../middleware/auth');
 const { validateRequest } = require('../middleware/validator');
 
 const signToken = (user) => {
-  const secret = process.env.JWT_SECRET || 'educare_super_secure_jwt_secret_key_2026_xyz';
+  const secret = process.env.JWT_SECRET || 'eduwings_super_secure_jwt_secret_key_2026_xyz';
   return jwt.sign(
     {
       id: user._id,

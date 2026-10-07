@@ -52,7 +52,7 @@ export default function Sidebar({ isOpen, onClose }) {
               </div>
               <div>
                 <div className="text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
-                  EduCare
+                  EduWings
                 </div>
                 <div className="text-[10px] uppercase tracking-wider text-purple-300 font-medium">
                   Predict • Support • Retain
