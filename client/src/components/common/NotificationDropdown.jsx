@@ -57,7 +57,7 @@ export default function NotificationDropdown() {
         <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl glass-panel border border-purple-300 dark:border-purple-500/30 p-4 shadow-2xl z-50 animate-in fade-in zoom-in-95 duration-150">
           <div className="flex items-center justify-between pb-3 mb-2 border-b border-purple-200 dark:border-purple-500/15">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-bold text-white">Notifications</span>
+              <span className="text-sm font-bold text-slate-900 dark:text-white">Notifications</span>
               {unreadCount > 0 && (
                 <span className="px-2 py-0.5 rounded-full text-[10px] font-semibold bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300">
                   {unreadCount} new
@@ -97,7 +97,7 @@ export default function NotificationDropdown() {
                       {getIcon(item.type)}
                     </div>
                     <div className="min-w-0 flex-1">
-                      <div className="text-xs font-semibold text-white truncate">
+                      <div className="text-xs font-semibold text-slate-900 dark:text-white truncate">
                         {item.title}
                       </div>
                       <div className="text-[11px] text-slate-600 dark:text-slate-300 line-clamp-2 mt-0.5">
