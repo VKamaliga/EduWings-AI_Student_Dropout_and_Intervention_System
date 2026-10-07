@@ -17,7 +17,7 @@ export default function Login() {
   const demoAccounts = [
     {
       role: 'Admin',
-      name: 'Dr. Warren',
+      name: 'Kamaliga Varatharaj',
       email: 'admin@eduwings.edu',
       pass: 'Admin@123',
       color: 'border-purple-300 dark:border-purple-500/40 hover:border-purple-500 text-purple-400 bg-purple-50 dark:bg-purple-500/10',
@@ -25,7 +25,7 @@ export default function Login() {
     },
     {
       role: 'Faculty',
-      name: 'Prof. Kulkarni',
+      name: 'Lavanya Muthukumar',
       email: 'faculty@eduwings.edu',
       pass: 'Faculty@123',
       color: 'border-blue-500/40 hover:border-blue-500 text-blue-400 bg-blue-500/10',
@@ -33,7 +33,7 @@ export default function Login() {
     },
     {
       role: 'Counsellor',
-      name: 'Dr. Jenkins',
+      name: 'Varsha S Rao',
       email: 'counsellor@eduwings.edu',
       pass: 'Counsellor@123',
       color: 'border-pink-500/40 hover:border-pink-500 text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-500/10',
