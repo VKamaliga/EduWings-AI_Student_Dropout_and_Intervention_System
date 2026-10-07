@@ -51,7 +51,7 @@ export default function Sidebar({ isOpen, onClose }) {
                 </div>
               </div>
               <div>
-                <div className="text-xl font-bold tracking-tight text-white flex items-center gap-1.5">
+                <div className="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
                   EduWings
                 </div>
                 <div className="text-[10px] uppercase tracking-wider text-purple-700 dark:text-purple-300 font-medium">
@@ -112,7 +112,7 @@ export default function Sidebar({ isOpen, onClose }) {
             </div>
 
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-bold text-white truncate">{user?.name}</div>
+              <div className="text-xs font-bold text-slate-900 dark:text-white truncate">{user?.name}</div>
               <div className="text-[11px] text-purple-700 dark:text-purple-300 capitalize truncate">
                 {user?.role} {user?.department ? `• ${user.department}` : ''}
               </div>

@@ -31,7 +31,7 @@ export default function Navbar({ title = 'Student Risk Dashboard', onOpenSidebar
         </button>
 
         <div className="min-w-0">
-          <h1 className="text-lg sm:text-xl font-extrabold text-white tracking-tight truncate">
+          <h1 className="text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white tracking-tight truncate">
             {title}
           </h1>
         </div>
@@ -53,7 +53,7 @@ export default function Navbar({ title = 'Student Risk Dashboard', onOpenSidebar
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search student or ID..."
-            className="pl-9 pr-3.5 py-1.5 w-44 md:w-56 rounded-xl text-xs bg-[#170E3B]/70 border border-purple-200 dark:border-purple-500/25 text-white placeholder-slate-400 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition-all"
+            className="pl-9 pr-3.5 py-1.5 w-44 md:w-56 rounded-xl text-xs bg-white dark:bg-[#170E3B]/70 border border-purple-200 dark:border-purple-500/25 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 focus:outline-none focus:border-purple-400 focus:ring-1 focus:ring-purple-400 transition-all"
           />
         </form>
 
@@ -73,13 +73,13 @@ export default function Navbar({ title = 'Student Risk Dashboard', onOpenSidebar
                 className="w-full h-full object-cover rounded-[10px]"
               />
             ) : (
-              <div className="w-full h-full bg-white dark:bg-[#180E3E] rounded-[10px] flex items-center justify-center text-[10px] font-bold text-white">
+              <div className="w-full h-full bg-purple-100 dark:bg-[#180E3E] rounded-[10px] flex items-center justify-center text-[10px] font-bold text-purple-900 dark:text-white">
                 {user?.name?.slice(0, 2).toUpperCase() || 'US'}
               </div>
             )}
           </div>
           <div className="hidden xl:block text-left">
-            <div className="text-xs font-bold text-white leading-tight truncate max-w-[120px]">
+            <div className="text-xs font-bold text-slate-900 dark:text-white leading-tight truncate max-w-[120px]">
               {user?.name}
             </div>
             <div className="text-[10px] text-purple-700 dark:text-purple-300 capitalize">{user?.role}</div>
