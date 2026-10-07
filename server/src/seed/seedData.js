@@ -55,39 +55,36 @@ const seedDatabase = async () => {
 
     // 2. Seed Users
     const adminUser = await User.create({
-      name: 'Dr. Elizabeth Warren',
+      name: 'Kamaliga Varatharaj',
       email: 'admin@eduwings.edu',
-      password: 'Admin@123',
+      password: 'EduWingsAdmin@2026!',
       role: 'admin',
       department: 'Academic Affairs',
       title: 'Dean of Academic Affairs',
-      avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&auto=format&fit=crop&q=80',
     });
 
     const facultyUser = await User.create({
-      name: 'Prof. Ramesh Kulkarni',
+      name: 'Lavanya Muthukumar',
       email: 'faculty@eduwings.edu',
-      password: 'Faculty@123',
+      password: 'EduWingsFaculty@2026!',
       role: 'faculty',
       department: 'Computer Science',
       title: 'Associate Professor & Mentor',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
     });
 
     const counsellorUser = await User.create({
-      name: 'Dr. Sarah Jenkins',
+      name: 'Varsha S Rao',
       email: 'counsellor@eduwings.edu',
-      password: 'Counsellor@123',
+      password: 'EduWingsCounsellor@2026!',
       role: 'counsellor',
       department: 'Student Wellness Centre',
       title: 'Chief Student Counsellor',
-      avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&auto=format&fit=crop&q=80',
     });
 
     const mechFaculty = await User.create({
       name: 'Prof. Ananya Sen',
       email: 'mech.faculty@eduwings.edu',
-      password: 'Faculty@123',
+      password: 'EduWingsFaculty@2026!',
       role: 'faculty',
       department: 'Mechanical Engineering',
       title: 'Assistant Professor',
