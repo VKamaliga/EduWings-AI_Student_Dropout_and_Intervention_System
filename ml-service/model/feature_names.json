@@ -1,0 +1,34 @@
+{
+  "features": [
+    "attendance",
+    "cgpa",
+    "internal_marks",
+    "backlog_count",
+    "assignment_submission_rate",
+    "lms_engagement_score",
+    "fee_payment_status",
+    "family_income_bracket",
+    "first_generation_learner",
+    "commute_distance_km",
+    "past_counselling_visits",
+    "semester"
+  ],
+  "importances": {
+    "attendance": 0.3015,
+    "cgpa": 0.1157,
+    "internal_marks": 0.0606,
+    "backlog_count": 0.0084,
+    "assignment_submission_rate": 0.2293,
+    "lms_engagement_score": 0.1927,
+    "fee_payment_status": 0.0065,
+    "family_income_bracket": 0.0141,
+    "first_generation_learner": 0.0327,
+    "commute_distance_km": 0.0203,
+    "past_counselling_visits": 0.0076,
+    "semester": 0.0106
+  },
+  "accuracy": 0.9867,
+  "roc_auc": 0.9827,
+  "model_type": "RandomForestClassifier",
+  "version": "1.0.0"
+}

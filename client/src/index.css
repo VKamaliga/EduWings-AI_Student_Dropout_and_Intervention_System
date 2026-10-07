@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #7C3AED;
+  --color-primary-light: #A855F7;
+  --color-accent: #EC4899;
+  
+  --risk-low: #34D399;
+  --risk-medium: #FBBF24;
+  --risk-high: #EC4899;
+
+  --bg-app: #0D0822;
+  --surface-card: rgba(24, 16, 56, 0.65);
+  --border-card: rgba(168, 85, 247, 0.22);
+  --text-main: #F8FAFC;
+  --text-muted: #94A3B8;
+}
+
+html.light {
+  --bg-app: #F8F7FD;
+  --surface-card: #FFFFFF;
+  --border-card: #E5E0F8;
+  --text-main: #0F172A;
+  --text-muted: #64748B;
+}
+
+body {
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+}
+
+/* Glassmorphism & Card Styles */
+.glass-panel {
+  background: rgba(22, 14, 52, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(168, 85, 247, 0.22);
+  box-shadow: 0 10px 30px -5px rgba(10, 5, 25, 0.5), 0 0 20px -3px rgba(168, 85, 247, 0.12);
+}
+
+html.light .glass-panel {
+  background: #FFFFFF;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid #E5E0F8;
+  box-shadow: 0 4px 20px -2px rgba(124, 58, 237, 0.07);
+}
+
+.glass-card-subtle {
+  background: rgba(30, 20, 68, 0.55);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(168, 85, 247, 0.18);
+}
+
+html.light .glass-card-subtle {
+  background: #F8F6FF;
+  backdrop-filter: none;
+  border: 1px solid #E8E3FA;
+}
+
+/* Background Gradients */
+.bg-deep-space {
+  background: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.18) 0%, transparent 40%),
+              radial-gradient(circle at 85% 15%, rgba(236, 72, 153, 0.15) 0%, transparent 35%),
+              radial-gradient(circle at 50% 80%, rgba(79, 70, 229, 0.12) 0%, transparent 50%),
+              linear-gradient(180deg, #0D0822 0%, #150E34 100%);
+}
+
+html.light .bg-deep-space {
+  background: radial-gradient(circle at 20% 20%, rgba(216, 180, 254, 0.25) 0%, transparent 40%),
+              radial-gradient(circle at 80% 20%, rgba(244, 114, 182, 0.20) 0%, transparent 35%),
+              linear-gradient(180deg, #FFFFFF 0%, #F6F4FD 100%);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.5);
+}
+
+/* Risk Badges */
+.badge-risk-low {
+  background-color: rgba(52, 211, 153, 0.15);
+  color: #34D399;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+}
+html.light .badge-risk-low {
+  background-color: #ECFDF5;
+  color: #059669;
+  border: 1px solid #A7F3D0;
+}
+
+.badge-risk-medium {
+  background-color: rgba(251, 191, 36, 0.15);
+  color: #FBBF24;
+  border: 1px solid rgba(251, 191, 36, 0.35);
+}
+html.light .badge-risk-medium {
+  background-color: #FFFBEB;
+  color: #D97706;
+  border: 1px solid #FDE68A;
+}
+
+.badge-risk-high {
+  background-color: rgba(236, 72, 153, 0.18);
+  color: #F472B6;
+  border: 1px solid rgba(236, 72, 153, 0.45);
+}
+html.light .badge-risk-high {
+  background-color: #FDF2F8;
+  color: #DB2777;
+  border: 1px solid #FBCFE8;
+}
