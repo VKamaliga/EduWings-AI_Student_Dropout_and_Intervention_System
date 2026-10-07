@@ -5,22 +5,22 @@ export default function RiskBadge({ level = 'Low', probability = null, size = 'm
 
   const styles = {
     LOW: {
-      pill: 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/35 dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/35',
+      pill: 'bg-emerald-50 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-500/35 dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/35',
       label: 'Low',
       dot: 'bg-emerald-400',
     },
     MEDIUM: {
-      pill: 'bg-amber-500/15 text-amber-300 border border-amber-500/35 dark:bg-amber-500/15 dark:text-amber-300 dark:border-amber-500/35',
+      pill: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/35 dark:bg-amber-500/15 dark:text-amber-300 dark:border-amber-500/35',
       label: 'Medium',
       dot: 'bg-amber-400',
     },
     HIGH: {
-      pill: 'bg-pink-500/20 text-pink-300 border border-pink-500/40 dark:bg-pink-500/20 dark:text-pink-300 dark:border-pink-500/40',
+      pill: 'bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 border border-pink-500/40 dark:bg-pink-500/20 dark:text-pink-300 dark:border-pink-500/40',
       label: 'High',
       dot: 'bg-pink-400',
     },
   }[normLevel] || {
-    pill: 'bg-slate-500/20 text-slate-300 border border-slate-500/30',
+    pill: 'bg-slate-100 dark:bg-slate-500/20 text-slate-600 dark:text-slate-300 border border-slate-500/30',
     label: level,
     dot: 'bg-slate-400',
   };

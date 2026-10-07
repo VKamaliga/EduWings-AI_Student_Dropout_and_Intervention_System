@@ -54,8 +54,8 @@ export default function RiskAnalysis() {
 
   if (loading) {
     return (
-      <div className="py-24 text-center text-slate-400">
-        <div className="inline-block w-8 h-8 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mb-3" />
+      <div className="py-24 text-center text-slate-500 dark:text-slate-400">
+        <div className="inline-block w-8 h-8 border-4 border-purple-300 dark:border-purple-500/30 border-t-purple-500 rounded-full animate-spin mb-3" />
         <div>Computing institutional risk analytics & feature importance...</div>
       </div>
     );
@@ -77,13 +77,13 @@ export default function RiskAnalysis() {
             <Brain className="w-6 h-6 text-purple-400" />
             <span>Explainable AI Risk Analytics</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             Feature weights, cross-departmental vulnerability distributions, and longitudinal cohort trends
           </p>
         </div>
 
-        <div className="px-3 py-1.5 rounded-xl bg-purple-500/10 border border-purple-500/20 text-xs text-purple-200 flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-pink-400" />
+        <div className="px-3 py-1.5 rounded-xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 text-xs text-purple-800 dark:text-purple-200 flex items-center gap-2">
+          <Sparkles className="w-4 h-4 text-pink-600 dark:text-pink-400" />
           <span>Model: Random Forest & Gradient Boosting (AUC: 0.92)</span>
         </div>
       </div>
@@ -91,31 +91,31 @@ export default function RiskAnalysis() {
       {/* Top 3 Analytical Summary Highlights */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <Card className="p-4 border-l-4 border-l-purple-500">
-          <div className="text-xs text-slate-400">Primary Risk Driver</div>
+          <div className="text-xs text-slate-500 dark:text-slate-400">Primary Risk Driver</div>
           <div className="text-lg font-bold text-slate-900 dark:text-white mt-1">
             {factors[0]?.factor || 'Low attendance'}
           </div>
-          <div className="text-[11px] text-purple-300 mt-1">
+          <div className="text-[11px] text-purple-700 dark:text-purple-300 mt-1">
             Impacts {factors[0]?.share || 32}% of all flagged student profiles
           </div>
         </Card>
 
         <Card className="p-4 border-l-4 border-l-pink-500">
-          <div className="text-xs text-slate-400">Department Requiring Support</div>
+          <div className="text-xs text-slate-500 dark:text-slate-400">Department Requiring Support</div>
           <div className="text-lg font-bold text-slate-900 dark:text-white mt-1">
             {departmentData.sort((a, b) => b.high - a.high)[0]?.department || 'Electronics & Comm.'}
           </div>
-          <div className="text-[11px] text-pink-300 mt-1">
+          <div className="text-[11px] text-pink-700 dark:text-pink-300 mt-1">
             Highest concentration of high-risk student flags
           </div>
         </Card>
 
         <Card className="p-4 border-l-4 border-l-emerald-500">
-          <div className="text-xs text-slate-400">Intervention Effectiveness</div>
+          <div className="text-xs text-slate-500 dark:text-slate-400">Intervention Effectiveness</div>
           <div className="text-lg font-bold text-slate-900 dark:text-white mt-1">
             -31% High Risk Reduction
           </div>
-          <div className="text-[11px] text-emerald-300 mt-1">
+          <div className="text-[11px] text-emerald-700 dark:text-emerald-300 mt-1">
             Consecutive 6-month trajectory following proactive advising
           </div>
         </Card>
@@ -130,9 +130,9 @@ export default function RiskAnalysis() {
               <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
                 Global Feature Importance
               </h3>
-              <p className="text-xs text-slate-400">Relative weight in AI classification decisions</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Relative weight in AI classification decisions</p>
             </div>
-            <span className="text-xs font-mono text-purple-300">Weights (0-100)</span>
+            <span className="text-xs font-mono text-purple-700 dark:text-purple-300">Weights (0-100)</span>
           </div>
 
           <div className="h-72 w-full my-auto">
@@ -156,10 +156,10 @@ export default function RiskAnalysis() {
                     if (active && payload && payload.length) {
                       const item = payload[0].payload;
                       return (
-                        <div className="glass-panel p-2.5 rounded-xl border border-purple-500/30 text-xs shadow-xl space-y-1">
+                        <div className="glass-panel p-2.5 rounded-xl border border-purple-300 dark:border-purple-500/30 text-xs shadow-xl space-y-1">
                           <div className="font-bold text-slate-900 dark:text-white">{item.name}</div>
-                          <div className="text-purple-300">Weight: {item.importance}%</div>
-                          <div className="text-slate-300">Cohort Prevalence: {item.share}%</div>
+                          <div className="text-purple-700 dark:text-purple-300">Weight: {item.importance}%</div>
+                          <div className="text-slate-600 dark:text-slate-300">Cohort Prevalence: {item.share}%</div>
                         </div>
                       );
                     }
@@ -183,7 +183,7 @@ export default function RiskAnalysis() {
               <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
                 Risk Distribution by Department
               </h3>
-              <p className="text-xs text-slate-400">Cohort counts across academic divisions</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Cohort counts across academic divisions</p>
             </div>
           </div>
 
@@ -207,11 +207,11 @@ export default function RiskAnalysis() {
                   content={({ active, payload, label }) => {
                     if (active && payload && payload.length) {
                       return (
-                        <div className="glass-panel p-3 rounded-xl border border-purple-500/30 text-xs shadow-xl space-y-1">
+                        <div className="glass-panel p-3 rounded-xl border border-purple-300 dark:border-purple-500/30 text-xs shadow-xl space-y-1">
                           <div className="font-bold text-slate-900 dark:text-white">{label}</div>
-                          <div className="text-emerald-300">Low Risk: {payload[0]?.value}</div>
-                          <div className="text-amber-300">Medium Risk: {payload[1]?.value}</div>
-                          <div className="text-pink-300">High Risk: {payload[2]?.value}</div>
+                          <div className="text-emerald-700 dark:text-emerald-300">Low Risk: {payload[0]?.value}</div>
+                          <div className="text-amber-700 dark:text-amber-300">Medium Risk: {payload[1]?.value}</div>
+                          <div className="text-pink-700 dark:text-pink-300">High Risk: {payload[2]?.value}</div>
                         </div>
                       );
                     }
@@ -235,11 +235,11 @@ export default function RiskAnalysis() {
             <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
               6-Month Longitudinal Risk Trajectory
             </h3>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               Tracking how proactive interventions reduce high-risk students over time
             </p>
           </div>
-          <div className="flex items-center gap-2 text-xs text-emerald-400 font-semibold bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-500/20">
+          <div className="flex items-center gap-2 text-xs text-emerald-600 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-500/10 px-3 py-1.5 rounded-xl border border-emerald-300 dark:border-emerald-500/20">
             <TrendingDown className="w-4 h-4" />
             <span>High Risk Attrition Down 31%</span>
           </div>
@@ -269,11 +269,11 @@ export default function RiskAnalysis() {
                 content={({ active, payload, label }) => {
                   if (active && payload && payload.length) {
                     return (
-                      <div className="glass-panel p-3 rounded-xl border border-purple-500/30 text-xs shadow-xl space-y-1">
+                      <div className="glass-panel p-3 rounded-xl border border-purple-300 dark:border-purple-500/30 text-xs shadow-xl space-y-1">
                         <div className="font-bold text-slate-900 dark:text-white">{label}</div>
-                        <div className="text-pink-300">High Risk: {payload[0]?.value}</div>
-                        <div className="text-amber-300">Medium Risk: {payload[1]?.value}</div>
-                        <div className="text-emerald-300">Low Risk: {payload[2]?.value}</div>
+                        <div className="text-pink-700 dark:text-pink-300">High Risk: {payload[0]?.value}</div>
+                        <div className="text-amber-700 dark:text-amber-300">Medium Risk: {payload[1]?.value}</div>
+                        <div className="text-emerald-700 dark:text-emerald-300">Low Risk: {payload[2]?.value}</div>
                       </div>
                     );
                   }

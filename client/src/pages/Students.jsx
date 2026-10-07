@@ -111,9 +111,9 @@ export default function Students() {
     <div className="space-y-6">
       {/* Toast Notification */}
       {notificationMsg && (
-        <div className="p-4 rounded-2xl bg-purple-500/20 border border-purple-500/40 text-purple-200 text-sm flex items-center justify-between shadow-lg">
+        <div className="p-4 rounded-2xl bg-purple-100 dark:bg-purple-500/20 border border-purple-300 dark:border-purple-500/40 text-purple-800 dark:text-purple-200 text-sm flex items-center justify-between shadow-lg">
           <span>{notificationMsg}</span>
-          <button onClick={() => setNotificationMsg('')} className="text-purple-300 hover:text-white">
+          <button onClick={() => setNotificationMsg('')} className="text-purple-700 dark:text-purple-300 hover:text-slate-900 dark:hover:text-white">
             <X className="w-4 h-4" />
           </button>
         </div>
@@ -125,7 +125,7 @@ export default function Students() {
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
             Students Cohort Directory
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             {pagination.total} registered students • Monitor attendance, academic signals, and dropout probabilities
           </p>
         </div>
@@ -142,9 +142,9 @@ export default function Students() {
 
           <button
             onClick={() => setShowBulkModal(true)}
-            className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-200 hover:text-white bg-[#1A1040]/70 hover:bg-[#251758] border border-purple-500/25 flex items-center gap-2 transition-all"
+            className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white bg-slate-50 dark:bg-[#1A1040]/70 hover:bg-[#251758] border border-purple-200 dark:border-purple-500/25 flex items-center gap-2 transition-all"
           >
-            <Upload className="w-3.5 h-3.5 text-purple-300" />
+            <Upload className="w-3.5 h-3.5 text-purple-700 dark:text-purple-300" />
             <span>Bulk CSV</span>
           </button>
 
@@ -163,17 +163,17 @@ export default function Students() {
         <div className="flex flex-col lg:flex-row items-center gap-3">
           {/* Search Box */}
           <form onSubmit={handleSearchSubmit} className="relative flex-1 w-full">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-4 h-4 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by ID, student name, or email..."
-              className="w-full pl-10 pr-20 py-2 rounded-xl text-xs bg-[#120B30]/80 border border-purple-500/25 text-white placeholder-slate-400 focus:outline-none focus:border-purple-400"
+              className="w-full pl-10 pr-20 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-white placeholder-slate-400 focus:outline-none focus:border-purple-400"
             />
             <button
               type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 px-2.5 py-1 text-[11px] font-semibold text-purple-200 hover:text-white bg-purple-600/40 hover:bg-purple-600/70 rounded-lg transition-colors"
+              className="absolute right-2 top-1/2 -translate-y-1/2 px-2.5 py-1 text-[11px] font-semibold text-purple-800 dark:text-purple-200 hover:text-slate-900 dark:hover:text-white bg-purple-600/40 hover:bg-purple-600/70 rounded-lg transition-colors"
             >
               Search
             </button>
@@ -186,7 +186,7 @@ export default function Students() {
               <select
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
-                className="px-3 py-2 rounded-xl text-xs bg-[#120B30]/80 border border-purple-500/25 text-slate-200 focus:outline-none focus:border-purple-400"
+                className="px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-purple-400"
               >
                 <option value="All">All Departments</option>
                 <option value="Computer Science">Computer Science</option>
@@ -202,7 +202,7 @@ export default function Students() {
             <select
               value={year}
               onChange={(e) => setYear(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs bg-[#120B30]/80 border border-purple-500/25 text-slate-200 focus:outline-none focus:border-purple-400"
+              className="px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-purple-400"
             >
               <option value="All">All Years</option>
               <option value="1">Year 1</option>
@@ -215,7 +215,7 @@ export default function Students() {
             <select
               value={riskLevel}
               onChange={(e) => setRiskLevel(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs bg-[#120B30]/80 border border-purple-500/25 text-slate-200 focus:outline-none focus:border-purple-400"
+              className="px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-purple-400"
             >
               <option value="All">All Risk Levels</option>
               <option value="High">High Risk</option>
@@ -227,7 +227,7 @@ export default function Students() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs bg-[#120B30]/80 border border-purple-500/25 text-slate-200 focus:outline-none focus:border-purple-400"
+              className="px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-purple-400"
             >
               <option value="risk">Sort: Risk Probability</option>
               <option value="attendance">Sort: Attendance</option>
@@ -239,7 +239,7 @@ export default function Students() {
             {/* Sort Order */}
             <button
               onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-              className="p-2 rounded-xl bg-[#120B30]/80 border border-purple-500/25 text-slate-300 hover:text-white text-xs font-semibold"
+              className="p-2 rounded-xl bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-xs font-semibold"
               title="Toggle Sort Order"
             >
               {sortOrder === 'asc' ? '▲ ASC' : '▼ DESC'}
@@ -253,7 +253,7 @@ export default function Students() {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-purple-500/20 bg-purple-950/20 text-purple-300 font-bold uppercase tracking-wider text-[11px]">
+              <tr className="border-b border-purple-200 dark:border-purple-500/20 bg-white dark:bg-purple-950/20 text-purple-700 dark:text-purple-300 font-bold uppercase tracking-wider text-[11px]">
                 <th className="py-3 px-4">Student ID</th>
                 <th className="py-3 px-4">Student Name</th>
                 <th className="py-3 px-4">Dept & Year</th>
@@ -269,14 +269,14 @@ export default function Students() {
             <tbody className="divide-y divide-purple-500/10">
               {loading ? (
                 <tr>
-                  <td colSpan="10" className="py-12 text-center text-slate-400">
+                  <td colSpan="10" className="py-12 text-center text-slate-500 dark:text-slate-400">
                     <div className="inline-block w-6 h-6 border-2 border-purple-400 border-t-transparent rounded-full animate-spin mb-2" />
                     <div>Loading student cohort records...</div>
                   </td>
                 </tr>
               ) : students.length === 0 ? (
                 <tr>
-                  <td colSpan="10" className="py-12 text-center text-slate-400">
+                  <td colSpan="10" className="py-12 text-center text-slate-500 dark:text-slate-400">
                     No students match the selected filter criteria.
                   </td>
                 </tr>
@@ -291,7 +291,7 @@ export default function Students() {
                       key={s._id}
                       className="hover:bg-purple-500/10 transition-colors group cursor-pointer"
                     >
-                      <td className="py-3.5 px-4 font-mono font-bold text-purple-200">
+                      <td className="py-3.5 px-4 font-mono font-bold text-purple-800 dark:text-purple-200">
                         <Link to={`/students/${s._id}`} className="hover:underline">
                           {s.studentId}
                         </Link>
@@ -300,14 +300,14 @@ export default function Students() {
                         <Link to={`/students/${s._id}`} className="font-semibold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
                           {s.name}
                         </Link>
-                        <div className="text-[10px] text-slate-400 truncate max-w-[160px]">{s.email}</div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate max-w-[160px]">{s.email}</div>
                       </td>
                       <td className="py-3.5 px-4">
-                        <div className="text-slate-200">{s.department}</div>
-                        <div className="text-[10px] text-slate-400">Year {s.year} • Sem {s.semester}</div>
+                        <div className="text-slate-700 dark:text-slate-200">{s.department}</div>
+                        <div className="text-[10px] text-slate-500 dark:text-slate-400">Year {s.year} • Sem {s.semester}</div>
                       </td>
                       <td className="py-3.5 px-4">
-                        <span className={`font-semibold ${s.attendance < 65 ? 'text-pink-400' : s.attendance < 75 ? 'text-amber-400' : 'text-emerald-400'}`}>
+                        <span className={`font-semibold ${s.attendance < 65 ? 'text-pink-600 dark:text-pink-400' : s.attendance < 75 ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
                           {s.attendance}%
                         </span>
                       </td>
@@ -317,17 +317,17 @@ export default function Students() {
                         </span>
                       </td>
                       <td className="py-3.5 px-4">
-                        <span className={s.backlogCount > 0 ? 'text-pink-300 font-bold' : 'text-slate-400'}>
+                        <span className={s.backlogCount > 0 ? 'text-pink-700 dark:text-pink-300 font-bold' : 'text-slate-500 dark:text-slate-400'}>
                           {s.backlogCount}
                         </span>
                       </td>
                       <td className="py-3.5 px-4">
                         <span className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
                           s.feePaymentStatus === 'Paid'
-                            ? 'bg-emerald-500/10 text-emerald-300'
+                            ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
                             : s.feePaymentStatus === 'Pending'
-                            ? 'bg-amber-500/10 text-amber-300'
-                            : 'bg-pink-500/10 text-pink-300'
+                            ? 'bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300'
+                            : 'bg-pink-50 dark:bg-pink-500/10 text-pink-700 dark:text-pink-300'
                         }`}>
                           {s.feePaymentStatus}
                         </span>
@@ -344,14 +344,14 @@ export default function Students() {
                             onClick={(e) => handlePredictSingle(e, s._id)}
                             disabled={isCurrentPredicting}
                             title="Run single prediction"
-                            className="p-1.5 rounded-lg text-purple-300 hover:text-white hover:bg-purple-600/30 transition-all"
+                            className="p-1.5 rounded-lg text-purple-700 dark:text-purple-300 hover:text-slate-900 dark:hover:text-white hover:bg-purple-600/30 transition-all"
                           >
                             <RotateCw className={`w-3.5 h-3.5 ${isCurrentPredicting ? 'animate-spin' : ''}`} />
                           </button>
                           <Link
                             to={`/students/${s._id}`}
                             title="View student file"
-                            className="p-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-purple-600/30 transition-all"
+                            className="p-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-purple-600/30 transition-all"
                           >
                             <ExternalLink className="w-3.5 h-3.5" />
                           </Link>
@@ -366,7 +366,7 @@ export default function Students() {
         </div>
 
         {/* Pagination Controls */}
-        <div className="p-4 border-t border-purple-500/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+        <div className="p-4 border-t border-purple-200 dark:border-purple-500/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
           <div>
             Showing Page <strong>{pagination.page}</strong> of <strong>{pagination.totalPages}</strong> ({pagination.total} total students)
           </div>
@@ -375,7 +375,7 @@ export default function Students() {
             <button
               onClick={() => fetchStudents(pagination.page - 1)}
               disabled={pagination.page <= 1}
-              className="px-3 py-1.5 rounded-xl border border-purple-500/25 bg-[#120B30] text-slate-200 hover:text-white disabled:opacity-40 flex items-center gap-1 transition-all"
+              className="px-3 py-1.5 rounded-xl border border-purple-200 dark:border-purple-500/25 bg-white dark:bg-[#120B30] text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white disabled:opacity-40 flex items-center gap-1 transition-all"
             >
               <ChevronLeft className="w-3.5 h-3.5" />
               <span>Previous</span>
@@ -384,7 +384,7 @@ export default function Students() {
             <button
               onClick={() => fetchStudents(pagination.page + 1)}
               disabled={pagination.page >= pagination.totalPages}
-              className="px-3 py-1.5 rounded-xl border border-purple-500/25 bg-[#120B30] text-slate-200 hover:text-white disabled:opacity-40 flex items-center gap-1 transition-all"
+              className="px-3 py-1.5 rounded-xl border border-purple-200 dark:border-purple-500/25 bg-white dark:bg-[#120B30] text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white disabled:opacity-40 flex items-center gap-1 transition-all"
             >
               <span>Next</span>
               <ChevronRight className="w-3.5 h-3.5" />
@@ -461,20 +461,20 @@ function AddStudentModal({ onClose, onAdded }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto">
-      <div className="w-full max-w-2xl rounded-3xl glass-panel p-6 sm:p-8 border border-purple-500/30 my-8 shadow-2xl animate-in zoom-in-95">
-        <div className="flex items-center justify-between pb-4 mb-4 border-b border-purple-500/20">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/70 backdrop-blur-sm overflow-y-auto">
+      <div className="w-full max-w-2xl rounded-3xl glass-panel p-6 sm:p-8 border border-purple-300 dark:border-purple-500/30 my-8 shadow-2xl animate-in zoom-in-95">
+        <div className="flex items-center justify-between pb-4 mb-4 border-b border-purple-200 dark:border-purple-500/20">
           <div>
             <h3 className="text-lg font-bold text-slate-900 dark:text-white">Enroll New Student</h3>
-            <p className="text-xs text-slate-400">Real-time ML feature extraction and risk assessment will run automatically</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Real-time ML feature extraction and risk assessment will run automatically</p>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-white">
+          <button onClick={onClose} className="p-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 rounded-xl bg-pink-500/15 border border-pink-500/30 text-pink-300 text-xs">
+          <div className="mb-4 p-3 rounded-xl bg-pink-50 dark:bg-pink-500/15 border border-pink-300 dark:border-pink-500/30 text-pink-700 dark:text-pink-300 text-xs">
             {error}
           </div>
         )}
@@ -482,45 +482,45 @@ function AddStudentModal({ onClose, onAdded }) {
         <form onSubmit={handleSubmit} className="space-y-4 text-xs">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-purple-300 font-semibold mb-1">Student ID *</label>
+              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Student ID *</label>
               <input
                 required
                 value={formData.studentId}
                 onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
                 placeholder="e.g. S1250"
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
             <div>
-              <label className="block text-purple-300 font-semibold mb-1">Full Name *</label>
+              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Full Name *</label>
               <input
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Maya Patel"
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
             <div>
-              <label className="block text-purple-300 font-semibold mb-1">Email Address *</label>
+              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Email Address *</label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="maya.s1250@eduwings.edu"
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-purple-300 font-semibold mb-1">Department</label>
+              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Department</label>
               <select
                 value={formData.department}
                 onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               >
                 <option value="Computer Science">Computer Science</option>
                 <option value="Electronics & Comm.">Electronics & Comm.</option>
@@ -530,7 +530,7 @@ function AddStudentModal({ onClose, onAdded }) {
               </select>
             </div>
             <div>
-              <label className="block text-purple-300 font-semibold mb-1">Semester & Year</label>
+              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Semester & Year</label>
               <div className="flex gap-2">
                 <input
                   type="number"
@@ -538,7 +538,7 @@ function AddStudentModal({ onClose, onAdded }) {
                   max="8"
                   value={formData.semester}
                   onChange={(e) => setFormData({ ...formData, semester: Number(e.target.value), year: Math.ceil(e.target.value / 2) })}
-                  className="w-1/2 px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                  className="w-1/2 px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
                   title="Semester"
                 />
                 <input
@@ -547,17 +547,17 @@ function AddStudentModal({ onClose, onAdded }) {
                   max="4"
                   value={formData.year}
                   onChange={(e) => setFormData({ ...formData, year: Number(e.target.value) })}
-                  className="w-1/2 px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                  className="w-1/2 px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
                   title="Year"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-purple-300 font-semibold mb-1">Gender</label>
+              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Gender</label>
               <select
                 value={formData.gender}
                 onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               >
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
@@ -567,20 +567,20 @@ function AddStudentModal({ onClose, onAdded }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-purple-500/15">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-purple-200 dark:border-purple-500/15">
             <div>
-              <label className="block text-slate-300 mb-1">Attendance (%)</label>
+              <label className="block text-slate-600 dark:text-slate-300 mb-1">Attendance (%)</label>
               <input
                 type="number"
                 min="0"
                 max="100"
                 value={formData.attendance}
                 onChange={(e) => setFormData({ ...formData, attendance: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
             <div>
-              <label className="block text-slate-300 mb-1">CGPA (0 - 10)</label>
+              <label className="block text-slate-600 dark:text-slate-300 mb-1">CGPA (0 - 10)</label>
               <input
                 type="number"
                 step="0.01"
@@ -588,40 +588,40 @@ function AddStudentModal({ onClose, onAdded }) {
                 max="10"
                 value={formData.cgpa}
                 onChange={(e) => setFormData({ ...formData, cgpa: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
             <div>
-              <label className="block text-slate-300 mb-1">Active Backlogs</label>
+              <label className="block text-slate-600 dark:text-slate-300 mb-1">Active Backlogs</label>
               <input
                 type="number"
                 min="0"
                 max="10"
                 value={formData.backlogCount}
                 onChange={(e) => setFormData({ ...formData, backlogCount: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
             <div>
-              <label className="block text-slate-300 mb-1">Assignment Rate (%)</label>
+              <label className="block text-slate-600 dark:text-slate-300 mb-1">Assignment Rate (%)</label>
               <input
                 type="number"
                 min="0"
                 max="100"
                 value={formData.assignmentSubmissionRate}
                 onChange={(e) => setFormData({ ...formData, assignmentSubmissionRate: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-slate-300 mb-1">Fee Payment Status</label>
+              <label className="block text-slate-600 dark:text-slate-300 mb-1">Fee Payment Status</label>
               <select
                 value={formData.feePaymentStatus}
                 onChange={(e) => setFormData({ ...formData, feePaymentStatus: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               >
                 <option value="Paid">Paid</option>
                 <option value="Pending">Pending</option>
@@ -629,24 +629,24 @@ function AddStudentModal({ onClose, onAdded }) {
               </select>
             </div>
             <div>
-              <label className="block text-slate-300 mb-1">LMS Engagement (%)</label>
+              <label className="block text-slate-600 dark:text-slate-300 mb-1">LMS Engagement (%)</label>
               <input
                 type="number"
                 min="0"
                 max="100"
                 value={formData.lmsEngagementScore}
                 onChange={(e) => setFormData({ ...formData, lmsEngagementScore: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
             <div>
-              <label className="block text-slate-300 mb-1">Commute (Km)</label>
+              <label className="block text-slate-600 dark:text-slate-300 mb-1">Commute (Km)</label>
               <input
                 type="number"
                 min="0"
                 value={formData.commuteDistanceKm}
                 onChange={(e) => setFormData({ ...formData, commuteDistanceKm: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-[#110A2E] border border-purple-500/25 text-white"
+                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
               />
             </div>
           </div>
@@ -657,18 +657,18 @@ function AddStudentModal({ onClose, onAdded }) {
               id="fgLearner"
               checked={formData.firstGenerationLearner}
               onChange={(e) => setFormData({ ...formData, firstGenerationLearner: e.target.checked })}
-              className="rounded bg-[#110A2E] border-purple-500/30 text-purple-500"
+              className="rounded bg-white dark:bg-[#110A2E] border-purple-300 dark:border-purple-500/30 text-purple-500"
             />
-            <label htmlFor="fgLearner" className="text-slate-300 text-xs">
+            <label htmlFor="fgLearner" className="text-slate-600 dark:text-slate-300 text-xs">
               First-generation college learner
             </label>
           </div>
 
-          <div className="pt-4 flex items-center justify-end gap-3 border-t border-purple-500/20">
+          <div className="pt-4 flex items-center justify-end gap-3 border-t border-purple-200 dark:border-purple-500/20">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5"
+              className="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/5"
             >
               Cancel
             </button>
@@ -744,42 +744,42 @@ S2003,Tanvi Joshi,tanvi.s2003@eduwings.edu,Electronics & Comm.,3,5,91,8.4,0,94,8
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
-      <div className="w-full max-w-xl rounded-3xl glass-panel p-6 sm:p-8 border border-purple-500/30 shadow-2xl animate-in zoom-in-95">
-        <div className="flex items-center justify-between pb-3 mb-4 border-b border-purple-500/20">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/70 backdrop-blur-sm">
+      <div className="w-full max-w-xl rounded-3xl glass-panel p-6 sm:p-8 border border-purple-300 dark:border-purple-500/30 shadow-2xl animate-in zoom-in-95">
+        <div className="flex items-center justify-between pb-3 mb-4 border-b border-purple-200 dark:border-purple-500/20">
           <div className="flex items-center gap-2.5">
             <FileSpreadsheet className="w-5 h-5 text-purple-400" />
             <h3 className="text-base font-bold text-slate-900 dark:text-white">Bulk CSV Import</h3>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg text-slate-400 hover:text-white">
+          <button onClick={onClose} className="p-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 rounded-xl bg-pink-500/15 border border-pink-500/30 text-pink-300 text-xs">
+          <div className="mb-4 p-3 rounded-xl bg-pink-50 dark:bg-pink-500/15 border border-pink-300 dark:border-pink-500/30 text-pink-700 dark:text-pink-300 text-xs">
             {error}
           </div>
         )}
 
         <div className="space-y-4 text-xs">
           <div>
-            <label className="block text-slate-300 mb-1 font-semibold">Select CSV File</label>
+            <label className="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">Select CSV File</label>
             <input
               type="file"
               accept=".csv"
               onChange={handleFileUpload}
-              className="w-full text-xs text-slate-300 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-500 cursor-pointer"
+              className="w-full text-xs text-slate-600 dark:text-slate-300 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-500 cursor-pointer"
             />
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-slate-300 font-semibold">Or Paste CSV Data Below</label>
+              <label className="text-slate-600 dark:text-slate-300 font-semibold">Or Paste CSV Data Below</label>
               <button
                 type="button"
                 onClick={() => setCsvText(sampleCSV)}
-                className="text-[11px] text-purple-300 hover:text-white underline"
+                className="text-[11px] text-purple-700 dark:text-purple-300 hover:text-slate-900 dark:hover:text-white underline"
               >
                 Insert sample demo CSV
               </button>
@@ -789,19 +789,19 @@ S2003,Tanvi Joshi,tanvi.s2003@eduwings.edu,Electronics & Comm.,3,5,91,8.4,0,94,8
               value={csvText}
               onChange={(e) => setCsvText(e.target.value)}
               placeholder="studentId,name,email,department,year,attendance,cgpa..."
-              className="w-full p-3 font-mono text-[11px] rounded-xl bg-[#110A2E] border border-purple-500/25 text-white focus:outline-none focus:border-purple-400"
+              className="w-full p-3 font-mono text-[11px] rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white focus:outline-none focus:border-purple-400"
             />
           </div>
 
-          <div className="p-3 rounded-xl bg-purple-500/10 border border-purple-500/15 text-[11px] text-slate-300">
+          <div className="p-3 rounded-xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/15 text-[11px] text-slate-600 dark:text-slate-300">
             Each imported record is automatically parsed through the machine learning pipeline and assigned an initial dropout probability.
           </div>
 
-          <div className="pt-3 flex items-center justify-end gap-3 border-t border-purple-500/20">
+          <div className="pt-3 flex items-center justify-end gap-3 border-t border-purple-200 dark:border-purple-500/20">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-slate-300 hover:text-white"
+              className="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
             >
               Cancel
             </button>

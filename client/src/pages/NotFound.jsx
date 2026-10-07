@@ -6,12 +6,12 @@ import Card from '../components/common/Card';
 export default function NotFound() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center p-4">
-      <Card className="max-w-md w-full text-center p-8 border border-purple-500/30">
-        <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center">
-          <AlertTriangle className="w-8 h-8 text-pink-400" />
+      <Card className="max-w-md w-full text-center p-8 border border-purple-300 dark:border-purple-500/30">
+        <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-pink-100 dark:bg-pink-500/20 border border-pink-500/40 flex items-center justify-center">
+          <AlertTriangle className="w-8 h-8 text-pink-600 dark:text-pink-400" />
         </div>
         <h2 className="text-2xl font-bold text-white mb-2">Page Not Found</h2>
-        <p className="text-xs text-slate-400 mb-6">
+        <p className="text-xs text-slate-500 dark:text-slate-400 mb-6">
           The requested institutional record or portal view does not exist or has been relocated.
         </p>
         <Link

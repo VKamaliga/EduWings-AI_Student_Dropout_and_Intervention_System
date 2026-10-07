@@ -23,7 +23,7 @@ export default function AtRiskStudentsTable({ students = [], selectedStudentId, 
       <div className="overflow-x-auto my-auto">
         <table className="w-full text-left text-xs">
           <thead>
-            <tr className="border-b border-purple-500/15 text-purple-700/80 dark:text-purple-300/80 font-bold uppercase tracking-wider text-[11px]">
+            <tr className="border-b border-purple-200 dark:border-purple-500/15 text-purple-700/80 dark:text-purple-300/80 font-bold uppercase tracking-wider text-[11px]">
               <th className="py-2.5 px-3">ID</th>
               <th className="py-2.5 px-3">Name</th>
               <th className="py-2.5 px-3 text-right">Risk Level</th>
@@ -32,7 +32,7 @@ export default function AtRiskStudentsTable({ students = [], selectedStudentId, 
           <tbody className="divide-y divide-purple-500/10">
             {students.length === 0 ? (
               <tr>
-                <td colSpan="3" className="py-8 text-center text-slate-400">
+                <td colSpan="3" className="py-8 text-center text-slate-500 dark:text-slate-400">
                   No students currently flagged in this cohort.
                 </td>
               </tr>
@@ -54,7 +54,7 @@ export default function AtRiskStudentsTable({ students = [], selectedStudentId, 
                     </td>
                     <td className="py-3 px-3 font-medium">
                       <div className="truncate max-w-[150px]">{s.name}</div>
-                      <div className="text-[10px] text-slate-400">{s.department}</div>
+                      <div className="text-[10px] text-slate-500 dark:text-slate-400">{s.department}</div>
                     </td>
                     <td className="py-3 px-3 text-right">
                       <RiskBadge level={s.currentRisk?.riskLevel || 'Low'} size="sm" />

@@ -13,7 +13,7 @@ export default function RiskDonutChart({ data = [] }) {
     <Card className="h-full flex flex-col justify-between">
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
-          Risk Distribution <span className="text-xs font-normal text-slate-400"></span>
+          Risk Distribution <span className="text-xs font-normal text-slate-500 dark:text-slate-400"></span>
         </h3>
       </div>
 
@@ -27,7 +27,7 @@ export default function RiskDonutChart({ data = [] }) {
                   if (active && payload && payload.length) {
                     const item = payload[0].payload;
                     return (
-                      <div className="glass-panel px-3 py-2 rounded-xl border border-purple-500/30 text-xs shadow-xl">
+                      <div className="glass-panel px-3 py-2 rounded-xl border border-purple-300 dark:border-purple-500/30 text-xs shadow-xl">
                         <div className="font-bold text-slate-900 dark:text-white">{item.name}</div>
                         <div className="text-slate-600 dark:text-slate-300">
                           {item.value} students ({item.percentage}%)
