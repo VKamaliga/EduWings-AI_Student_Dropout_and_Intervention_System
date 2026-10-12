@@ -30,31 +30,29 @@ export default function Sidebar({ isOpen, onClose }) {
       {/* Mobile Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 lg:hidden"
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
           onClick={onClose}
         />
       )}
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed lg:sticky top-0 bottom-0 lg:bottom-auto lg:h-screen overflow-y-auto left-0 z-50 w-64 bg-white dark:bg-[#110A2E]/95 lg:bg-white dark:bg-[#110A2E]/70 dark:bg-[#110A2E]/70 backdrop-blur-xl border-r border-purple-200 dark:border-purple-500/20 flex flex-col justify-between transition-transform duration-300 ease-in-out ${
+        className={`fixed lg:sticky top-0 bottom-0 lg:bottom-auto lg:h-screen overflow-y-auto left-0 z-50 w-60 bg-white dark:bg-[#0B0B10] border-r border-[#E5E5EB] dark:border-[#24242E] flex flex-col justify-between transition-transform duration-150 ease-out ${
           isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
         }`}
       >
         <div>
           {/* Brand Header */}
-          <div className="p-6 pb-4 flex items-center justify-between border-b border-purple-200 dark:border-purple-500/15">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 p-0.5 shadow-md shadow-purple-600/30 flex items-center justify-center">
-                <div className="w-full h-full bg-[#150D38] rounded-[10px] flex items-center justify-center">
-                  <GraduationCap className="w-5 h-5 text-purple-700 dark:text-purple-300" />
-                </div>
+          <div className="p-4 flex items-center justify-between border-b border-[#E5E5EB] dark:border-[#24242E]">
+            <div className="flex items-center gap-2.5">
+              <div className="w-8 h-8 rounded-md bg-[#7C5CFA] flex items-center justify-center shrink-0 text-white">
+                <GraduationCap className="w-4 h-4" strokeWidth={1.5} />
               </div>
               <div>
-                <div className="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1.5">
+                <div className="text-sm font-semibold tracking-tight text-[#14141B] dark:text-[#ECECF1]">
                   EduWings
                 </div>
-                <div className="text-[10px] uppercase tracking-wider text-purple-700 dark:text-purple-300 font-medium">
+                <div className="text-[10px] text-[#70707E] dark:text-[#6B6B7B]">
                   Predict • Support • Retain
                 </div>
               </div>
@@ -63,14 +61,14 @@ export default function Sidebar({ isOpen, onClose }) {
             {/* Mobile Close Button */}
             <button
               onClick={onClose}
-              className="lg:hidden p-1.5 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-white/5"
+              className="lg:hidden p-1 rounded-md text-[#70707E] hover:text-[#14141B] dark:hover:text-[#ECECF1] hover:bg-black/5 dark:hover:bg-white/5"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" strokeWidth={1.5} />
             </button>
           </div>
 
           {/* Navigation Links */}
-          <nav className="p-4 space-y-1.5">
+          <nav className="p-3 space-y-1">
             {navItems.map((item) => {
               const Icon = item.icon;
               return (
@@ -79,15 +77,24 @@ export default function Sidebar({ isOpen, onClose }) {
                   to={item.path}
                   onClick={() => onClose && onClose()}
                   className={({ isActive }) =>
-                    `flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                    `flex items-center gap-3 px-3 py-2 rounded-md text-xs font-medium transition-colors ${
                       isActive
-                        ? 'bg-gradient-to-r from-purple-600 to-purple-500 text-white shadow-lg shadow-purple-600/30'
-                        : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-purple-500/10'
+                        ? 'bg-[#7C5CFA]/10 text-[#7C5CFA] dark:text-[#ECECF1] border-l-2 border-[#7C5CFA]'
+                        : 'text-[#52525F] dark:text-[#A0A0B0] hover:text-[#14141B] dark:hover:text-[#ECECF1] hover:bg-black/[0.04] dark:hover:bg-white/[0.04]'
                     }`
                   }
                 >
-                  <Icon className="w-5 h-5 shrink-0" />
-                  <span>{item.name}</span>
+                  {({ isActive }) => (
+                    <>
+                      <Icon
+                        className={`w-4 h-4 shrink-0 ${
+                          isActive ? 'text-[#7C5CFA]' : 'text-[#70707E] dark:text-[#6B6B7B]'
+                        }`}
+                        strokeWidth={1.5}
+                      />
+                      <span>{item.name}</span>
+                    </>
+                  )}
                 </NavLink>
               );
             })}
@@ -95,25 +102,27 @@ export default function Sidebar({ isOpen, onClose }) {
         </div>
 
         {/* User Card & Logout (Bottom) */}
-        <div className="p-4 border-t border-purple-200 dark:border-purple-500/15">
-          <div className="p-3 rounded-2xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/20 mb-3 flex items-center gap-3">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 p-0.5 shrink-0">
+        <div className="p-3 border-t border-[#E5E5EB] dark:border-[#24242E]">
+          <div className="p-2.5 rounded-lg bg-[#F8F8FA] dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] mb-2 flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded-md bg-[#7C5CFA]/10 border border-[#7C5CFA]/20 flex items-center justify-center shrink-0">
               {user?.avatar ? (
                 <img
                   src={user.avatar}
                   alt={user.name}
-                  className="w-full h-full object-cover rounded-[10px]"
+                  className="w-full h-full object-cover rounded-md"
                 />
               ) : (
-                <div className="w-full h-full bg-slate-50 dark:bg-[#1A1040] rounded-[10px] flex items-center justify-center text-xs font-bold text-purple-800 dark:text-purple-200">
+                <span className="text-[10px] font-semibold text-[#7C5CFA]">
                   {user?.name?.slice(0, 2).toUpperCase() || 'US'}
-                </div>
+                </span>
               )}
             </div>
 
             <div className="min-w-0 flex-1">
-              <div className="text-xs font-bold text-slate-900 dark:text-white truncate">{user?.name}</div>
-              <div className="text-[11px] text-purple-700 dark:text-purple-300 capitalize truncate">
+              <div className="text-xs font-medium text-[#14141B] dark:text-[#ECECF1] truncate">
+                {user?.name}
+              </div>
+              <div className="text-[10px] text-[#70707E] dark:text-[#6B6B7B] capitalize truncate">
                 {user?.role} {user?.department ? `• ${user.department}` : ''}
               </div>
             </div>
@@ -121,9 +130,9 @@ export default function Sidebar({ isOpen, onClose }) {
 
           <button
             onClick={logout}
-            className="w-full flex items-center justify-center gap-2 px-3 py-2 rounded-xl text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-red-300 hover:bg-red-500/10 border border-transparent hover:border-red-500/20 transition-all"
+            className="w-full flex items-center justify-center gap-2 px-3 py-1.5 rounded-md text-xs font-medium text-[#52525F] dark:text-[#A0A0B0] hover:text-[#D64550] hover:bg-[#D64550]/10 transition-colors"
           >
-            <LogOut className="w-4 h-4" />
+            <LogOut className="w-3.5 h-3.5" strokeWidth={1.5} />
             <span>Sign Out</span>
           </button>
         </div>

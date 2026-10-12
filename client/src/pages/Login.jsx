@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GraduationCap, Mail, Lock, Eye, EyeOff, ShieldCheck, HeartHandshake, Sparkles, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { GraduationCap, Mail, Lock, Eye, EyeOff, ShieldCheck, HeartHandshake, Sparkles, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from '../components/common/ThemeToggle';
 
@@ -20,7 +20,6 @@ export default function Login() {
       name: 'Kamaliga Varatharaj',
       email: 'admin@eduwings.edu',
       pass: 'EduWingsAdmin@2026!',
-      color: 'border-purple-300 dark:border-purple-500/40 hover:border-purple-500 text-purple-400 bg-purple-50 dark:bg-purple-500/10',
       badge: 'All Access',
     },
     {
@@ -28,7 +27,6 @@ export default function Login() {
       name: 'Lavanya Muthukumar',
       email: 'faculty@eduwings.edu',
       pass: 'EduWingsFaculty@2026!',
-      color: 'border-blue-500/40 hover:border-blue-500 text-blue-400 bg-blue-500/10',
       badge: 'CS Dept',
     },
     {
@@ -36,7 +34,6 @@ export default function Login() {
       name: 'Varsha S Rao',
       email: 'counsellor@eduwings.edu',
       pass: 'EduWingsCounsellor@2026!',
-      color: 'border-pink-500/40 hover:border-pink-500 text-pink-600 dark:text-pink-400 bg-pink-50 dark:bg-pink-500/10',
       badge: 'At-Risk Support',
     },
   ];
@@ -63,60 +60,52 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-[#F8F7FD] dark:bg-[#0D0822] text-slate-100 dark:bg-[#0D0822] dark:text-slate-100 font-sans relative overflow-hidden">
-      {/* Background Ambient Glows */}
-      <div className="absolute -top-32 -left-32 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute top-1/2 right-0 w-[500px] h-[500px] bg-pink-600/15 rounded-full blur-3xl pointer-events-none"></div>
-
+    <div className="min-h-screen w-full flex flex-col lg:flex-row bg-[#F8F8FA] dark:bg-[#0B0B10] text-[#14141B] dark:text-[#ECECF1] font-sans antialiased relative">
       {/* Floating Theme Toggle (Top Right) */}
-      <div className="absolute top-6 right-6 z-30">
+      <div className="absolute top-5 right-5 z-30">
         <ThemeToggle />
       </div>
 
       {/* LEFT PANEL: Brand & Value Proposition */}
-      <div className="lg:w-1/2 flex flex-col justify-between p-8 lg:p-16 relative z-10 border-b lg:border-b-0 lg:border-r border-purple-200 dark:border-purple-500/20 bg-gradient-to-br from-[#120B30]/80 via-[#0E0826]/90 to-[#0A061C]/95">
+      <div className="lg:w-1/2 flex flex-col justify-between p-8 lg:p-14 relative z-10 border-b lg:border-b-0 lg:border-r border-[#E5E5EB] dark:border-[#24242E] bg-white dark:bg-[#0B0B10]">
         <div>
           {/* Logo & Tagline */}
-          <div className="flex items-center gap-3.5 mb-12">
-            <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-600 via-purple-500 to-pink-500 p-0.5 shadow-lg shadow-purple-600/30 flex items-center justify-center">
-              <div className="w-full h-full bg-[#140D36] rounded-[14px] flex items-center justify-center">
-                <GraduationCap className="w-6 h-6 text-purple-700 dark:text-purple-300" />
-              </div>
+          <div className="flex items-center gap-3 mb-10">
+            <div className="w-8 h-8 rounded-md bg-[#7C5CFA] flex items-center justify-center shrink-0 text-white">
+              <GraduationCap className="w-4 h-4" strokeWidth={1.5} />
             </div>
             <div>
-              <div className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-purple-200 via-purple-100 to-pink-200">
+              <div className="text-sm font-semibold tracking-tight text-[#14141B] dark:text-[#ECECF1]">
                 EduWings
               </div>
-              <div className="text-xs uppercase tracking-widest text-purple-700 dark:text-purple-300/80 font-medium">
+              <div className="text-[10px] text-[#70707E] dark:text-[#6B6B7B]">
                 Predict • Support • Retain
               </div>
             </div>
           </div>
 
           {/* Headline & Subline */}
-          <div className="max-w-xl">
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight mb-6">
+          <div className="max-w-lg">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#14141B] dark:text-[#ECECF1] leading-tight mb-4">
               Support every student <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-400 to-purple-300">
-                before they slip away.
-              </span>
+              <span className="text-[#7C5CFA]">before they slip away.</span>
             </h1>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
+            <p className="text-xs sm:text-sm text-[#52525F] dark:text-[#A0A0B0] leading-relaxed mb-6">
               EduWings transforms academic records, attendance trends, and behavioral signals into actionable, explainable insights — empowering faculty and counsellors to intervene early and retain learners.
             </p>
 
             {/* Three Feature Chips */}
-            <div className="flex flex-wrap gap-3 mb-10">
-              <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-purple-500/10 border border-purple-500/25 text-purple-200 text-xs sm:text-sm font-medium">
-                <Sparkles className="w-4 h-4 text-purple-400" />
+            <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#F8F8FA] dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#52525F] dark:text-[#A0A0B0] text-xs font-medium">
+                <Sparkles className="w-3.5 h-3.5 text-[#7C5CFA]" strokeWidth={1.5} />
                 <span>Early detection</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-pink-500/10 border border-pink-500/25 text-pink-200 text-xs sm:text-sm font-medium">
-                <ShieldCheck className="w-4 h-4 text-pink-400" />
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#F8F8FA] dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#52525F] dark:text-[#A0A0B0] text-xs font-medium">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#2F9E6F]" strokeWidth={1.5} />
                 <span>Explainable risk</span>
               </div>
-              <div className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-indigo-500/10 border border-indigo-500/25 text-indigo-200 text-xs sm:text-sm font-medium">
-                <HeartHandshake className="w-4 h-4 text-indigo-400" />
+              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-[#F8F8FA] dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#52525F] dark:text-[#A0A0B0] text-xs font-medium">
+                <HeartHandshake className="w-3.5 h-3.5 text-[#7C5CFA]" strokeWidth={1.5} />
                 <span>Timely intervention</span>
               </div>
             </div>
@@ -124,83 +113,83 @@ export default function Login() {
         </div>
 
         {/* Supportive Institutional Trust Badge */}
-        <div className="mt-8 pt-6 border-t border-purple-500/15 flex items-center gap-4 text-xs text-slate-400">
-          <div className="flex -space-x-2">
-            <div className="w-8 h-8 rounded-full border border-purple-400/30 bg-purple-900/60 flex items-center justify-center font-bold text-purple-200">
+        <div className="pt-5 border-t border-[#E5E5EB] dark:border-[#24242E] flex items-center gap-3 text-xs text-[#70707E] dark:text-[#6B6B7B]">
+          <div className="flex -space-x-1.5">
+            <div className="w-6 h-6 rounded-md border border-[#E5E5EB] dark:border-[#24242E] bg-black/5 dark:bg-white/5 flex items-center justify-center font-mono text-[10px] text-[#52525F] dark:text-[#A0A0B0]">
               CS
             </div>
-            <div className="w-8 h-8 rounded-full border border-pink-400/30 bg-pink-900/60 flex items-center justify-center font-bold text-pink-200">
+            <div className="w-6 h-6 rounded-md border border-[#E5E5EB] dark:border-[#24242E] bg-black/5 dark:bg-white/5 flex items-center justify-center font-mono text-[10px] text-[#52525F] dark:text-[#A0A0B0]">
               EC
             </div>
-            <div className="w-8 h-8 rounded-full border border-emerald-400/30 bg-emerald-900/60 flex items-center justify-center font-bold text-emerald-200">
+            <div className="w-6 h-6 rounded-md border border-[#E5E5EB] dark:border-[#24242E] bg-black/5 dark:bg-white/5 flex items-center justify-center font-mono text-[10px] text-[#52525F] dark:text-[#A0A0B0]">
               ME
             </div>
           </div>
           <div>
-            <span className="text-white font-semibold">200+ Students</span> actively monitored across 5 departments.
+            <strong className="text-[#14141B] dark:text-[#ECECF1] font-medium">200+ Students</strong> actively monitored across 5 departments.
           </div>
         </div>
       </div>
 
       {/* RIGHT PANEL: Sign-In Card & Quick Demo Access */}
-      <div className="lg:w-1/2 flex items-center justify-center p-6 sm:p-12 lg:p-16 relative z-10">
-        <div className="w-full max-w-md">
-          {/* Glass Card Container */}
-          <div className="glass-panel rounded-3xl p-8 sm:p-10 shadow-2xl relative border border-purple-300 dark:border-purple-500/30">
-            <div className="mb-6 text-center sm:text-left">
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white tracking-tight mb-1.5">
+      <div className="lg:w-1/2 flex items-center justify-center p-6 sm:p-10 lg:p-14 bg-[#F8F8FA] dark:bg-[#0B0B10]">
+        <div className="w-full max-w-sm">
+          {/* Solid Card Container */}
+          <div className="bg-white dark:bg-[#14141B] rounded-lg p-6 sm:p-8 border border-[#E5E5EB] dark:border-[#24242E] shadow-sm dark:shadow-none">
+            <div className="mb-5">
+              <h2 className="text-lg font-semibold text-[#14141B] dark:text-[#ECECF1] tracking-tight mb-1">
                 Sign in securely
               </h2>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
+              <p className="text-xs text-[#70707E] dark:text-[#6B6B7B]">
                 Access your institutional dashboard and student risk roster
               </p>
             </div>
 
             {error && (
-              <div className="mb-5 p-3.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-300 text-xs sm:text-sm flex items-start gap-2.5">
+              <div className="mb-4 p-2.5 rounded-md bg-[#D64550]/10 border border-[#D64550]/20 text-[#D64550] text-xs flex items-start gap-2">
                 <span className="font-bold">•</span>
                 <span>{error}</span>
               </div>
             )}
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3.5">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-300/90 mb-1.5">
+                <label className="block text-xs font-medium text-[#52525F] dark:text-[#A0A0B0] mb-1">
                   Email Address
                 </label>
                 <div className="relative">
-                  <Mail className="w-4 h-4 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Mail className="w-3.5 h-3.5 text-[#70707E] dark:text-[#6B6B7B] absolute left-3 top-1/2 -translate-y-1/2" strokeWidth={1.5} />
                   <input
                     type="email"
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="name@eduwings.edu"
-                    className="w-full pl-10 pr-4 py-2.5 rounded-xl bg-white dark:bg-[#110A2E]/80 border border-purple-200 dark:border-purple-500/25 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 text-sm transition-all"
+                    className="w-full pl-9 pr-3 py-2 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] focus:border-[#7C5CFA] focus:outline-none focus:ring-1 focus:ring-[#7C5CFA] text-[#14141B] dark:text-[#ECECF1] placeholder-[#70707E] dark:placeholder-[#6B6B7B] text-xs transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-purple-700 dark:text-purple-300/90 mb-1.5">
+                <label className="block text-xs font-medium text-[#52525F] dark:text-[#A0A0B0] mb-1">
                   Password
                 </label>
                 <div className="relative">
-                  <Lock className="w-4 h-4 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+                  <Lock className="w-3.5 h-3.5 text-[#70707E] dark:text-[#6B6B7B] absolute left-3 top-1/2 -translate-y-1/2" strokeWidth={1.5} />
                   <input
                     type={showPassword ? 'text' : 'password'}
                     required
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white dark:bg-[#110A2E]/80 border border-purple-200 dark:border-purple-500/25 focus:border-purple-400 focus:outline-none focus:ring-2 focus:ring-purple-500/20 text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-slate-400 text-sm transition-all"
+                    className="w-full pl-9 pr-9 py-2 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] focus:border-[#7C5CFA] focus:outline-none focus:ring-1 focus:ring-[#7C5CFA] text-[#14141B] dark:text-[#ECECF1] placeholder-[#70707E] dark:placeholder-[#6B6B7B] text-xs transition-colors"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-[#70707E] dark:text-[#6B6B7B] hover:text-[#14141B] dark:hover:text-[#ECECF1]"
                   >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                    {showPassword ? <EyeOff className="w-3.5 h-3.5" strokeWidth={1.5} /> : <Eye className="w-3.5 h-3.5" strokeWidth={1.5} />}
                   </button>
                 </div>
               </div>
@@ -208,26 +197,26 @@ export default function Login() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 px-4 rounded-xl font-semibold text-sm text-white bg-gradient-to-r from-purple-600 via-purple-500 to-pink-500 hover:from-purple-500 hover:to-pink-600 shadow-lg shadow-purple-600/30 hover:shadow-purple-600/50 transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-2.5 px-4 rounded-md font-medium text-xs text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] transition-colors flex items-center justify-center gap-2 disabled:opacity-50 mt-1 cursor-pointer"
               >
                 {loading ? (
-                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                 ) : (
                   <>
                     <span>Sign in securely</span>
-                    <ArrowRight className="w-4 h-4" />
+                    <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
                   </>
                 )}
               </button>
             </form>
 
             {/* Quick Demo Access Section */}
-            <div className="mt-8 pt-6 border-t border-purple-200 dark:border-purple-500/20">
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-semibold tracking-wider uppercase text-purple-700 dark:text-purple-300">
+            <div className="mt-6 pt-5 border-t border-[#E5E5EB] dark:border-[#24242E]">
+              <div className="flex items-center justify-between mb-2.5">
+                <span className="text-xs font-medium text-[#52525F] dark:text-[#A0A0B0]">
                   Quick demo access
                 </span>
-                <span className="text-[11px] text-slate-500 dark:text-slate-400">Click to autofill</span>
+                <span className="text-[11px] text-[#70707E] dark:text-[#6B6B7B]">Click to autofill</span>
               </div>
 
               <div className="grid grid-cols-3 gap-2">
@@ -236,17 +225,19 @@ export default function Login() {
                     key={acc.role}
                     type="button"
                     onClick={() => handleQuickFill(acc)}
-                    className={`p-2.5 rounded-xl border text-left transition-all ${acc.color} ${
-                      email === acc.email ? 'ring-2 ring-purple-400' : ''
+                    className={`p-2 rounded-md border text-left transition-colors cursor-pointer ${
+                      email === acc.email
+                        ? 'border-[#7C5CFA] bg-[#7C5CFA]/10 text-[#7C5CFA]'
+                        : 'border-[#E5E5EB] dark:border-[#24242E] bg-[#F8F8FA] dark:bg-[#1C1C26] text-[#14141B] dark:text-[#ECECF1] hover:border-[#7C5CFA]/40'
                     }`}
                   >
-                    <div className="text-xs font-bold">{acc.role}</div>
-                    <div className="text-[10px] text-slate-600 dark:text-slate-300 truncate">{acc.badge}</div>
+                    <div className="text-xs font-medium">{acc.role}</div>
+                    <div className="text-[10px] text-[#70707E] dark:text-[#6B6B7B] truncate">{acc.badge}</div>
                   </button>
                 ))}
               </div>
 
-              <div className="mt-4 p-2.5 rounded-xl bg-purple-500/5 border border-purple-200 dark:border-purple-500/10 text-[11px] text-slate-500 dark:text-slate-400 text-center">
+              <div className="mt-3.5 p-2 rounded-md bg-[#F8F8FA] dark:bg-[#1C1C26] border border-[#E5E5EB] dark:border-[#24242E] text-[11px] text-[#70707E] dark:text-[#6B6B7B] text-center">
                 Pre-configured with 200 real students, ML risk scoring, and mock cohorts.
               </div>
             </div>

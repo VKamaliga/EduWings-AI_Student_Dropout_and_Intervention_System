@@ -3,79 +3,87 @@
 @tailwind utilities;
 
 :root {
-  --color-primary: #7C3AED;
-  --color-primary-light: #A855F7;
-  --color-accent: #EC4899;
-  
-  --risk-low: #34D399;
-  --risk-medium: #FBBF24;
-  --risk-high: #EC4899;
+  --color-primary: #7C5CFA;
+  --color-primary-hover: #6C4CE0;
 
-  --bg-app: #0D0822;
-  --surface-card: rgba(24, 16, 56, 0.65);
-  --border-card: rgba(168, 85, 247, 0.22);
-  --text-main: #F8FAFC;
-  --text-muted: #94A3B8;
+  --risk-low: #2F9E6F;
+  --risk-medium: #C98A1B;
+  --risk-high: #D64550;
+
+  --bg-app: #0B0B10;
+  --surface-card: #14141B;
+  --border-card: #24242E;
+  --text-primary: #ECECF1;
+  --text-secondary: #A0A0B0;
+  --text-muted: #6B6B7B;
 }
 
 html.light {
-  --bg-app: #F8F7FD;
+  --color-primary: #6D4DF2;
+  --color-primary-hover: #5A3CC8;
+
+  --risk-low: #2F9E6F;
+  --risk-medium: #C98A1B;
+  --risk-high: #D64550;
+
+  --bg-app: #F8F8FA;
   --surface-card: #FFFFFF;
-  --border-card: #E5E0F8;
-  --text-main: #0F172A;
-  --text-muted: #64748B;
+  --border-card: #E5E5EB;
+  --text-primary: #14141B;
+  --text-secondary: #52525F;
+  --text-muted: #70707E;
 }
 
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   min-height: 100vh;
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Glassmorphism & Card Styles */
+/* Card & Panel Styles (Flat, solid, 1px border) */
 .glass-panel {
-  background: rgba(22, 14, 52, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(168, 85, 247, 0.22);
-  box-shadow: 0 10px 30px -5px rgba(10, 5, 25, 0.5), 0 0 20px -3px rgba(168, 85, 247, 0.12);
+  background: #14141B;
+  border: 1px solid #24242E;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 html.light .glass-panel {
   background: #FFFFFF;
+  border: 1px solid #E5E5EB;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
-  border: 1px solid #E5E0F8;
-  box-shadow: 0 4px 20px -2px rgba(124, 58, 237, 0.07);
 }
 
 .glass-card-subtle {
-  background: rgba(30, 20, 68, 0.55);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(168, 85, 247, 0.18);
+  background: #14141B;
+  border: 1px solid #24242E;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
 }
 
 html.light .glass-card-subtle {
-  background: #F8F6FF;
+  background: #F8F8FA;
+  border: 1px solid #E5E5EB;
   backdrop-filter: none;
-  border: 1px solid #E8E3FA;
+  -webkit-backdrop-filter: none;
 }
 
-/* Background Gradients */
+/* Background Gradients replaced with solid flat page colors */
 .bg-deep-space {
-  background: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.18) 0%, transparent 40%),
-              radial-gradient(circle at 85% 15%, rgba(236, 72, 153, 0.15) 0%, transparent 35%),
-              radial-gradient(circle at 50% 80%, rgba(79, 70, 229, 0.12) 0%, transparent 50%),
-              linear-gradient(180deg, #0D0822 0%, #150E34 100%);
+  background: #0B0B10;
 }
 
 html.light .bg-deep-space {
-  background: radial-gradient(circle at 20% 20%, rgba(216, 180, 254, 0.25) 0%, transparent 40%),
-              radial-gradient(circle at 80% 20%, rgba(244, 114, 182, 0.20) 0%, transparent 35%),
-              linear-gradient(180deg, #FFFFFF 0%, #F6F4FD 100%);
+  background: #F8F8FA;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - neutral and quiet */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -84,43 +92,49 @@ html.light .bg-deep-space {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(168, 85, 247, 0.3);
-  border-radius: 9999px;
+  background: #24242E;
+  border-radius: 4px;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #D5D5DF;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(168, 85, 247, 0.5);
+  background: #3A3A48;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #B8B8C4;
 }
 
-/* Risk Badges */
+/* Semantic Flat Risk Badges */
 .badge-risk-low {
-  background-color: rgba(52, 211, 153, 0.15);
-  color: #34D399;
-  border: 1px solid rgba(52, 211, 153, 0.35);
+  background-color: rgba(47, 158, 111, 0.12);
+  color: #2F9E6F;
+  border: 1px solid rgba(47, 158, 111, 0.25);
 }
 html.light .badge-risk-low {
-  background-color: #ECFDF5;
-  color: #059669;
-  border: 1px solid #A7F3D0;
+  background-color: rgba(47, 158, 111, 0.12);
+  color: #248259;
+  border: 1px solid rgba(47, 158, 111, 0.25);
 }
 
 .badge-risk-medium {
-  background-color: rgba(251, 191, 36, 0.15);
-  color: #FBBF24;
-  border: 1px solid rgba(251, 191, 36, 0.35);
+  background-color: rgba(201, 138, 27, 0.12);
+  color: #C98A1B;
+  border: 1px solid rgba(201, 138, 27, 0.25);
 }
 html.light .badge-risk-medium {
-  background-color: #FFFBEB;
-  color: #D97706;
-  border: 1px solid #FDE68A;
+  background-color: rgba(201, 138, 27, 0.12);
+  color: #A66F13;
+  border: 1px solid rgba(201, 138, 27, 0.25);
 }
 
 .badge-risk-high {
-  background-color: rgba(236, 72, 153, 0.18);
-  color: #F472B6;
-  border: 1px solid rgba(236, 72, 153, 0.45);
+  background-color: rgba(214, 69, 80, 0.12);
+  color: #D64550;
+  border: 1px solid rgba(214, 69, 80, 0.25);
 }
 html.light .badge-risk-high {
-  background-color: #FDF2F8;
-  color: #DB2777;
-  border: 1px solid #FBCFE8;
+  background-color: rgba(214, 69, 80, 0.12);
+  color: #C23641;
+  border: 1px solid rgba(214, 69, 80, 0.25);
 }

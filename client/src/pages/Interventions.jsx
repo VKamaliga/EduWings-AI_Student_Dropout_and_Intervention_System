@@ -2,15 +2,9 @@ import React, { useState, useEffect } from 'react';
 import {
   ClipboardCheck,
   Plus,
-  Clock,
   CheckCircle2,
-  AlertCircle,
   TrendingDown,
-  TrendingUp,
-  MessageSquare,
-  User,
   ArrowRight,
-  Filter,
   X,
 } from 'lucide-react';
 import Card from '../components/common/Card';
@@ -102,11 +96,11 @@ export default function Interventions() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
-            <ClipboardCheck className="w-6 h-6 text-purple-400" />
+          <h2 className="text-lg sm:text-xl font-semibold text-[#14141B] dark:text-[#ECECF1] tracking-tight flex items-center gap-2">
+            <ClipboardCheck className="w-5 h-5 text-[#7C5CFA]" strokeWidth={1.5} />
             <span>Intervention Tracking & Action Plans</span>
           </h2>
-          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-xs text-[#70707E] dark:text-[#6B6B7B]">
             Coordinate student advising, remedial tutoring, wellness counselling, and track risk reduction deltas
           </p>
         </div>
@@ -114,36 +108,36 @@ export default function Interventions() {
 
       {/* KPI Stats Bar */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <Card className="p-4 border-l-4 border-l-purple-500">
-          <div className="text-xs text-slate-500 dark:text-slate-400">Total Action Plans</div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white mt-1">{interventions.length}</div>
+        <Card className="p-4 border-l-2 border-l-[#7C5CFA]">
+          <div className="text-xs text-[#70707E] dark:text-[#6B6B7B]">Total Action Plans</div>
+          <div className="text-xl font-semibold text-[#14141B] dark:text-[#ECECF1] mt-1">{interventions.length}</div>
         </Card>
-        <Card className="p-4 border-l-4 border-l-amber-500">
-          <div className="text-xs text-slate-500 dark:text-slate-400">In Active Progress</div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white mt-1">{inProgressCount}</div>
+        <Card className="p-4 border-l-2 border-l-[#C98A1B]">
+          <div className="text-xs text-[#70707E] dark:text-[#6B6B7B]">In Active Progress</div>
+          <div className="text-xl font-semibold text-[#14141B] dark:text-[#ECECF1] mt-1">{inProgressCount}</div>
         </Card>
-        <Card className="p-4 border-l-4 border-l-emerald-500">
-          <div className="text-xs text-slate-500 dark:text-slate-400">Completed Plans</div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white mt-1">{completedCount}</div>
+        <Card className="p-4 border-l-2 border-l-[#2F9E6F]">
+          <div className="text-xs text-[#70707E] dark:text-[#6B6B7B]">Completed Plans</div>
+          <div className="text-xl font-semibold text-[#14141B] dark:text-[#ECECF1] mt-1">{completedCount}</div>
         </Card>
-        <Card className="p-4 border-l-4 border-l-pink-500">
-          <div className="text-xs text-slate-500 dark:text-slate-400">Retention Success Rate</div>
-          <div className="text-2xl font-bold text-slate-900 dark:text-white mt-1">{successRate}%</div>
+        <Card className="p-4 border-l-2 border-l-[#7C5CFA]">
+          <div className="text-xs text-[#70707E] dark:text-[#6B6B7B]">Retention Success Rate</div>
+          <div className="text-xl font-semibold text-[#14141B] dark:text-[#ECECF1] mt-1">{successRate}%</div>
         </Card>
       </div>
 
       {/* Filter Tabs */}
-      <Card noPadding className="p-4 flex flex-wrap items-center justify-between gap-3">
-        {/* Status Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 text-xs font-semibold">
+      <Card noPadding className="p-3.5 flex flex-wrap items-center justify-between gap-3">
+        {/* Status Tabs */}
+        <div className="flex flex-wrap items-center gap-1.5 text-xs font-medium">
           {['All', 'Planned', 'In Progress', 'Completed'].map((tab) => (
             <button
               key={tab}
               onClick={() => setStatusFilter(tab)}
-              className={`px-3 py-1.5 rounded-xl transition-all ${
+              className={`px-2.5 py-1 rounded-md transition-colors cursor-pointer ${
                 statusFilter === tab
-                  ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30'
-                  : 'text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-purple-500/10'
+                  ? 'bg-[#7C5CFA] text-white'
+                  : 'text-[#52525F] dark:text-[#A0A0B0] hover:text-[#14141B] dark:hover:text-[#ECECF1] hover:bg-black/5 dark:hover:bg-white/5'
               }`}
             >
               {tab}
@@ -153,11 +147,11 @@ export default function Interventions() {
 
         {/* Priority Filter */}
         <div className="flex items-center gap-2 text-xs">
-          <span className="text-slate-500 dark:text-slate-400">Priority:</span>
+          <span className="text-[#70707E] dark:text-[#6B6B7B]">Priority:</span>
           <select
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
-            className="px-3 py-1.5 rounded-xl bg-white dark:bg-[#120B30] border border-purple-200 dark:border-purple-500/25 text-white focus:outline-none focus:border-purple-400"
+            className="px-2.5 py-1 rounded-md bg-white dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
           >
             <option value="All">All Priorities</option>
             <option value="Urgent">Urgent</option>
@@ -169,14 +163,14 @@ export default function Interventions() {
       </Card>
 
       {/* Interventions List / Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {loading ? (
-          <div className="col-span-full py-16 text-center text-slate-500 dark:text-slate-400">
-            <div className="inline-block w-8 h-8 border-4 border-purple-300 dark:border-purple-500/30 border-t-purple-500 rounded-full animate-spin mb-3" />
+          <div className="col-span-full py-16 text-center text-[#70707E] dark:text-[#6B6B7B]">
+            <div className="inline-block w-6 h-6 border-2 border-[#7C5CFA] border-t-transparent rounded-full animate-spin mb-2" />
             <div>Loading active case interventions...</div>
           </div>
         ) : filtered.length === 0 ? (
-          <div className="col-span-full py-16 text-center text-slate-500 dark:text-slate-400">
+          <div className="col-span-full py-16 text-center text-[#70707E] dark:text-[#6B6B7B] text-xs">
             No interventions match the selected filter criteria.
           </div>
         ) : (
@@ -188,33 +182,35 @@ export default function Interventions() {
             return (
               <Card
                 key={inv._id}
-                className="flex flex-col justify-between border border-purple-200 dark:border-purple-500/25 hover:border-purple-500/45 transition-all p-5"
+                className="flex flex-col justify-between hover:border-[#7C5CFA]/40 transition-colors p-5"
               >
                 <div>
                   {/* Card Header: Type, Priority, Status */}
                   <div className="flex items-start justify-between gap-2 mb-3">
-                    <span className="px-2.5 py-1 rounded-lg text-xs font-bold bg-purple-100 dark:bg-purple-500/20 text-purple-800 dark:text-purple-200 border border-purple-300 dark:border-purple-500/30">
+                    <span className="px-2 py-0.5 rounded-md text-xs font-medium bg-[#7C5CFA]/10 text-[#7C5CFA] border border-[#7C5CFA]/20">
                       {inv.type}
                     </span>
 
                     <div className="flex items-center gap-1.5">
                       <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                        className={`text-[10px] font-medium px-2 py-0.5 rounded-md ${
                           inv.priority === 'Urgent' || inv.priority === 'High'
-                            ? 'bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300'
-                            : 'bg-amber-100 dark:bg-amber-500/20 text-amber-700 dark:text-amber-300'
+                            ? 'bg-[#D64550]/10 text-[#D64550]'
+                            : inv.priority === 'Medium'
+                            ? 'bg-[#C98A1B]/10 text-[#C98A1B]'
+                            : 'bg-[#2F9E6F]/10 text-[#2F9E6F]'
                         }`}
                       >
                         {inv.priority}
                       </span>
 
                       <span
-                        className={`text-[10px] font-bold px-2 py-0.5 rounded ${
+                        className={`text-[10px] font-medium px-2 py-0.5 rounded-md ${
                           inv.status === 'Completed'
-                            ? 'bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300'
+                            ? 'bg-[#2F9E6F]/10 text-[#2F9E6F]'
                             : inv.status === 'In Progress'
-                            ? 'bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300'
-                            : 'bg-slate-100 dark:bg-slate-500/20 text-slate-600 dark:text-slate-300'
+                            ? 'bg-[#C98A1B]/10 text-[#C98A1B]'
+                            : 'bg-black/5 dark:bg-white/5 text-[#52525F] dark:text-[#A0A0B0]'
                         }`}
                       >
                         {inv.status}
@@ -223,76 +219,76 @@ export default function Interventions() {
                   </div>
 
                   {/* Title & Student Meta */}
-                  <h4 className="text-sm font-bold text-slate-900 dark:text-white line-clamp-1 mb-1">
+                  <h4 className="text-sm font-medium text-[#14141B] dark:text-[#ECECF1] line-clamp-1 mb-1">
                     {inv.title}
                   </h4>
-                  <div className="text-xs text-purple-800 dark:text-purple-200 font-medium flex items-center justify-between mb-3">
-                    <span>
+                  <div className="text-xs text-[#52525F] dark:text-[#A0A0B0] flex items-center justify-between mb-3">
+                    <span className="font-medium text-[#14141B] dark:text-[#ECECF1]">
                       {inv.studentName} ({inv.studentId})
                     </span>
-                    <span className="text-[11px] text-slate-500 dark:text-slate-400">{inv.department}</span>
+                    <span className="text-[11px] text-[#70707E] dark:text-[#6B6B7B]">{inv.department}</span>
                   </div>
 
                   {/* Before / After Risk Delta Comparison */}
-                  <div className="p-3 rounded-xl bg-slate-50 dark:bg-purple-950/30 border border-purple-200 dark:border-purple-500/20 mb-3 space-y-1.5 text-xs">
-                    <div className="flex items-center justify-between text-slate-500 dark:text-slate-400 text-[11px]">
+                  <div className="p-2.5 rounded-md bg-[#F8F8FA] dark:bg-[#1C1C26] border border-[#E5E5EB] dark:border-[#24242E] mb-3 space-y-1 text-xs">
+                    <div className="flex items-center justify-between text-[#70707E] dark:text-[#6B6B7B] text-[11px]">
                       <span>Before / After Risk Comparison:</span>
                       {deltaPct > 0 ? (
-                        <span className="text-emerald-600 dark:text-emerald-400 font-bold flex items-center gap-0.5">
-                          <TrendingDown className="w-3.5 h-3.5" />
+                        <span className="text-[#2F9E6F] font-medium flex items-center gap-0.5">
+                          <TrendingDown className="w-3.5 h-3.5" strokeWidth={1.5} />
                           <span>-{deltaPct}% Risk</span>
                         </span>
                       ) : (
-                        <span className="text-slate-500 dark:text-slate-400">Active monitoring</span>
+                        <span className="text-[#70707E] dark:text-[#6B6B7B]">Active monitoring</span>
                       )}
                     </div>
 
                     <div className="flex items-center justify-between pt-1">
                       <div className="flex items-center gap-1.5">
-                        <span className="text-slate-500 dark:text-slate-400 text-[10px]">Initial:</span>
+                        <span className="text-[#70707E] dark:text-[#6B6B7B] text-[10px]">Initial:</span>
                         <RiskBadge level={inv.initialRiskLevel} probability={inv.initialProbability} size="sm" />
                       </div>
-                      <ArrowRight className="w-3 h-3 text-purple-400" />
+                      <ArrowRight className="w-3 h-3 text-[#70707E] dark:text-[#6B6B7B]" strokeWidth={1.5} />
                       <div className="flex items-center gap-1.5">
-                        <span className="text-slate-500 dark:text-slate-400 text-[10px]">Current:</span>
+                        <span className="text-[#70707E] dark:text-[#6B6B7B] text-[10px]">Current:</span>
                         <RiskBadge level={inv.currentRiskLevel} probability={inv.currentProbability} size="sm" />
                       </div>
                     </div>
                   </div>
 
                   {/* Case Notes snippet */}
-                  <div className="mb-3 space-y-1.5">
-                    <div className="flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400 font-semibold">
+                  <div className="mb-3 space-y-1">
+                    <div className="flex items-center justify-between text-[11px] text-[#70707E] dark:text-[#6B6B7B]">
                       <span>Follow-up Case Notes ({inv.notes?.length || 0})</span>
                       <button
                         onClick={() => setActiveNoteModal(inv)}
-                        className="text-purple-700 dark:text-purple-300 hover:text-slate-900 dark:hover:text-white flex items-center gap-1"
+                        className="text-[#7C5CFA] hover:underline flex items-center gap-0.5 cursor-pointer"
                       >
-                        <Plus className="w-3 h-3" />
+                        <Plus className="w-3 h-3" strokeWidth={1.5} />
                         <span>Add Note</span>
                       </button>
                     </div>
 
                     {inv.notes && inv.notes.length > 0 ? (
-                      <div className="p-2.5 rounded-lg bg-slate-100 dark:bg-black/25 text-[11px] text-slate-600 dark:text-slate-300 italic border border-purple-200 dark:border-purple-500/10 line-clamp-2">
+                      <div className="p-2 rounded-md bg-white dark:bg-[#14141B] text-[11px] text-[#52525F] dark:text-[#A0A0B0] italic border border-[#E5E5EB] dark:border-[#24242E] line-clamp-2">
                         "{inv.notes[inv.notes.length - 1].content}"
                       </div>
                     ) : (
-                      <div className="text-[11px] text-slate-500 dark:text-slate-400 italic">No notes logged yet.</div>
+                      <div className="text-[11px] text-[#70707E] dark:text-[#6B6B7B] italic">No notes logged yet.</div>
                     )}
                   </div>
                 </div>
 
                 {/* Footer Controls */}
-                <div className="pt-3 border-t border-purple-200 dark:border-purple-500/15 flex items-center justify-between text-[11px]">
-                  <span className="text-slate-500 dark:text-slate-400">Assigned: {inv.assignedName}</span>
+                <div className="pt-2.5 border-t border-[#E5E5EB] dark:border-[#24242E] flex items-center justify-between text-[11px]">
+                  <span className="text-[#70707E] dark:text-[#6B6B7B]">Assigned: {inv.assignedName}</span>
 
                   {/* Quick Status Advancement */}
                   <div className="flex items-center gap-1.5">
                     {inv.status === 'Planned' && (
                       <button
                         onClick={() => handleStatusChange(inv._id, 'In Progress')}
-                        className="px-2 py-1 rounded-lg bg-blue-100 dark:bg-blue-500/20 hover:bg-blue-500/40 text-blue-700 dark:text-blue-300 font-semibold transition-colors"
+                        className="px-2 py-0.5 rounded-md bg-[#7C5CFA]/10 hover:bg-[#7C5CFA]/20 text-[#7C5CFA] font-medium transition-colors cursor-pointer"
                       >
                         Start
                       </button>
@@ -300,9 +296,9 @@ export default function Interventions() {
                     {inv.status === 'In Progress' && (
                       <button
                         onClick={() => handleStatusChange(inv._id, 'Completed')}
-                        className="px-2 py-1 rounded-lg bg-emerald-100 dark:bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-700 dark:text-emerald-300 font-semibold transition-colors flex items-center gap-1"
+                        className="px-2 py-0.5 rounded-md bg-[#2F9E6F]/10 hover:bg-[#2F9E6F]/20 text-[#2F9E6F] font-medium transition-colors flex items-center gap-1 cursor-pointer"
                       >
-                        <CheckCircle2 className="w-3 h-3" />
+                        <CheckCircle2 className="w-3 h-3" strokeWidth={1.5} />
                         <span>Resolve</span>
                       </button>
                     )}
@@ -316,45 +312,45 @@ export default function Interventions() {
 
       {/* Add Note Sub-Modal */}
       {activeNoteModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/70 backdrop-blur-sm">
-          <div className="w-full max-w-md rounded-3xl glass-panel p-6 border border-purple-300 dark:border-purple-500/30 shadow-2xl animate-in zoom-in-95">
-            <div className="flex items-center justify-between pb-3 mb-3 border-b border-purple-200 dark:border-purple-500/20">
-              <h3 className="text-sm font-bold text-slate-900 dark:text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+          <div className="w-full max-w-md rounded-lg bg-white dark:bg-[#14141B] p-5 border border-[#E5E5EB] dark:border-[#24242E] shadow-sm dark:shadow-none">
+            <div className="flex items-center justify-between pb-2.5 mb-3 border-b border-[#E5E5EB] dark:border-[#24242E]">
+              <h3 className="text-sm font-semibold text-[#14141B] dark:text-[#ECECF1]">
                 Append Case Note • {activeNoteModal.studentName}
               </h3>
               <button
                 onClick={() => setActiveNoteModal(null)}
-                className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+                className="text-[#70707E] dark:text-[#6B6B7B] hover:text-[#14141B] dark:hover:text-[#ECECF1]"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4" strokeWidth={1.5} />
               </button>
             </div>
 
             <form onSubmit={handleAddNote} className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-600 dark:text-slate-300 font-semibold mb-1">Observation / Progress Log</label>
+                <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Observation / Progress Log</label>
                 <textarea
                   rows="4"
                   required
                   value={newNoteText}
                   onChange={(e) => setNewNoteText(e.target.value)}
                   placeholder="Record advising outcomes, student feedback, or remedial goals..."
-                  className="w-full p-3 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white focus:outline-none focus:border-purple-400"
+                  className="w-full p-2.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
                 />
               </div>
 
-              <div className="pt-2 flex items-center justify-end gap-2.5">
+              <div className="pt-2 flex items-center justify-end gap-2 border-t border-[#E5E5EB] dark:border-[#24242E]">
                 <button
                   type="button"
                   onClick={() => setActiveNoteModal(null)}
-                  className="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+                  className="px-3 py-1.5 rounded-md text-xs font-medium text-[#52525F] dark:text-[#A0A0B0] hover:text-[#14141B] dark:hover:text-[#ECECF1]"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={savingNote}
-                  className="px-5 py-2 rounded-xl font-semibold text-white bg-purple-600 hover:bg-purple-500 shadow-md shadow-purple-600/30 disabled:opacity-50"
+                  className="px-4 py-1.5 rounded-md text-xs font-medium text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] transition-colors disabled:opacity-50 cursor-pointer"
                 >
                   {savingNote ? 'Saving...' : 'Add Note'}
                 </button>

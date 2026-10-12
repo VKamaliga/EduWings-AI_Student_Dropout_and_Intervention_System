@@ -3,7 +3,6 @@ import {
   Settings as SettingsIcon,
   Users,
   Sliders,
-  Shield,
   Save,
   UserPlus,
   CheckCircle2,
@@ -77,8 +76,8 @@ export default function Settings() {
 
   if (loading) {
     return (
-      <div className="py-24 text-center text-slate-500 dark:text-slate-400">
-        <div className="inline-block w-8 h-8 border-4 border-purple-300 dark:border-purple-500/30 border-t-purple-500 rounded-full animate-spin mb-3" />
+      <div className="py-24 text-center text-[#70707E] dark:text-[#6B6B7B]">
+        <div className="inline-block w-6 h-6 border-2 border-[#7C5CFA] border-t-transparent rounded-full animate-spin mb-2" />
         <div>Loading configuration & administrative controls...</div>
       </div>
     );
@@ -88,39 +87,39 @@ export default function Settings() {
     <div className="space-y-6">
       {/* Toast Alert */}
       {message && (
-        <div className="p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-500/15 border border-emerald-300 dark:border-emerald-500/35 text-emerald-700 dark:text-emerald-300 text-xs sm:text-sm flex items-center justify-between shadow-lg">
+        <div className="p-3.5 rounded-md bg-[#2F9E6F]/10 border border-[#2F9E6F]/20 text-[#2F9E6F] text-xs sm:text-sm flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+            <CheckCircle2 className="w-4 h-4 text-[#2F9E6F]" strokeWidth={1.5} />
             <span>{message}</span>
           </div>
-          <button onClick={() => setMessage('')} className="text-emerald-700 dark:text-emerald-300 hover:text-slate-900 dark:hover:text-white">
-            <X className="w-4 h-4" />
+          <button onClick={() => setMessage('')} className="text-[#2F9E6F] hover:opacity-80">
+            <X className="w-4 h-4" strokeWidth={1.5} />
           </button>
         </div>
       )}
 
       {/* Header */}
       <div>
-        <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight flex items-center gap-2.5">
-          <SettingsIcon className="w-6 h-6 text-purple-400" />
+        <h2 className="text-lg sm:text-xl font-semibold text-[#14141B] dark:text-[#ECECF1] tracking-tight flex items-center gap-2">
+          <SettingsIcon className="w-5 h-5 text-[#7C5CFA]" strokeWidth={1.5} />
           <span>System & Risk Threshold Configuration</span>
         </h2>
-        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
+        <p className="text-xs text-[#70707E] dark:text-[#6B6B7B]">
           Calibrate classification cutoffs, update institutional profile, and manage authorized faculty and counsellor credentials
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
         {/* Left Column: Risk Thresholds & Institutional Settings */}
-        <Card className="lg:col-span-5 p-6 border border-purple-200 dark:border-purple-500/25">
-          <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-purple-200 dark:border-purple-500/15">
-            <Sliders className="w-5 h-5 text-purple-400" />
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Risk Threshold Calibration</h3>
+        <Card className="lg:col-span-5 p-6">
+          <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#E5E5EB] dark:border-[#24242E]">
+            <Sliders className="w-4 h-4 text-[#7C5CFA]" strokeWidth={1.5} />
+            <h3 className="text-sm font-semibold text-[#14141B] dark:text-[#ECECF1]">Risk Threshold Calibration</h3>
           </div>
 
           <form onSubmit={handleSaveSettings} className="space-y-4 text-xs">
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 font-semibold mb-1">
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">
                 Institution Name
               </label>
               <input
@@ -128,12 +127,12 @@ export default function Settings() {
                 required
                 value={settings.institutionName}
                 onChange={(e) => setSettings({ ...settings, institutionName: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white focus:outline-none focus:border-purple-400"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
 
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 font-semibold mb-1">
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">
                 Active Academic Year
               </label>
               <input
@@ -141,16 +140,16 @@ export default function Settings() {
                 required
                 value={settings.academicYear}
                 onChange={(e) => setSettings({ ...settings, academicYear: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white focus:outline-none focus:border-purple-400"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
 
             {/* Threshold Sliders */}
-            <div className="p-4 rounded-2xl bg-white dark:bg-purple-950/20 border border-purple-200 dark:border-purple-500/20 space-y-4">
+            <div className="p-3.5 rounded-md bg-[#F8F8FA] dark:bg-[#1C1C26] border border-[#E5E5EB] dark:border-[#24242E] space-y-3.5">
               <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">Low Risk Ceiling</span>
-                  <span className="font-mono text-slate-900 dark:text-white font-bold">&lt; {settings.riskThresholdLow}%</span>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[#2F9E6F] font-medium">Low Risk Ceiling</span>
+                  <span className="font-mono text-[#14141B] dark:text-[#ECECF1] font-medium">&lt; {settings.riskThresholdLow}%</span>
                 </div>
                 <input
                   type="range"
@@ -158,15 +157,15 @@ export default function Settings() {
                   max="45"
                   value={settings.riskThresholdLow}
                   onChange={(e) => setSettings({ ...settings, riskThresholdLow: Number(e.target.value) })}
-                  className="w-full accent-emerald-400 cursor-pointer"
+                  className="w-full accent-[#2F9E6F] cursor-pointer"
                 />
-                <span className="text-[10px] text-slate-500 dark:text-slate-400">Students with dropout probability below this threshold are categorized as Low Risk.</span>
+                <span className="text-[10px] text-[#70707E] dark:text-[#6B6B7B]">Students below this threshold are categorized as Low Risk.</span>
               </div>
 
               <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-pink-600 dark:text-pink-400 font-bold">High Risk Floor</span>
-                  <span className="font-mono text-slate-900 dark:text-white font-bold">&gt; {settings.riskThresholdHigh}%</span>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[#D64550] font-medium">High Risk Floor</span>
+                  <span className="font-mono text-[#14141B] dark:text-[#ECECF1] font-medium">&gt; {settings.riskThresholdHigh}%</span>
                 </div>
                 <input
                   type="range"
@@ -174,13 +173,13 @@ export default function Settings() {
                   max="85"
                   value={settings.riskThresholdHigh}
                   onChange={(e) => setSettings({ ...settings, riskThresholdHigh: Number(e.target.value) })}
-                  className="w-full accent-pink-500 cursor-pointer"
+                  className="w-full accent-[#D64550] cursor-pointer"
                 />
-                <span className="text-[10px] text-slate-500 dark:text-slate-400">Students exceeding this threshold trigger immediate high-priority intervention alerts.</span>
+                <span className="text-[10px] text-[#70707E] dark:text-[#6B6B7B]">Students exceeding this threshold trigger immediate high-priority alerts.</span>
               </div>
 
-              <div className="p-2.5 rounded-xl bg-amber-50 dark:bg-amber-500/10 border border-amber-300 dark:border-amber-500/20 text-[11px] text-amber-200">
-                <strong>Medium Risk Window:</strong> Automatically evaluated between {settings.riskThresholdLow}% and {settings.riskThresholdHigh}%.
+              <div className="p-2 rounded-md bg-black/5 dark:bg-white/5 border border-[#E5E5EB] dark:border-[#24242E] text-[11px] text-[#52525F] dark:text-[#A0A0B0]">
+                <strong>Medium Risk Window:</strong> Evaluated between {settings.riskThresholdLow}% and {settings.riskThresholdHigh}%.
               </div>
             </div>
 
@@ -190,20 +189,20 @@ export default function Settings() {
                 id="autoNotify"
                 checked={settings.autoNotifyHighRisk}
                 onChange={(e) => setSettings({ ...settings, autoNotifyHighRisk: e.target.checked })}
-                className="rounded bg-white dark:bg-[#110A2E] border-purple-300 dark:border-purple-500/30 text-purple-600"
+                className="rounded bg-white dark:bg-[#0B0B10] border-[#E5E5EB] dark:border-[#24242E] text-[#7C5CFA]"
               />
-              <label htmlFor="autoNotify" className="text-slate-600 dark:text-slate-300">
-                Automatically push alert notifications to counsellors upon high-risk flag
+              <label htmlFor="autoNotify" className="text-[#52525F] dark:text-[#A0A0B0]">
+                Automatically push alert notifications upon high-risk flag
               </label>
             </div>
 
-            <div className="pt-3">
+            <div className="pt-2">
               <button
                 type="submit"
                 disabled={savingSettings}
-                className="w-full py-2.5 px-4 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 shadow-md shadow-purple-600/30 flex items-center justify-center gap-2 transition-all disabled:opacity-50"
+                className="w-full py-2 px-4 rounded-md font-medium text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] flex items-center justify-center gap-2 transition-colors disabled:opacity-50 cursor-pointer"
               >
-                <Save className="w-4 h-4" />
+                <Save className="w-4 h-4" strokeWidth={1.5} />
                 <span>{savingSettings ? 'Saving Settings...' : 'Apply System Parameters'}</span>
               </button>
             </div>
@@ -211,42 +210,40 @@ export default function Settings() {
         </Card>
 
         {/* Right Column: User & Staff Role Management */}
-        <Card className="lg:col-span-7 p-6 border border-purple-200 dark:border-purple-500/25">
-          <div className="flex items-center justify-between mb-5 pb-3 border-b border-purple-200 dark:border-purple-500/15">
-            <div className="flex items-center gap-2.5">
-              <Users className="w-5 h-5 text-purple-400" />
+        <Card className="lg:col-span-7 p-6">
+          <div className="flex items-center justify-between mb-4 pb-3 border-b border-[#E5E5EB] dark:border-[#24242E]">
+            <div className="flex items-center gap-2">
+              <Users className="w-4 h-4 text-[#7C5CFA]" strokeWidth={1.5} />
               <div>
-                <h3 className="text-base font-bold text-slate-900 dark:text-white">Authorized Institutional Staff</h3>
-                <p className="text-xs text-slate-500 dark:text-slate-400">Admin, Faculty mentors, and Student Counsellors</p>
+                <h3 className="text-sm font-semibold text-[#14141B] dark:text-[#ECECF1]">Authorized Institutional Staff</h3>
+                <p className="text-xs text-[#70707E] dark:text-[#6B6B7B]">Admin, Faculty mentors, and Student Counsellors</p>
               </div>
             </div>
 
             <button
               onClick={() => setShowAddUserModal(true)}
-              className="px-3 py-1.5 rounded-xl text-xs font-semibold text-white bg-purple-600 hover:bg-purple-500 flex items-center gap-1.5 transition-all shadow-sm"
+              className="px-2.5 py-1.5 rounded-md text-xs font-medium text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] flex items-center gap-1.5 transition-colors cursor-pointer"
             >
-              <UserPlus className="w-3.5 h-3.5" />
+              <UserPlus className="w-3.5 h-3.5" strokeWidth={1.5} />
               <span>Add Staff</span>
             </button>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-2.5">
             {users.map((u) => (
               <div
                 key={u._id}
-                className="p-3.5 rounded-2xl bg-white dark:bg-purple-950/20 border border-purple-200 dark:border-purple-500/20 flex items-center justify-between gap-3 text-xs"
+                className="p-3 rounded-md bg-[#F8F8FA] dark:bg-[#1C1C26] border border-[#E5E5EB] dark:border-[#24242E] flex items-center justify-between gap-3 text-xs"
               >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-600 to-pink-500 p-0.5 shrink-0">
-                    <div className="w-full h-full bg-white dark:bg-[#180E3E] rounded-[10px] flex items-center justify-center font-bold text-white text-[11px]">
-                      {u.name?.slice(0, 2).toUpperCase() || 'ST'}
-                    </div>
+                <div className="flex items-center gap-2.5 min-w-0">
+                  <div className="w-8 h-8 rounded-md bg-[#7C5CFA]/10 border border-[#7C5CFA]/20 text-[#7C5CFA] flex items-center justify-center shrink-0 font-medium text-[11px]">
+                    {u.name?.slice(0, 2).toUpperCase() || 'ST'}
                   </div>
 
                   <div className="min-w-0">
-                    <div className="font-bold text-slate-900 dark:text-white truncate">{u.name}</div>
-                    <div className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{u.email}</div>
-                    <div className="text-[10px] text-purple-700 dark:text-purple-300 font-medium">
+                    <div className="font-medium text-[#14141B] dark:text-[#ECECF1] truncate">{u.name}</div>
+                    <div className="text-[11px] text-[#70707E] dark:text-[#6B6B7B] truncate">{u.email}</div>
+                    <div className="text-[10px] text-[#52525F] dark:text-[#A0A0B0]">
                       {u.title || u.role} • {u.department}
                     </div>
                   </div>
@@ -254,12 +251,12 @@ export default function Settings() {
 
                 <div className="flex items-center gap-2 shrink-0">
                   <span
-                    className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${
+                    className={`px-2 py-0.5 rounded-md text-[10px] font-medium capitalize ${
                       u.role === 'admin'
-                        ? 'bg-purple-100 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 border border-purple-300 dark:border-purple-500/30'
+                        ? 'bg-[#7C5CFA]/10 text-[#7C5CFA]'
                         : u.role === 'counsellor'
-                        ? 'bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 border border-pink-300 dark:border-pink-500/30'
-                        : 'bg-blue-100 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 border border-blue-300 dark:border-blue-500/30'
+                        ? 'bg-[#C98A1B]/10 text-[#C98A1B]'
+                        : 'bg-black/5 dark:bg-white/5 text-[#52525F] dark:text-[#A0A0B0]'
                     }`}
                   >
                     {u.role}
@@ -267,13 +264,13 @@ export default function Settings() {
 
                   <button
                     onClick={() => handleToggleUserActive(u._id, u.active)}
-                    className={`px-2.5 py-1 rounded-lg text-[10px] font-semibold transition-colors ${
+                    className={`px-2.5 py-1 rounded-md text-[10px] font-medium transition-colors cursor-pointer ${
                       u.active
-                        ? 'bg-emerald-50 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-300 hover:bg-red-500/15 hover:text-red-300'
-                        : 'bg-slate-100 dark:bg-slate-500/15 text-slate-500 dark:text-slate-400 hover:bg-emerald-500/15 hover:text-emerald-300'
+                        ? 'bg-[#2F9E6F]/10 text-[#2F9E6F] hover:bg-[#D64550]/10 hover:text-[#D64550]'
+                        : 'bg-black/5 dark:bg-white/5 text-[#70707E] dark:text-[#6B6B7B] hover:bg-[#2F9E6F]/10 hover:text-[#2F9E6F]'
                     }`}
                   >
-                    {u.active ? 'Active' : 'Disabled'}
+                    {u.active ? 'Active' : 'Deactivated'}
                   </button>
                 </div>
               </div>
@@ -282,14 +279,13 @@ export default function Settings() {
         </Card>
       </div>
 
-      {/* Add User Modal */}
+      {/* Add Staff Account Modal */}
       {showAddUserModal && (
         <AddUserModal
           onClose={() => setShowAddUserModal(false)}
           onAdded={(newUser) => {
+            setUsers((prev) => [...prev, newUser]);
             setShowAddUserModal(false);
-            setUsers((prev) => [newUser, ...prev]);
-            setMessage(`Staff account created for ${newUser.name}.`);
           }}
         />
       )}
@@ -297,7 +293,6 @@ export default function Settings() {
   );
 }
 
-// Add User Sub-Modal
 function AddUserModal({ onClose, onAdded }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -305,18 +300,16 @@ function AddUserModal({ onClose, onAdded }) {
     password: '',
     role: 'faculty',
     department: 'Computer Science',
-    title: 'Assistant Professor',
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitting(true);
     setError('');
-
+    setSubmitting(true);
     try {
-      const res = await api.post('/auth/users', formData);
+      const res = await api.post('/auth/register', formData);
       onAdded(res.user);
     } catch (err) {
       setError(err.message || 'Failed to create user account');
@@ -326,47 +319,47 @@ function AddUserModal({ onClose, onAdded }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/70 backdrop-blur-sm">
-      <div className="w-full max-w-md rounded-3xl glass-panel p-6 border border-purple-300 dark:border-purple-500/30 shadow-2xl animate-in zoom-in-95">
-        <div className="flex items-center justify-between pb-3 mb-4 border-b border-purple-200 dark:border-purple-500/20">
-          <h3 className="text-base font-bold text-slate-900 dark:text-white">Create Staff Account</h3>
-          <button onClick={onClose} className="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-            <X className="w-4 h-4" />
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+      <div className="w-full max-w-md rounded-lg bg-white dark:bg-[#14141B] p-6 border border-[#E5E5EB] dark:border-[#24242E] shadow-sm dark:shadow-none">
+        <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#E5E5EB] dark:border-[#24242E]">
+          <h3 className="text-base font-semibold text-[#14141B] dark:text-[#ECECF1]">Create Staff Account</h3>
+          <button onClick={onClose} className="text-[#70707E] dark:text-[#6B6B7B] hover:text-[#14141B] dark:hover:text-[#ECECF1]">
+            <X className="w-4 h-4" strokeWidth={1.5} />
           </button>
         </div>
 
         {error && (
-          <div className="mb-3 p-3 rounded-xl bg-pink-50 dark:bg-pink-500/15 border border-pink-300 dark:border-pink-500/30 text-pink-700 dark:text-pink-300 text-xs">
+          <div className="mb-3 p-2.5 rounded-md bg-[#D64550]/10 border border-[#D64550]/20 text-[#D64550] text-xs">
             {error}
           </div>
         )}
 
         <form onSubmit={handleSubmit} className="space-y-3 text-xs">
           <div>
-            <label className="block text-slate-600 dark:text-slate-300 font-semibold mb-1">Full Name *</label>
+            <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Full Name *</label>
             <input
               required
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="e.g. Dr. Anand Verma"
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+              className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
             />
           </div>
 
           <div>
-            <label className="block text-slate-600 dark:text-slate-300 font-semibold mb-1">Email *</label>
+            <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Email *</label>
             <input
               type="email"
               required
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               placeholder="anand@eduwings.edu"
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+              className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
             />
           </div>
 
           <div>
-            <label className="block text-slate-600 dark:text-slate-300 font-semibold mb-1">Password *</label>
+            <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Password *</label>
             <input
               type="password"
               required
@@ -374,17 +367,17 @@ function AddUserModal({ onClose, onAdded }) {
               value={formData.password}
               onChange={(e) => setFormData({ ...formData, password: e.target.value })}
               placeholder="Minimum 6 characters"
-              className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+              className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 font-semibold mb-1">Role</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Role</label>
               <select
                 value={formData.role}
                 onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               >
                 <option value="faculty">Faculty</option>
                 <option value="counsellor">Counsellor</option>
@@ -392,28 +385,28 @@ function AddUserModal({ onClose, onAdded }) {
               </select>
             </div>
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 font-semibold mb-1">Department</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Department</label>
               <input
                 value={formData.department}
                 onChange={(e) => setFormData({ ...formData, department: e.target.value })}
                 placeholder="e.g. Computer Science"
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
           </div>
 
-          <div className="pt-3 flex items-center justify-end gap-3 border-t border-purple-200 dark:border-purple-500/20">
+          <div className="pt-3 flex items-center justify-end gap-2.5 border-t border-[#E5E5EB] dark:border-[#24242E]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+              className="px-3.5 py-1.5 rounded-md text-xs font-medium text-[#52525F] dark:text-[#A0A0B0] hover:text-[#14141B] dark:hover:text-[#ECECF1]"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={submitting}
-              className="px-5 py-2 rounded-xl font-semibold text-white bg-purple-600 hover:bg-purple-500 shadow-md shadow-purple-600/30 disabled:opacity-50"
+              className="px-4 py-1.5 rounded-md font-medium text-xs text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] transition-colors disabled:opacity-50 cursor-pointer"
             >
               {submitting ? 'Creating...' : 'Create Account'}
             </button>

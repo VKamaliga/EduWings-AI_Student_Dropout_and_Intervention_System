@@ -4,55 +4,46 @@ import Card from './Card';
 export default function KpiCard({ title, value, percentage, icon: Icon, variant = 'purple', subtitle = '' }) {
   const themes = {
     purple: {
-      iconBg: 'bg-purple-50 dark:bg-purple-500/15 text-purple-600 dark:text-purple-400 border border-purple-300 dark:border-purple-500/30',
-      titleColor: 'text-purple-900 dark:text-purple-200',
-      valueColor: 'text-slate-900 dark:text-white',
-      accentGlow: 'before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-purple-500/10 before:to-transparent before:pointer-events-none',
+      iconBg: 'bg-[#7C5CFA]/10 text-[#7C5CFA] border border-[#7C5CFA]/20',
     },
     mint: {
-      iconBg: 'bg-emerald-50 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30',
-      titleColor: 'text-emerald-800 dark:text-emerald-300',
-      valueColor: 'text-slate-900 dark:text-white',
-      accentGlow: 'before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-emerald-500/10 before:to-transparent before:pointer-events-none',
+      iconBg: 'bg-[#2F9E6F]/10 text-[#2F9E6F] border border-[#2F9E6F]/20',
     },
     amber: {
-      iconBg: 'bg-amber-500/15 text-amber-600 dark:text-amber-300 border border-amber-300 dark:border-amber-500/30',
-      titleColor: 'text-amber-800 dark:text-amber-200',
-      valueColor: 'text-slate-900 dark:text-white',
-      accentGlow: 'before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-amber-500/10 before:to-transparent before:pointer-events-none',
+      iconBg: 'bg-[#C98A1B]/10 text-[#C98A1B] border border-[#C98A1B]/20',
     },
     pink: {
-      iconBg: 'bg-pink-100 dark:bg-pink-500/20 text-pink-600 dark:text-pink-300 border border-pink-500/35',
-      titleColor: 'text-pink-800 dark:text-pink-300',
-      valueColor: 'text-slate-900 dark:text-white',
-      accentGlow: 'before:absolute before:inset-0 before:rounded-2xl before:bg-gradient-to-br before:from-pink-500/15 before:to-transparent before:pointer-events-none',
+      iconBg: 'bg-[#D64550]/10 text-[#D64550] border border-[#D64550]/20',
+    },
+    red: {
+      iconBg: 'bg-[#D64550]/10 text-[#D64550] border border-[#D64550]/20',
     },
   }[variant] || themes.purple;
 
   return (
-    <Card className={`relative overflow-hidden group hover:border-purple-400/40 transition-all ${themes.accentGlow}`}>
+    <Card className="relative hover:border-[#7C5CFA]/40 transition-colors">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center gap-3">
-          <div className={`w-11 h-11 rounded-2xl flex items-center justify-center shrink-0 ${themes.iconBg}`}>
-            {Icon && <Icon className="w-5 h-5" />}
+          <div className={`w-9 h-9 rounded-md flex items-center justify-center shrink-0 ${themes.iconBg}`}>
+            {Icon && <Icon className="w-4 h-4" strokeWidth={1.5} />}
           </div>
           <div>
-            <div className={`text-xs font-semibold uppercase tracking-wider ${themes.titleColor}`}>
+            <div className="text-xs font-medium text-[#52525F] dark:text-[#A0A0B0]">
               {title}
             </div>
-            {subtitle && <div className="text-[11px] text-slate-500 dark:text-slate-400">{subtitle}</div>}
+            {subtitle && <div className="text-[11px] text-[#70707E] dark:text-[#6B6B7B]">{subtitle}</div>}
           </div>
         </div>
 
         {percentage !== undefined && percentage !== null && (
-          <div className="px-2.5 py-1 rounded-full text-xs font-bold bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-slate-600 dark:text-slate-300">
+          <div className="px-2 py-0.5 rounded-md text-xs font-medium bg-black/5 dark:bg-white/5 border border-[#E5E5EB] dark:border-[#24242E] text-[#52525F] dark:text-[#A0A0B0]">
             {percentage}%
           </div>
         )}
       </div>
 
       <div className="mt-2 flex items-baseline justify-between">
-        <div className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${themes.valueColor}`}>
+        <div className="text-2xl sm:text-3xl font-semibold tracking-tight text-[#14141B] dark:text-[#ECECF1]">
           {value}
         </div>
       </div>

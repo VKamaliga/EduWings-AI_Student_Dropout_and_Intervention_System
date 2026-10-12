@@ -134,59 +134,59 @@ export default function Students() {
           <button
             onClick={handlePredictAll}
             disabled={batchPredicting}
-            className="px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 shadow-md shadow-purple-600/30 flex items-center gap-2 transition-all disabled:opacity-50"
+            className="px-3 py-1.5 rounded-md text-xs font-medium text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] flex items-center gap-2 transition-colors disabled:opacity-50 cursor-pointer"
           >
-            <Play className={`w-3.5 h-3.5 ${batchPredicting ? 'animate-spin' : ''}`} />
+            <Play className={`w-3.5 h-3.5 ${batchPredicting ? 'animate-spin' : ''}`} strokeWidth={1.5} />
             <span>{batchPredicting ? 'Analyzing Cohort...' : 'Predict All'}</span>
           </button>
 
           <button
             onClick={() => setShowBulkModal(true)}
-            className="px-3.5 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-slate-900 dark:hover:text-white bg-slate-50 dark:bg-[#1A1040]/70 hover:bg-[#251758] border border-purple-200 dark:border-purple-500/25 flex items-center gap-2 transition-all"
+            className="px-3 py-1.5 rounded-md text-xs font-medium text-[#14141B] dark:text-[#ECECF1] bg-white dark:bg-[#14141B] hover:bg-[#F8F8FA] dark:hover:bg-[#1A1A23] border border-[#E5E5EB] dark:border-[#24242E] flex items-center gap-2 transition-colors cursor-pointer"
           >
-            <Upload className="w-3.5 h-3.5 text-purple-700 dark:text-purple-300" />
+            <Upload className="w-3.5 h-3.5 text-[#7C5CFA]" strokeWidth={1.5} />
             <span>Bulk CSV</span>
           </button>
 
           <button
             onClick={() => setShowAddModal(true)}
-            className="px-3.5 py-2 rounded-xl text-xs font-semibold text-white bg-purple-600 hover:bg-purple-500 border border-purple-400/30 flex items-center gap-2 transition-all shadow-md shadow-purple-600/20"
+            className="px-3 py-1.5 rounded-md text-xs font-medium text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] flex items-center gap-2 transition-colors cursor-pointer"
           >
-            <UserPlus className="w-3.5 h-3.5" />
+            <UserPlus className="w-3.5 h-3.5" strokeWidth={1.5} />
             <span>Add Student</span>
           </button>
         </div>
       </div>
 
       {/* Filter and Search Bar */}
-      <Card noPadding className="p-4">
-        <div className="flex flex-col lg:flex-row items-center gap-3">
+      <Card noPadding className="p-3.5">
+        <div className="flex flex-col lg:flex-row items-center gap-2.5">
           {/* Search Box */}
           <form onSubmit={handleSearchSubmit} className="relative flex-1 w-full">
-            <Search className="w-4 h-4 text-slate-500 dark:text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-3.5 h-3.5 text-[#70707E] dark:text-[#6B6B7B] absolute left-3 top-1/2 -translate-y-1/2" strokeWidth={1.5} />
             <input
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search by ID, student name, or email..."
-              className="w-full pl-10 pr-20 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-white placeholder-slate-400 focus:outline-none focus:border-purple-400"
+              className="w-full pl-9 pr-20 py-1.5 rounded-md text-xs bg-white dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] placeholder-[#70707E] dark:placeholder-[#6B6B7B] focus:outline-none focus:border-[#7C5CFA] focus:ring-1 focus:ring-[#7C5CFA]"
             />
             <button
               type="submit"
-              className="absolute right-2 top-1/2 -translate-y-1/2 px-2.5 py-1 text-[11px] font-semibold text-purple-800 dark:text-purple-200 hover:text-slate-900 dark:hover:text-white bg-purple-600/40 hover:bg-purple-600/70 rounded-lg transition-colors"
+              className="absolute right-1.5 top-1/2 -translate-y-1/2 px-2.5 py-1 text-[11px] font-medium text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] rounded-md transition-colors cursor-pointer"
             >
               Search
             </button>
           </form>
 
           {/* Dropdown Filters */}
-          <div className="flex flex-wrap items-center gap-2.5 w-full lg:w-auto">
+          <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
             {/* Department (unless faculty restricted) */}
             {!isFaculty && (
               <select
                 value={department}
                 onChange={(e) => setDepartment(e.target.value)}
-                className="px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-purple-400"
+                className="px-2.5 py-1.5 rounded-md text-xs bg-white dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               >
                 <option value="All">All Departments</option>
                 <option value="Computer Science">Computer Science</option>
@@ -202,7 +202,7 @@ export default function Students() {
             <select
               value={year}
               onChange={(e) => setYear(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-purple-400"
+              className="px-2.5 py-1.5 rounded-md text-xs bg-white dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
             >
               <option value="All">All Years</option>
               <option value="1">Year 1</option>
@@ -215,7 +215,7 @@ export default function Students() {
             <select
               value={riskLevel}
               onChange={(e) => setRiskLevel(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-purple-400"
+              className="px-2.5 py-1.5 rounded-md text-xs bg-white dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
             >
               <option value="All">All Risk Levels</option>
               <option value="High">High Risk</option>
@@ -227,7 +227,7 @@ export default function Students() {
             <select
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="px-3 py-2 rounded-xl text-xs bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-700 dark:text-slate-200 focus:outline-none focus:border-purple-400"
+              className="px-2.5 py-1.5 rounded-md text-xs bg-white dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
             >
               <option value="risk">Sort: Risk Probability</option>
               <option value="attendance">Sort: Attendance</option>
@@ -239,7 +239,7 @@ export default function Students() {
             {/* Sort Order */}
             <button
               onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
-              className="p-2 rounded-xl bg-white dark:bg-[#120B30]/80 border border-purple-200 dark:border-purple-500/25 text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white text-xs font-semibold"
+              className="p-1.5 rounded-md bg-white dark:bg-[#14141B] border border-[#E5E5EB] dark:border-[#24242E] text-[#52525F] dark:text-[#A0A0B0] hover:text-[#14141B] dark:hover:text-[#ECECF1] text-xs font-medium"
               title="Toggle Sort Order"
             >
               {sortOrder === 'asc' ? '▲ ASC' : '▼ DESC'}
@@ -253,30 +253,30 @@ export default function Students() {
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-purple-200 dark:border-purple-500/20 bg-white dark:bg-purple-950/20 text-purple-700 dark:text-purple-300 font-bold uppercase tracking-wider text-[11px]">
-                <th className="py-3 px-4">Student ID</th>
-                <th className="py-3 px-4">Student Name</th>
-                <th className="py-3 px-4">Dept & Year</th>
-                <th className="py-3 px-4">Attendance</th>
-                <th className="py-3 px-4">CGPA</th>
-                <th className="py-3 px-4">Backlogs</th>
-                <th className="py-3 px-4">Fee Status</th>
-                <th className="py-3 px-4">Risk Level</th>
-                <th className="py-3 px-4">Probability</th>
-                <th className="py-3 px-4 text-right">Actions</th>
+              <tr className="border-b border-[#E5E5EB] dark:border-[#24242E] text-[#70707E] dark:text-[#6B6B7B] font-medium text-[11px]">
+                <th className="py-2.5 px-4">Student ID</th>
+                <th className="py-2.5 px-4">Student Name</th>
+                <th className="py-2.5 px-4">Dept & Year</th>
+                <th className="py-2.5 px-4">Attendance</th>
+                <th className="py-2.5 px-4">CGPA</th>
+                <th className="py-2.5 px-4">Backlogs</th>
+                <th className="py-2.5 px-4">Fee Status</th>
+                <th className="py-2.5 px-4">Risk Level</th>
+                <th className="py-2.5 px-4">Probability</th>
+                <th className="py-2.5 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-purple-500/10">
+            <tbody className="divide-y divide-[#E5E5EB] dark:divide-[#24242E]">
               {loading ? (
                 <tr>
-                  <td colSpan="10" className="py-12 text-center text-slate-500 dark:text-slate-400">
-                    <div className="inline-block w-6 h-6 border-2 border-purple-400 border-t-transparent rounded-full animate-spin mb-2" />
+                  <td colSpan="10" className="py-12 text-center text-[#70707E] dark:text-[#6B6B7B]">
+                    <div className="inline-block w-5 h-5 border-2 border-[#7C5CFA] border-t-transparent rounded-full animate-spin mb-2" />
                     <div>Loading student cohort records...</div>
                   </td>
                 </tr>
               ) : students.length === 0 ? (
                 <tr>
-                  <td colSpan="10" className="py-12 text-center text-slate-500 dark:text-slate-400">
+                  <td colSpan="10" className="py-12 text-center text-[#70707E] dark:text-[#6B6B7B]">
                     No students match the selected filter criteria.
                   </td>
                 </tr>
@@ -289,71 +289,71 @@ export default function Students() {
                   return (
                     <tr
                       key={s._id}
-                      className="hover:bg-purple-500/10 transition-colors group cursor-pointer"
+                      className="hover:bg-black/[0.02] dark:hover:bg-white/[0.03] transition-colors group cursor-pointer text-[#14141B] dark:text-[#ECECF1]"
                     >
-                      <td className="py-3.5 px-4 font-mono font-bold text-purple-800 dark:text-purple-200">
+                      <td className="py-3 px-4 font-mono font-medium text-[#7C5CFA]">
                         <Link to={`/students/${s._id}`} className="hover:underline">
                           {s.studentId}
                         </Link>
                       </td>
-                      <td className="py-3.5 px-4">
-                        <Link to={`/students/${s._id}`} className="font-semibold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                      <td className="py-3 px-4">
+                        <Link to={`/students/${s._id}`} className="font-medium hover:text-[#7C5CFA] transition-colors">
                           {s.name}
                         </Link>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate max-w-[160px]">{s.email}</div>
+                        <div className="text-[10px] text-[#70707E] dark:text-[#6B6B7B] truncate max-w-[160px]">{s.email}</div>
                       </td>
-                      <td className="py-3.5 px-4">
-                        <div className="text-slate-700 dark:text-slate-200">{s.department}</div>
-                        <div className="text-[10px] text-slate-500 dark:text-slate-400">Year {s.year} • Sem {s.semester}</div>
+                      <td className="py-3 px-4">
+                        <div className="text-[#52525F] dark:text-[#A0A0B0]">{s.department}</div>
+                        <div className="text-[10px] text-[#70707E] dark:text-[#6B6B7B]">Year {s.year} • Sem {s.semester}</div>
                       </td>
-                      <td className="py-3.5 px-4">
-                        <span className={`font-semibold ${s.attendance < 65 ? 'text-pink-600 dark:text-pink-400' : s.attendance < 75 ? 'text-amber-600 dark:text-amber-400' : 'text-emerald-600 dark:text-emerald-400'}`}>
+                      <td className="py-3 px-4">
+                        <span className={`font-medium ${s.attendance < 65 ? 'text-[#D64550]' : s.attendance < 75 ? 'text-[#C98A1B]' : 'text-[#2F9E6F]'}`}>
                           {s.attendance}%
                         </span>
                       </td>
-                      <td className="py-3.5 px-4">
-                        <span className={`font-semibold ${s.cgpa < 5.5 ? 'text-pink-600 dark:text-pink-400' : s.cgpa < 6.5 ? 'text-amber-600 dark:text-amber-400' : 'text-slate-900 dark:text-white'}`}>
+                      <td className="py-3 px-4">
+                        <span className={`font-medium ${s.cgpa < 5.5 ? 'text-[#D64550]' : s.cgpa < 6.5 ? 'text-[#C98A1B]' : 'text-[#14141B] dark:text-[#ECECF1]'}`}>
                           {s.cgpa.toFixed(2)}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4">
-                        <span className={s.backlogCount > 0 ? 'text-pink-700 dark:text-pink-300 font-bold' : 'text-slate-500 dark:text-slate-400'}>
+                      <td className="py-3 px-4">
+                        <span className={s.backlogCount > 0 ? 'text-[#D64550] font-semibold' : 'text-[#70707E] dark:text-[#6B6B7B]'}>
                           {s.backlogCount}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4">
-                        <span className={`px-2 py-0.5 rounded text-[10px] font-semibold ${
+                      <td className="py-3 px-4">
+                        <span className={`px-2 py-0.5 rounded-md text-[10px] font-medium ${
                           s.feePaymentStatus === 'Paid'
-                            ? 'bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-300'
+                            ? 'bg-[#2F9E6F]/10 text-[#2F9E6F]'
                             : s.feePaymentStatus === 'Pending'
-                            ? 'bg-amber-50 dark:bg-amber-500/10 text-amber-700 dark:text-amber-300'
-                            : 'bg-pink-50 dark:bg-pink-500/10 text-pink-700 dark:text-pink-300'
+                            ? 'bg-[#C98A1B]/10 text-[#C98A1B]'
+                            : 'bg-[#D64550]/10 text-[#D64550]'
                         }`}>
                           {s.feePaymentStatus}
                         </span>
                       </td>
-                      <td className="py-3.5 px-4">
+                      <td className="py-3 px-4">
                         <RiskBadge level={s.currentRisk?.riskLevel || 'Low'} size="sm" />
                       </td>
-                      <td className="py-3.5 px-4 font-mono font-bold text-slate-900 dark:text-white">
+                      <td className="py-3 px-4 font-mono font-medium text-[#14141B] dark:text-[#ECECF1]">
                         {probPct}%
                       </td>
-                      <td className="py-3.5 px-4 text-right">
-                        <div className="flex items-center justify-end gap-1.5">
+                      <td className="py-3 px-4 text-right">
+                        <div className="flex items-center justify-end gap-1">
                           <button
                             onClick={(e) => handlePredictSingle(e, s._id)}
                             disabled={isCurrentPredicting}
                             title="Run single prediction"
-                            className="p-1.5 rounded-lg text-purple-700 dark:text-purple-300 hover:text-slate-900 dark:hover:text-white hover:bg-purple-600/30 transition-all"
+                            className="p-1 rounded-md text-[#52525F] dark:text-[#A0A0B0] hover:text-[#7C5CFA] hover:bg-black/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
                           >
-                            <RotateCw className={`w-3.5 h-3.5 ${isCurrentPredicting ? 'animate-spin' : ''}`} />
+                            <RotateCw className={`w-3.5 h-3.5 ${isCurrentPredicting ? 'animate-spin' : ''}`} strokeWidth={1.5} />
                           </button>
                           <Link
                             to={`/students/${s._id}`}
                             title="View student file"
-                            className="p-1.5 rounded-lg text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-purple-600/30 transition-all"
+                            className="p-1 rounded-md text-[#52525F] dark:text-[#A0A0B0] hover:text-[#7C5CFA] hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
                           >
-                            <ExternalLink className="w-3.5 h-3.5" />
+                            <ExternalLink className="w-3.5 h-3.5" strokeWidth={1.5} />
                           </Link>
                         </div>
                       </td>
@@ -461,66 +461,66 @@ function AddStudentModal({ onClose, onAdded }) {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/70 backdrop-blur-sm overflow-y-auto">
-      <div className="w-full max-w-2xl rounded-3xl glass-panel p-6 sm:p-8 border border-purple-300 dark:border-purple-500/30 my-8 shadow-2xl animate-in zoom-in-95">
-        <div className="flex items-center justify-between pb-4 mb-4 border-b border-purple-200 dark:border-purple-500/20">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 overflow-y-auto">
+      <div className="w-full max-w-2xl rounded-lg bg-white dark:bg-[#14141B] p-6 sm:p-8 border border-[#E5E5EB] dark:border-[#24242E] my-8 shadow-sm dark:shadow-none">
+        <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#E5E5EB] dark:border-[#24242E]">
           <div>
-            <h3 className="text-lg font-bold text-slate-900 dark:text-white">Enroll New Student</h3>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Real-time ML feature extraction and risk assessment will run automatically</p>
+            <h3 className="text-base font-semibold text-[#14141B] dark:text-[#ECECF1]">Enroll New Student</h3>
+            <p className="text-xs text-[#70707E] dark:text-[#6B6B7B]">Real-time ML feature extraction and risk assessment will run automatically</p>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="p-1 rounded-md text-[#70707E] dark:text-[#6B6B7B] hover:text-[#14141B] dark:hover:text-[#ECECF1]">
+            <X className="w-4 h-4" strokeWidth={1.5} />
           </button>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 rounded-xl bg-pink-50 dark:bg-pink-500/15 border border-pink-300 dark:border-pink-500/30 text-pink-700 dark:text-pink-300 text-xs">
+          <div className="mb-4 p-2.5 rounded-md bg-[#D64550]/10 border border-[#D64550]/20 text-[#D64550] text-xs">
             {error}
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+        <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Student ID *</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Student ID *</label>
               <input
                 required
                 value={formData.studentId}
                 onChange={(e) => setFormData({ ...formData, studentId: e.target.value })}
                 placeholder="e.g. S1250"
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
             <div>
-              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Full Name *</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Full Name *</label>
               <input
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Maya Patel"
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
             <div>
-              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Email Address *</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Email Address *</label>
               <input
                 type="email"
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="maya.s1250@eduwings.edu"
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Department</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Department</label>
               <select
                 value={formData.department}
                 onChange={(e) => setFormData({ ...formData, department: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               >
                 <option value="Computer Science">Computer Science</option>
                 <option value="Electronics & Comm.">Electronics & Comm.</option>
@@ -530,7 +530,7 @@ function AddStudentModal({ onClose, onAdded }) {
               </select>
             </div>
             <div>
-              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Semester & Year</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Semester & Year</label>
               <div className="flex gap-2">
                 <input
                   type="number"
@@ -538,7 +538,7 @@ function AddStudentModal({ onClose, onAdded }) {
                   max="8"
                   value={formData.semester}
                   onChange={(e) => setFormData({ ...formData, semester: Number(e.target.value), year: Math.ceil(e.target.value / 2) })}
-                  className="w-1/2 px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                  className="w-1/2 px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
                   title="Semester"
                 />
                 <input
@@ -547,17 +547,17 @@ function AddStudentModal({ onClose, onAdded }) {
                   max="4"
                   value={formData.year}
                   onChange={(e) => setFormData({ ...formData, year: Number(e.target.value) })}
-                  className="w-1/2 px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                  className="w-1/2 px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
                   title="Year"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-purple-700 dark:text-purple-300 font-semibold mb-1">Gender</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Gender</label>
               <select
                 value={formData.gender}
                 onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               >
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
@@ -567,20 +567,20 @@ function AddStudentModal({ onClose, onAdded }) {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-purple-200 dark:border-purple-500/15">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-2 border-t border-[#E5E5EB] dark:border-[#24242E]">
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 mb-1">Attendance (%)</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Attendance (%)</label>
               <input
                 type="number"
                 min="0"
                 max="100"
                 value={formData.attendance}
                 onChange={(e) => setFormData({ ...formData, attendance: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 mb-1">CGPA (0 - 10)</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">CGPA (0 - 10)</label>
               <input
                 type="number"
                 step="0.01"
@@ -588,40 +588,40 @@ function AddStudentModal({ onClose, onAdded }) {
                 max="10"
                 value={formData.cgpa}
                 onChange={(e) => setFormData({ ...formData, cgpa: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 mb-1">Active Backlogs</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Active Backlogs</label>
               <input
                 type="number"
                 min="0"
                 max="10"
                 value={formData.backlogCount}
                 onChange={(e) => setFormData({ ...formData, backlogCount: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 mb-1">Assignment Rate (%)</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Assignment Rate (%)</label>
               <input
                 type="number"
                 min="0"
                 max="100"
                 value={formData.assignmentSubmissionRate}
                 onChange={(e) => setFormData({ ...formData, assignmentSubmissionRate: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 mb-1">Fee Payment Status</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Fee Payment Status</label>
               <select
                 value={formData.feePaymentStatus}
                 onChange={(e) => setFormData({ ...formData, feePaymentStatus: e.target.value })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               >
                 <option value="Paid">Paid</option>
                 <option value="Pending">Pending</option>
@@ -629,24 +629,24 @@ function AddStudentModal({ onClose, onAdded }) {
               </select>
             </div>
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 mb-1">LMS Engagement (%)</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">LMS Engagement (%)</label>
               <input
                 type="number"
                 min="0"
                 max="100"
                 value={formData.lmsEngagementScore}
                 onChange={(e) => setFormData({ ...formData, lmsEngagementScore: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
             <div>
-              <label className="block text-slate-600 dark:text-slate-300 mb-1">Commute (Km)</label>
+              <label className="block text-[#52525F] dark:text-[#A0A0B0] font-medium mb-1">Commute (Km)</label>
               <input
                 type="number"
                 min="0"
                 value={formData.commuteDistanceKm}
                 onChange={(e) => setFormData({ ...formData, commuteDistanceKm: Number(e.target.value) })}
-                className="w-full px-3 py-2 rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white"
+                className="w-full px-2.5 py-1.5 rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
               />
             </div>
           </div>
@@ -657,25 +657,25 @@ function AddStudentModal({ onClose, onAdded }) {
               id="fgLearner"
               checked={formData.firstGenerationLearner}
               onChange={(e) => setFormData({ ...formData, firstGenerationLearner: e.target.checked })}
-              className="rounded bg-white dark:bg-[#110A2E] border-purple-300 dark:border-purple-500/30 text-purple-500"
+              className="rounded bg-white dark:bg-[#0B0B10] border-[#E5E5EB] dark:border-[#24242E] text-[#7C5CFA]"
             />
-            <label htmlFor="fgLearner" className="text-slate-600 dark:text-slate-300 text-xs">
+            <label htmlFor="fgLearner" className="text-[#52525F] dark:text-[#A0A0B0] text-xs">
               First-generation college learner
             </label>
           </div>
 
-          <div className="pt-4 flex items-center justify-end gap-3 border-t border-purple-200 dark:border-purple-500/20">
+          <div className="pt-4 flex items-center justify-end gap-2.5 border-t border-[#E5E5EB] dark:border-[#24242E]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/5"
+              className="px-3.5 py-1.5 rounded-md text-xs font-medium text-[#52525F] dark:text-[#A0A0B0] hover:text-[#14141B] dark:hover:text-[#ECECF1] hover:bg-black/5 dark:hover:bg-white/5 cursor-pointer"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 shadow-md shadow-purple-600/30 disabled:opacity-50"
+              className="px-4 py-1.5 rounded-md text-xs font-medium text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] transition-colors disabled:opacity-50 cursor-pointer"
             >
               {loading ? 'Evaluating Model...' : 'Enroll & Predict'}
             </button>
@@ -744,42 +744,42 @@ S2003,Tanvi Joshi,tanvi.s2003@eduwings.edu,Electronics & Comm.,3,5,91,8.4,0,94,8
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/40 dark:bg-black/70 backdrop-blur-sm">
-      <div className="w-full max-w-xl rounded-3xl glass-panel p-6 sm:p-8 border border-purple-300 dark:border-purple-500/30 shadow-2xl animate-in zoom-in-95">
-        <div className="flex items-center justify-between pb-3 mb-4 border-b border-purple-200 dark:border-purple-500/20">
-          <div className="flex items-center gap-2.5">
-            <FileSpreadsheet className="w-5 h-5 text-purple-400" />
-            <h3 className="text-base font-bold text-slate-900 dark:text-white">Bulk CSV Import</h3>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+      <div className="w-full max-w-xl rounded-lg bg-white dark:bg-[#14141B] p-6 sm:p-8 border border-[#E5E5EB] dark:border-[#24242E] shadow-sm dark:shadow-none">
+        <div className="flex items-center justify-between pb-3 mb-4 border-b border-[#E5E5EB] dark:border-[#24242E]">
+          <div className="flex items-center gap-2">
+            <FileSpreadsheet className="w-4 h-4 text-[#7C5CFA]" strokeWidth={1.5} />
+            <h3 className="text-base font-semibold text-[#14141B] dark:text-[#ECECF1]">Bulk CSV Import</h3>
           </div>
-          <button onClick={onClose} className="p-1 rounded-lg text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white">
-            <X className="w-5 h-5" />
+          <button onClick={onClose} className="p-1 rounded-md text-[#70707E] dark:text-[#6B6B7B] hover:text-[#14141B] dark:hover:text-[#ECECF1]">
+            <X className="w-4 h-4" strokeWidth={1.5} />
           </button>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 rounded-xl bg-pink-50 dark:bg-pink-500/15 border border-pink-300 dark:border-pink-500/30 text-pink-700 dark:text-pink-300 text-xs">
+          <div className="mb-4 p-2.5 rounded-md bg-[#D64550]/10 border border-[#D64550]/20 text-[#D64550] text-xs">
             {error}
           </div>
         )}
 
         <div className="space-y-4 text-xs">
           <div>
-            <label className="block text-slate-600 dark:text-slate-300 mb-1 font-semibold">Select CSV File</label>
+            <label className="block text-[#52525F] dark:text-[#A0A0B0] mb-1 font-medium">Select CSV File</label>
             <input
               type="file"
               accept=".csv"
               onChange={handleFileUpload}
-              className="w-full text-xs text-slate-600 dark:text-slate-300 file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-500 cursor-pointer"
+              className="w-full text-xs text-[#52525F] dark:text-[#A0A0B0] file:mr-3 file:py-1.5 file:px-3 file:rounded-md file:border-0 file:text-xs file:font-medium file:bg-[#7C5CFA] file:text-white hover:file:bg-[#6C4CE0] cursor-pointer"
             />
           </div>
 
           <div>
             <div className="flex items-center justify-between mb-1">
-              <label className="text-slate-600 dark:text-slate-300 font-semibold">Or Paste CSV Data Below</label>
+              <label className="text-[#52525F] dark:text-[#A0A0B0] font-medium">Or Paste CSV Data Below</label>
               <button
                 type="button"
                 onClick={() => setCsvText(sampleCSV)}
-                className="text-[11px] text-purple-700 dark:text-purple-300 hover:text-slate-900 dark:hover:text-white underline"
+                className="text-[11px] text-[#7C5CFA] hover:underline"
               >
                 Insert sample demo CSV
               </button>
@@ -789,19 +789,19 @@ S2003,Tanvi Joshi,tanvi.s2003@eduwings.edu,Electronics & Comm.,3,5,91,8.4,0,94,8
               value={csvText}
               onChange={(e) => setCsvText(e.target.value)}
               placeholder="studentId,name,email,department,year,attendance,cgpa..."
-              className="w-full p-3 font-mono text-[11px] rounded-xl bg-white dark:bg-[#110A2E] border border-purple-200 dark:border-purple-500/25 text-white focus:outline-none focus:border-purple-400"
+              className="w-full p-2.5 font-mono text-[11px] rounded-md bg-white dark:bg-[#0B0B10] border border-[#E5E5EB] dark:border-[#24242E] text-[#14141B] dark:text-[#ECECF1] focus:outline-none focus:border-[#7C5CFA]"
             />
           </div>
 
-          <div className="p-3 rounded-xl bg-purple-50 dark:bg-purple-500/10 border border-purple-200 dark:border-purple-500/15 text-[11px] text-slate-600 dark:text-slate-300">
+          <div className="p-2.5 rounded-md bg-[#F8F8FA] dark:bg-[#1C1C26] border border-[#E5E5EB] dark:border-[#24242E] text-[11px] text-[#70707E] dark:text-[#6B6B7B]">
             Each imported record is automatically parsed through the machine learning pipeline and assigned an initial dropout probability.
           </div>
 
-          <div className="pt-3 flex items-center justify-end gap-3 border-t border-purple-200 dark:border-purple-500/20">
+          <div className="pt-3 flex items-center justify-end gap-2.5 border-t border-[#E5E5EB] dark:border-[#24242E]">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-xl text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+              className="px-3.5 py-1.5 rounded-md text-xs font-medium text-[#52525F] dark:text-[#A0A0B0] hover:text-[#14141B] dark:hover:text-[#ECECF1]"
             >
               Cancel
             </button>
@@ -809,7 +809,7 @@ S2003,Tanvi Joshi,tanvi.s2003@eduwings.edu,Electronics & Comm.,3,5,91,8.4,0,94,8
               type="button"
               onClick={handleProcessImport}
               disabled={uploading}
-              className="px-5 py-2 rounded-xl font-semibold text-white bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 shadow-md shadow-purple-600/30 disabled:opacity-50"
+              className="px-4 py-1.5 rounded-md text-xs font-medium text-white bg-[#7C5CFA] hover:bg-[#6C4CE0] transition-colors disabled:opacity-50 cursor-pointer"
             >
               {uploading ? 'Processing & Scoring...' : 'Import Cohort'}
             </button>

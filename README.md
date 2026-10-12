@@ -155,7 +155,7 @@ You can run each service in separate terminal windows:
 ```bash
 cd ml-service
 source venv/bin/activate
-python3 -m uvicorn app:app --host 0.0.0.0 --port 8000
+python3 -m uvicorn main:app --host 0.0.0.0 --port 8000
 ```
 *Running on: `http://localhost:8000` (Docs: `http://localhost:8000/docs`)*
 
@@ -187,6 +187,47 @@ Click any **Quick Demo Access** button on the login screen to explore as **Admin
 - **Resilient ML Integration:** If the Python FastAPI service is offline or unreachable, the Express backend automatically falls back to an internal **Rule-Based Risk Calculation Engine**. The user experience and risk assessment workflows never crash.
 - **Embedded Database Fallback:** If an external MongoDB server is not configured or offline, the server automatically starts an embedded in-memory MongoDB engine seamlessly.
 - **Role-Based Protection:** Routes are strictly authenticated and protected by role on both client and backend layers.
+
+---
+
+## 🌍 Deployment Guide
+
+This monorepo is configured for easy deployment across modern cloud platforms:
+
+### 1. Database (MongoDB Atlas)
+1. Create a cluster on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
+2. Retrieve your connection string (e.g., `mongodb+srv://...`).
+3. Under Network Access, ensure the IP whitelist allows connections from your server's hosting provider.
+
+### 2. ML Service (Render)
+1. Create a new **Web Service** on [Render](https://render.com).
+2. **Root Directory**: `ml-service`
+3. **Environment**: Python
+4. **Build Command**: `pip install -r requirements.txt && python train.py`
+5. **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+6. Note the deployed URL (e.g., `https://eduwings-ml.onrender.com`).
+
+### 3. Backend Server (Render)
+1. Create a new **Web Service** on Render.
+2. **Root Directory**: `server`
+3. **Environment**: Node
+4. **Build Command**: `npm install`
+5. **Start Command**: `npm start`
+6. **Environment Variables**:
+   - `PORT`: (automatically set by Render)
+   - `MONGO_URI`: Your MongoDB Atlas connection string
+   - `JWT_SECRET`: A strong random string for authentication
+   - `ML_SERVICE_URL`: The URL of your deployed ML Service
+   - `CLIENT_URL`: The URL of your Vercel frontend (once deployed)
+7. Note the deployed URL (e.g., `https://eduwings-server.onrender.com`).
+
+### 4. Frontend Client (Vercel)
+1. Import the project into [Vercel](https://vercel.com).
+2. **Root Directory**: `client`
+3. **Framework Preset**: Vite (automatically detected)
+4. **Environment Variables**:
+   - `VITE_API_URL`: Your deployed backend URL + `/api` (e.g., `https://eduwings-server.onrender.com/api`)
+5. Deploy. The included `vercel.json` ensures all client-side routing is handled correctly.
 
 ---
 

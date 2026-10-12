@@ -3,17 +3,24 @@ import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import Card from '../common/Card';
 
 export default function RiskDonutChart({ data = [] }) {
-  const chartData = data && data.length > 0 ? data : [
-    { name: 'Low Risk', value: 65, percentage: 65, color: '#34D399' },
-    { name: 'Medium Risk', value: 22, percentage: 22, color: '#FBBF24' },
-    { name: 'High Risk', value: 13, percentage: 13, color: '#EC4899' },
+  const chartData = data && data.length > 0 ? data.map(d => ({
+    ...d,
+    color: d.name.toLowerCase().includes('high')
+      ? '#D64550'
+      : d.name.toLowerCase().includes('medium')
+      ? '#C98A1B'
+      : '#2F9E6F'
+  })) : [
+    { name: 'Low Risk', value: 65, percentage: 65, color: '#2F9E6F' },
+    { name: 'Medium Risk', value: 22, percentage: 22, color: '#C98A1B' },
+    { name: 'High Risk', value: 13, percentage: 13, color: '#D64550' },
   ];
 
   return (
     <Card className="h-full flex flex-col justify-between">
       <div className="flex items-center justify-between mb-2">
-        <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
-          Risk Distribution <span className="text-xs font-normal text-slate-500 dark:text-slate-400"></span>
+        <h3 className="text-sm font-semibold text-[#14141B] dark:text-[#ECECF1] tracking-tight">
+          Risk Distribution
         </h3>
       </div>
 
@@ -27,9 +34,9 @@ export default function RiskDonutChart({ data = [] }) {
                   if (active && payload && payload.length) {
                     const item = payload[0].payload;
                     return (
-                      <div className="glass-panel px-3 py-2 rounded-xl border border-purple-300 dark:border-purple-500/30 text-xs shadow-xl">
-                        <div className="font-bold text-slate-900 dark:text-white">{item.name}</div>
-                        <div className="text-slate-600 dark:text-slate-300">
+                      <div className="bg-white dark:bg-[#14141B] px-3 py-2 rounded-md border border-[#E5E5EB] dark:border-[#24242E] text-xs shadow-sm dark:shadow-none">
+                        <div className="font-medium text-[#14141B] dark:text-[#ECECF1]">{item.name}</div>
+                        <div className="text-[#52525F] dark:text-[#A0A0B0]">
                           {item.value} students ({item.percentage}%)
                         </div>
                       </div>
@@ -44,7 +51,7 @@ export default function RiskDonutChart({ data = [] }) {
                 cy="50%"
                 innerRadius={55}
                 outerRadius={80}
-                paddingAngle={4}
+                paddingAngle={2}
                 dataKey="value"
                 stroke="none"
               >
@@ -57,19 +64,19 @@ export default function RiskDonutChart({ data = [] }) {
         </div>
 
         {/* Legend */}
-        <div className="sm:col-span-6 space-y-3.5 pr-2">
+        <div className="sm:col-span-6 space-y-3 pr-2">
           {chartData.map((item) => (
-            <div key={item.name} className="flex items-center justify-between text-sm">
-              <div className="flex items-center gap-2.5">
+            <div key={item.name} className="flex items-center justify-between text-xs">
+              <div className="flex items-center gap-2">
                 <span
-                  className="w-3 h-3 rounded-full shrink-0 shadow-sm"
+                  className="w-2.5 h-2.5 rounded-full shrink-0"
                   style={{ backgroundColor: item.color }}
                 />
-                <span className="text-slate-700 dark:text-slate-200 font-medium text-xs sm:text-sm">
+                <span className="text-[#52525F] dark:text-[#A0A0B0] font-normal">
                   {item.name}
                 </span>
               </div>
-              <span className="font-extrabold text-slate-900 dark:text-white text-xs sm:text-sm">
+              <span className="font-semibold text-[#14141B] dark:text-[#ECECF1]">
                 {item.percentage}%
               </span>
             </div>

@@ -24,22 +24,22 @@ async function getActiveThresholds() {
 }
 
 /**
- * Transforms student object into ML feature payload
+ * Transforms student object into ML feature payload with exact units and scaling
  */
 function studentToMLFeatures(student) {
   return {
-    student_id: student.studentId || 'UNKNOWN',
+    student_id: student.studentId || student.student_id || 'UNKNOWN',
     attendance: Number(student.attendance ?? 75),
     cgpa: Number(student.cgpa ?? 7.0),
-    internal_marks: Number(student.internalMarks ?? 65),
-    backlog_count: Number(student.backlogCount ?? 0),
-    assignment_submission_rate: Number(student.assignmentSubmissionRate ?? 80),
-    lms_engagement_score: Number(student.lmsEngagementScore ?? 70),
-    fee_payment_status: student.feePaymentStatus || 'Paid',
-    family_income_bracket: student.familyIncomeBracket || '2-5L',
-    first_generation_learner: Boolean(student.firstGenerationLearner),
-    commute_distance_km: Number(student.commuteDistanceKm ?? 5),
-    past_counselling_visits: Number(student.pastCounsellingVisits ?? 0),
+    internal_marks: Number(student.internalMarks ?? student.internal_marks ?? 65),
+    backlog_count: Number(student.backlogCount ?? student.backlog_count ?? 0),
+    assignment_submission_rate: Number(student.assignmentSubmissionRate ?? student.assignment_submission_rate ?? 80),
+    lms_engagement_score: Number(student.lmsEngagementScore ?? student.lms_engagement_score ?? 70),
+    fee_payment_status: student.feePaymentStatus || student.fee_payment_status || 'Paid',
+    family_income_bracket: student.familyIncomeBracket || student.family_income_bracket || '2-5L',
+    first_generation_learner: Boolean(student.firstGenerationLearner ?? student.first_generation_learner ?? false),
+    commute_distance_km: Number(student.commuteDistanceKm ?? student.commute_distance_km ?? 5),
+    past_counselling_visits: Number(student.pastCounsellingVisits ?? student.past_counselling_visits ?? 0),
     semester: Number(student.semester ?? 1),
   };
 }
@@ -52,9 +52,11 @@ async function predictStudentRisk(student) {
   const thresholds = await getActiveThresholds();
   const payload = studentToMLFeatures(student);
 
+  console.log(`[ML Pipeline] Predicting for ${payload.student_id} | Payload:`, JSON.stringify(payload));
+
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 1800); // 1.8s timeout
+    const timeout = setTimeout(() => controller.abort(), 10000); // 10s timeout
 
     const res = await fetch(`${ML_SERVICE_URL}/predict`, {
       method: 'POST',
@@ -70,6 +72,10 @@ async function predictStudentRisk(student) {
 
     if (res.ok) {
       const data = await res.json();
+      console.log(
+        `[ML Pipeline] Response for ${payload.student_id}: probability=${data.dropout_probability}, riskLevel=${data.risk_level}, modelVersion=${data.model_version}`
+      );
+
       return {
         probability: Number(data.dropout_probability.toFixed(2)),
         riskLevel: data.risk_level,
@@ -79,15 +85,22 @@ async function predictStudentRisk(student) {
           description: f.description || '',
         })),
         suggestedInterventions: data.suggested_interventions,
+        modelUsed: data.model_version || 'ML-RandomForest-v1',
         source: 'ml_model',
       };
+    } else {
+      console.warn(`[ML Pipeline] ML Service returned status ${res.status}. Falling back to rule engine.`);
     }
   } catch (err) {
-    // ML service unavailable or timed out, gracefully continue to fallback
+    console.warn(`[ML Pipeline] ML service unreachable (${err.message}). Falling back to rule engine.`);
   }
 
   // Fallback to rule engine
-  return calculateRuleBasedRisk(student, thresholds);
+  const fallback = calculateRuleBasedRisk(student, thresholds);
+  return {
+    ...fallback,
+    modelUsed: 'RuleEngineFallback',
+  };
 }
 
 /**
@@ -97,9 +110,11 @@ async function predictBatchStudents(students) {
   const thresholds = await getActiveThresholds();
   const payloads = students.map((s) => studentToMLFeatures(s));
 
+  console.log(`[ML Pipeline] Batch predicting for ${payloads.length} students.`);
+
   try {
     const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 4000);
+    const timeout = setTimeout(() => controller.abort(), 10000);
 
     const res = await fetch(`${ML_SERVICE_URL}/predict/batch`, {
       method: 'POST',
@@ -115,6 +130,7 @@ async function predictBatchStudents(students) {
 
     if (res.ok) {
       const data = await res.json();
+      console.log(`[ML Pipeline] Batch processed ${data.total_processed} students successfully.`);
       return data.predictions.map((p) => ({
         studentId: p.student_id,
         probability: Number(p.dropout_probability.toFixed(2)),
@@ -125,11 +141,12 @@ async function predictBatchStudents(students) {
           description: f.description || '',
         })),
         suggestedInterventions: p.suggested_interventions,
+        modelUsed: p.model_version || 'ML-RandomForest-v1',
         source: 'ml_model',
       }));
     }
   } catch (err) {
-    // ML service unavailable, fallback
+    console.warn(`[ML Pipeline] Batch ML service unreachable (${err.message}). Falling back to rule engine.`);
   }
 
   // Fallback to rule engine for each student
@@ -138,6 +155,7 @@ async function predictBatchStudents(students) {
     return {
       studentId: s.studentId,
       ...res,
+      modelUsed: 'RuleEngineFallback',
     };
   });
 }
@@ -145,5 +163,6 @@ async function predictBatchStudents(students) {
 module.exports = {
   predictStudentRisk,
   predictBatchStudents,
+  studentToMLFeatures,
   getActiveThresholds,
 };

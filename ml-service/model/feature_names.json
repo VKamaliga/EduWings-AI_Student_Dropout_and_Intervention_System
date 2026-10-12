@@ -14,21 +14,83 @@
     "semester"
   ],
   "importances": {
-    "attendance": 0.3015,
-    "cgpa": 0.1157,
-    "internal_marks": 0.0606,
-    "backlog_count": 0.0084,
-    "assignment_submission_rate": 0.2293,
-    "lms_engagement_score": 0.1927,
-    "fee_payment_status": 0.0065,
-    "family_income_bracket": 0.0141,
-    "first_generation_learner": 0.0327,
-    "commute_distance_km": 0.0203,
-    "past_counselling_visits": 0.0076,
-    "semester": 0.0106
+    "attendance": 0.2792,
+    "cgpa": 0.2286,
+    "internal_marks": 0.1337,
+    "backlog_count": 0.1107,
+    "assignment_submission_rate": 0.1023,
+    "lms_engagement_score": 0.0689,
+    "fee_payment_status": 0.0232,
+    "family_income_bracket": 0.0068,
+    "first_generation_learner": 0.003,
+    "commute_distance_km": 0.0236,
+    "past_counselling_visits": 0.0088,
+    "semester": 0.0112
   },
-  "accuracy": 0.9867,
-  "roc_auc": 0.9827,
+  "feature_stats": {
+    "attendance": {
+      "mean": 75.71,
+      "std": 15.68,
+      "median": 79.0
+    },
+    "cgpa": {
+      "mean": 7.18,
+      "std": 1.75,
+      "median": 7.45
+    },
+    "internal_marks": {
+      "mean": 71.77,
+      "std": 17.85,
+      "median": 74.4
+    },
+    "backlog_count": {
+      "mean": 0.92,
+      "std": 1.56,
+      "median": 0.0
+    },
+    "assignment_submission_rate": {
+      "mean": 71.87,
+      "std": 15.83,
+      "median": 74.3
+    },
+    "lms_engagement_score": {
+      "mean": 67.88,
+      "std": 15.87,
+      "median": 69.3
+    },
+    "fee_payment_status": {
+      "mean": 0.43,
+      "std": 0.7,
+      "median": 0.0
+    },
+    "family_income_bracket": {
+      "mean": 1.35,
+      "std": 0.96,
+      "median": 1.0
+    },
+    "first_generation_learner": {
+      "mean": 0.3,
+      "std": 0.46,
+      "median": 0.0
+    },
+    "commute_distance_km": {
+      "mean": 11.86,
+      "std": 9.34,
+      "median": 8.9
+    },
+    "past_counselling_visits": {
+      "mean": 0.51,
+      "std": 0.84,
+      "median": 0.0
+    },
+    "semester": {
+      "mean": 4.51,
+      "std": 2.3,
+      "median": 4.0
+    }
+  },
+  "accuracy": 0.8697,
+  "roc_auc": 0.9123,
   "model_type": "RandomForestClassifier",
   "version": "1.0.0"
 }

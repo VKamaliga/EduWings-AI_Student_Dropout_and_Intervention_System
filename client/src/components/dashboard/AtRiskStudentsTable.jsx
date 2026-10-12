@@ -8,31 +8,31 @@ export default function AtRiskStudentsTable({ students = [], selectedStudentId, 
   return (
     <Card className="h-full flex flex-col justify-between">
       <div className="flex items-center justify-between mb-3">
-        <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
+        <h3 className="text-sm font-semibold text-[#14141B] dark:text-[#ECECF1] tracking-tight">
           At-Risk Students
         </h3>
         <Link
           to="/students"
-          className="text-xs text-purple-600 dark:text-purple-300 hover:text-purple-800 dark:hover:text-white flex items-center gap-1 transition-colors font-medium"
+          className="text-xs text-[#7C5CFA] hover:underline flex items-center gap-1 transition-colors font-medium"
         >
           <span>View all</span>
-          <ArrowRight className="w-3.5 h-3.5" />
+          <ArrowRight className="w-3.5 h-3.5" strokeWidth={1.5} />
         </Link>
       </div>
 
       <div className="overflow-x-auto my-auto">
         <table className="w-full text-left text-xs">
           <thead>
-            <tr className="border-b border-purple-200 dark:border-purple-500/15 text-purple-700/80 dark:text-purple-300/80 font-bold uppercase tracking-wider text-[11px]">
-              <th className="py-2.5 px-3">ID</th>
-              <th className="py-2.5 px-3">Name</th>
-              <th className="py-2.5 px-3 text-right">Risk Level</th>
+            <tr className="border-b border-[#E5E5EB] dark:border-[#24242E] text-[#70707E] dark:text-[#6B6B7B] font-medium text-[11px]">
+              <th className="py-2 px-3">ID</th>
+              <th className="py-2 px-3">Name</th>
+              <th className="py-2 px-3 text-right">Risk Level</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-purple-500/10">
+          <tbody className="divide-y divide-[#E5E5EB] dark:divide-[#24242E]">
             {students.length === 0 ? (
               <tr>
-                <td colSpan="3" className="py-8 text-center text-slate-500 dark:text-slate-400">
+                <td colSpan="3" className="py-8 text-center text-[#70707E] dark:text-[#6B6B7B]">
                   No students currently flagged in this cohort.
                 </td>
               </tr>
@@ -45,18 +45,18 @@ export default function AtRiskStudentsTable({ students = [], selectedStudentId, 
                     onClick={() => onSelectStudent && onSelectStudent(s)}
                     className={`cursor-pointer transition-colors ${
                       isSelected
-                        ? 'bg-purple-600/25 text-slate-900 dark:text-white'
-                        : 'hover:bg-purple-500/10 text-slate-700 dark:text-slate-200'
+                        ? 'bg-[#7C5CFA]/10 text-[#14141B] dark:text-[#ECECF1]'
+                        : 'hover:bg-black/[0.02] dark:hover:bg-white/[0.03] text-[#14141B] dark:text-[#ECECF1]'
                     }`}
                   >
-                    <td className="py-3 px-3 font-mono font-bold text-purple-800 dark:text-purple-200">
+                    <td className="py-2.5 px-3 font-mono font-medium text-[#7C5CFA]">
                       {s.studentId}
                     </td>
-                    <td className="py-3 px-3 font-medium">
-                      <div className="truncate max-w-[150px]">{s.name}</div>
-                      <div className="text-[10px] text-slate-500 dark:text-slate-400">{s.department}</div>
+                    <td className="py-2.5 px-3">
+                      <div className="truncate max-w-[150px] font-medium">{s.name}</div>
+                      <div className="text-[10px] text-[#70707E] dark:text-[#6B6B7B]">{s.department}</div>
                     </td>
-                    <td className="py-3 px-3 text-right">
+                    <td className="py-2.5 px-3 text-right">
                       <RiskBadge level={s.currentRisk?.riskLevel || 'Low'} size="sm" />
                     </td>
                   </tr>

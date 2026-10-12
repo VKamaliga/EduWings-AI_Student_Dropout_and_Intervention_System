@@ -16,7 +16,8 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
-app.use(cors({ origin: true, credentials: true }));
+const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
+app.use(cors({ origin: [clientUrl, 'http://localhost:5173'], credentials: true }));
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
@@ -32,6 +33,14 @@ app.use('/api/reports', reportRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {
+  res.json({
+    status: 'ok',
+    system: 'EduWings Backend Service',
+    time: new Date().toISOString(),
+  });
+});
+
+app.get('/health', (req, res) => {
   res.json({
     status: 'ok',
     system: 'EduWings Backend Service',

@@ -82,7 +82,7 @@ export default function Dashboard() {
           value={loading ? '...' : stats.high.count}
           percentage={loading ? null : stats.high.percentage}
           icon={AlertTriangle}
-          variant="pink"
+          variant="red"
         />
       </div>
 

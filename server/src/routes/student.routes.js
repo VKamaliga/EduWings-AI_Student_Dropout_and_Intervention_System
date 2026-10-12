@@ -149,7 +149,7 @@ router.post(
           topFactors: riskAssessment.topFactors,
           suggestedInterventions: riskAssessment.suggestedInterventions,
           lastPredictedAt: new Date(),
-          modelUsed: riskAssessment.source === 'ml_model' ? 'ML-RandomForest' : 'RuleEngineFallback',
+          modelUsed: riskAssessment.modelUsed || (riskAssessment.source === 'ml_model' ? 'ML-RandomForest-v1' : 'RuleEngineFallback'),
         },
         riskHistory: [
           {
@@ -242,7 +242,7 @@ router.put('/:id', authenticate, async (req, res) => {
       topFactors: riskAssessment.topFactors,
       suggestedInterventions: riskAssessment.suggestedInterventions,
       lastPredictedAt: new Date(),
-      modelUsed: riskAssessment.source === 'ml_model' ? 'ML-RandomForest' : 'RuleEngineFallback',
+      modelUsed: riskAssessment.modelUsed || (riskAssessment.source === 'ml_model' ? 'ML-RandomForest-v1' : 'RuleEngineFallback'),
     };
 
     student.riskHistory.push({
@@ -300,7 +300,7 @@ router.post('/:id/predict', authenticate, async (req, res) => {
       topFactors: riskAssessment.topFactors,
       suggestedInterventions: riskAssessment.suggestedInterventions,
       lastPredictedAt: new Date(),
-      modelUsed: riskAssessment.source === 'ml_model' ? 'ML-RandomForest' : 'RuleEngineFallback',
+      modelUsed: riskAssessment.modelUsed || (riskAssessment.source === 'ml_model' ? 'ML-RandomForest-v1' : 'RuleEngineFallback'),
     };
 
     student.riskHistory.push({
@@ -364,7 +364,7 @@ router.post('/predict-all', authenticate, async (req, res) => {
                 'currentRisk.topFactors': pred.topFactors,
                 'currentRisk.suggestedInterventions': pred.suggestedInterventions,
                 'currentRisk.lastPredictedAt': new Date(),
-                'currentRisk.modelUsed': pred.source === 'ml_model' ? 'ML-RandomForest' : 'RuleEngineFallback',
+                'currentRisk.modelUsed': pred.modelUsed || (pred.source === 'ml_model' ? 'ML-RandomForest-v1' : 'RuleEngineFallback'),
               },
               $push: {
                 riskHistory: {

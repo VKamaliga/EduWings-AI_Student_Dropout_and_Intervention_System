@@ -5,35 +5,35 @@ export default function RiskBadge({ level = 'Low', probability = null, size = 'm
 
   const styles = {
     LOW: {
-      pill: 'bg-emerald-50 dark:bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-500/35 dark:bg-emerald-500/15 dark:text-emerald-300 dark:border-emerald-500/35',
+      pill: 'bg-[#2F9E6F]/12 text-[#248259] dark:text-[#2F9E6F] border border-[#2F9E6F]/25',
       label: 'Low',
-      dot: 'bg-emerald-400',
+      dot: 'bg-[#2F9E6F]',
     },
     MEDIUM: {
-      pill: 'bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/35 dark:bg-amber-500/15 dark:text-amber-300 dark:border-amber-500/35',
+      pill: 'bg-[#C98A1B]/12 text-[#A66F13] dark:text-[#C98A1B] border border-[#C98A1B]/25',
       label: 'Medium',
-      dot: 'bg-amber-400',
+      dot: 'bg-[#C98A1B]',
     },
     HIGH: {
-      pill: 'bg-pink-100 dark:bg-pink-500/20 text-pink-700 dark:text-pink-300 border border-pink-500/40 dark:bg-pink-500/20 dark:text-pink-300 dark:border-pink-500/40',
+      pill: 'bg-[#D64550]/12 text-[#C23641] dark:text-[#D64550] border border-[#D64550]/25',
       label: 'High',
-      dot: 'bg-pink-400',
+      dot: 'bg-[#D64550]',
     },
   }[normLevel] || {
-    pill: 'bg-slate-100 dark:bg-slate-500/20 text-slate-600 dark:text-slate-300 border border-slate-500/30',
+    pill: 'bg-black/5 dark:bg-white/5 text-[#52525F] dark:text-[#A0A0B0] border border-[#E5E5EB] dark:border-[#24242E]',
     label: level,
-    dot: 'bg-slate-400',
+    dot: 'bg-[#70707E]',
   };
 
   const sizeClasses = {
     sm: 'px-2 py-0.5 text-[11px]',
-    md: 'px-3 py-1 text-xs font-semibold',
-    lg: 'px-4 py-1.5 text-sm font-bold tracking-wide uppercase',
-  }[size] || 'px-3 py-1 text-xs font-semibold';
+    md: 'px-2.5 py-1 text-xs font-medium',
+    lg: 'px-3 py-1.5 text-xs font-semibold',
+  }[size] || 'px-2.5 py-1 text-xs font-medium';
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full backdrop-blur-sm transition-all ${sizeClasses} ${styles.pill}`}
+      className={`inline-flex items-center gap-1.5 rounded-md transition-colors ${sizeClasses} ${styles.pill}`}
     >
       <span className={`w-1.5 h-1.5 rounded-full ${styles.dot}`} />
       <span>{styles.label}</span>

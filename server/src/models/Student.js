@@ -161,7 +161,7 @@ const studentSchema = new mongoose.Schema(
       },
       modelUsed: {
         type: String,
-        default: 'RandomForest-v1',
+        default: 'ML-RandomForest-v1',
       },
     },
     riskHistory: [riskHistorySchema],

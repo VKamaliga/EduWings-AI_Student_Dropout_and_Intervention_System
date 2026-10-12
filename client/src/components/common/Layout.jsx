@@ -18,7 +18,7 @@ export default function Layout() {
   };
 
   return (
-    <div className="min-h-screen flex bg-deep-space text-slate-900 dark:text-slate-100 font-sans">
+    <div className="min-h-screen flex bg-[#F8F8FA] dark:bg-[#0B0B10] text-[#14141B] dark:text-[#ECECF1] font-sans antialiased">
       {/* Left Sidebar */}
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
@@ -29,7 +29,7 @@ export default function Layout() {
           onOpenSidebar={() => setSidebarOpen(true)}
         />
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto animate-in fade-in duration-200">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto transition-opacity duration-150">
           <Outlet />
         </main>
       </div>
