@@ -30,12 +30,21 @@ app.add_middleware(
 MODEL = None
 METADATA = None
 
-MODEL_DIR = os.path.join(os.path.dirname(__file__), 'model')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_DIR = os.path.join(BASE_DIR, 'model')
 MODEL_PATH = os.path.join(MODEL_DIR, 'model.joblib')
 META_PATH = os.path.join(MODEL_DIR, 'feature_names.json')
 
 def load_artifacts():
     global MODEL, METADATA
+    if not (os.path.exists(MODEL_PATH) and os.path.exists(META_PATH)):
+        logger.info("⚠️ Model artifacts not found. Automatically training initial model...")
+        try:
+            from train import train_and_save_model
+            train_and_save_model()
+        except Exception as e:
+            logger.error(f"❌ Failed to auto-train model: {e}")
+
     if os.path.exists(MODEL_PATH) and os.path.exists(META_PATH):
         try:
             MODEL = joblib.load(MODEL_PATH)
@@ -45,7 +54,7 @@ def load_artifacts():
         except Exception as e:
             logger.warning(f"⚠️ Error loading model: {e}")
     else:
-        logger.warning("⚠️ Model artifacts not yet generated. Please run train.py first.")
+        logger.warning("⚠️ Model artifacts not yet generated.")
 
 @app.on_event("startup")
 def startup_event():

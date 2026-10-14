@@ -184,50 +184,129 @@ Click any **Quick Demo Access** button on the login screen to explore as **Admin
 ---
 
 ## 🛡️ Robustness & Fallback Guarantees
-- **Resilient ML Integration:** If the Python FastAPI service is offline or unreachable, the Express backend automatically falls back to an internal **Rule-Based Risk Calculation Engine**. The user experience and risk assessment workflows never crash.
-- **Embedded Database Fallback:** If an external MongoDB server is not configured or offline, the server automatically starts an embedded in-memory MongoDB engine seamlessly.
-- **Role-Based Protection:** Routes are strictly authenticated and protected by role on both client and backend layers.
+- **Resilient ML Integration:** If the Python FastAPI service is offline or takes longer than **10 seconds**, the Express backend automatically falls back to an internal **Rule-Based Risk Calculation Engine**. The user experience and risk assessment workflows never crash.
+- **Embedded Database Fallback (Development Only):** In development mode (`NODE_ENV != 'production'`), if an external MongoDB server is unreachable, the server spins up an embedded in-memory MongoDB engine (`MongoMemoryServer`).
+- **Production Database Fail-Safe:** When `NODE_ENV === 'production'`, the in-memory fallback is strictly disabled. If the MongoDB Atlas cluster (`MONGO_URI`) is unreachable, the server logs a descriptive error and terminates immediately to prevent ephemeral data loss.
+- **Role-Based Protection:** Routes are strictly authenticated via JWT and protected by role on both client and backend layers.
 
 ---
 
-## 🌍 Deployment Guide
+## 🌍 Production Deployment Guide
 
-This monorepo is configured for easy deployment across modern cloud platforms:
+EduWings is architected for clean multi-cloud deployment:
+- **Client (Frontend):** Vercel
+- **Server (Backend API):** Render Web Service
+- **ML Service (FastAPI):** Render Web Service
+- **Database:** MongoDB Atlas (Cloud)
 
-### 1. Database (MongoDB Atlas)
-1. Create a cluster on [MongoDB Atlas](https://www.mongodb.com/cloud/atlas).
-2. Retrieve your connection string (e.g., `mongodb+srv://...`).
-3. Under Network Access, ensure the IP whitelist allows connections from your server's hosting provider.
+```text
+       ┌────────────────────────┐
+       │     Vercel (Client)    │
+       │   React 18 + Vite SPA  │
+       └───────────┬────────────┘
+                   │ HTTPS (API requests)
+                   ▼
+       ┌────────────────────────┐
+       │   Render (Server API)  │
+       │   Node.js / Express    │
+       └───┬────────────────┬───┘
+           │                │ Internal REST (10s timeout + fallback)
+           │                ▼
+           │     ┌─────────────────────┐
+           │     │ Render (ML Service) │
+           │     │ Python FastAPI      │
+           │     └─────────────────────┘
+           ▼
+┌───────────────────────┐
+│     MongoDB Atlas     │
+│   (Production DB)     │
+└───────────────────────┘
+```
 
-### 2. ML Service (Render)
-1. Create a new **Web Service** on [Render](https://render.com).
-2. **Root Directory**: `ml-service`
-3. **Environment**: Python
-4. **Build Command**: `pip install -r requirements.txt && python train.py`
-5. **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-6. Note the deployed URL (e.g., `https://eduwings-ml.onrender.com`).
+---
 
-### 3. Backend Server (Render)
-1. Create a new **Web Service** on Render.
-2. **Root Directory**: `server`
-3. **Environment**: Node
-4. **Build Command**: `npm install`
-5. **Start Command**: `npm start`
-6. **Environment Variables**:
-   - `PORT`: (automatically set by Render)
-   - `MONGO_URI`: Your MongoDB Atlas connection string
-   - `JWT_SECRET`: A strong random string for authentication
-   - `ML_SERVICE_URL`: The URL of your deployed ML Service
-   - `CLIENT_URL`: The URL of your Vercel frontend (once deployed)
-7. Note the deployed URL (e.g., `https://eduwings-server.onrender.com`).
+### Step 1: Set Up MongoDB Atlas Database
+1. Go to [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) and create a free (M0) or dedicated cluster.
+2. Under **Database Access**, create a database user with `readWriteAnyDatabase` or permissions for the `eduwings` database.
+3. Under **Network Access**, add `0.0.0.0/0` (Allow Access from Anywhere) so Render dynamic IP addresses can establish database connections.
+4. Click **Connect** → **Drivers** (Node.js) and copy your connection string:
+   ```text
+   mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/eduwings?retryWrites=true&w=majority
+   ```
 
-### 4. Frontend Client (Vercel)
-1. Import the project into [Vercel](https://vercel.com).
-2. **Root Directory**: `client`
-3. **Framework Preset**: Vite (automatically detected)
-4. **Environment Variables**:
-   - `VITE_API_URL`: Your deployed backend URL + `/api` (e.g., `https://eduwings-server.onrender.com/api`)
-5. Deploy. The included `vercel.json` ensures all client-side routing is handled correctly.
+---
+
+### Step 2: Deploy ML Service on Render
+1. In the [Render Dashboard](https://dashboard.render.com), click **New +** → **Web Service**.
+2. Connect your Git repository.
+3. Configure the service settings:
+   - **Name:** `eduwings-ml`
+   - **Root Directory:** `ml-service`
+   - **Environment:** `Python 3`
+   - **Build Command:** `pip install -r requirements.txt`
+   - **Start Command:** `uvicorn main:app --host 0.0.0.0 --port $PORT`
+4. In **Advanced Settings**:
+   - **Health Check Path:** `/health`
+5. Click **Create Web Service**. Once deployed, copy your service URL (e.g., `https://eduwings-ml.onrender.com`).
+   - Test it by visiting `https://eduwings-ml.onrender.com/health` in your browser.
+
+---
+
+### Step 3: Deploy Backend Server on Render
+1. In Render Dashboard, click **New +** → **Web Service**.
+2. Connect the same Git repository.
+3. Configure the service settings:
+   - **Name:** `eduwings-server`
+   - **Root Directory:** `server`
+   - **Environment:** `Node`
+   - **Build Command:** `npm install`
+   - **Start Command:** `npm start` (or `node src/server.js`)
+4. In **Advanced Settings**:
+   - **Health Check Path:** `/health`
+5. Under **Environment Variables**, add:
+   | Key | Value / Example | Description |
+   | :--- | :--- | :--- |
+   | `NODE_ENV` | `production` | Enables production security and disables in-memory DB fallback |
+   | `MONGO_URI` | `mongodb+srv://user:pass@cluster.mongodb.net/eduwings?...` | MongoDB Atlas connection string |
+   | `JWT_SECRET` | *(64-character random secure key)* | Secret for signing JWT authentication tokens |
+   | `JWT_EXPIRES_IN` | `7d` | Session expiration window |
+   | `CLIENT_URL` | `https://your-frontend.vercel.app` | Vercel domain for CORS protection (update after Step 4) |
+   | `ML_SERVICE_URL` | `https://eduwings-ml.onrender.com` | Deployed ML Service URL from Step 2 |
+6. Click **Create Web Service**.
+   - The server will connect to MongoDB Atlas and auto-seed initial students and demo staff accounts if the database is fresh.
+   - Once deployed, copy your API URL (e.g., `https://eduwings-server.onrender.com`).
+   - Verify health at: `https://eduwings-server.onrender.com/health`.
+
+---
+
+### Step 4: Deploy Frontend Client on Vercel
+1. Go to [Vercel](https://vercel.com) and click **Add New** → **Project**.
+2. Import your Git repository.
+3. Configure the project:
+   - **Framework Preset:** `Vite`
+   - **Root Directory:** Click **Edit** and choose `client`
+   - **Build Command:** `npm run build` (or `pnpm run build`)
+   - **Output Directory:** `dist`
+4. Under **Environment Variables**, add:
+   | Key | Value | Notes |
+   | :--- | :--- | :--- |
+   | `VITE_API_URL` | `https://eduwings-server.onrender.com/api` | Your deployed backend server URL ending with `/api` |
+5. Click **Deploy**.
+6. The included `client/vercel.json` automatically configures SPA route rewrites:
+   ```json
+   {
+     "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+   }
+   ```
+7. Once deployed, copy your production Vercel URL (e.g., `https://eduwings-client.vercel.app`).
+8. **Final Step:** Return to Render for `eduwings-server`, set `CLIENT_URL` to your Vercel URL (`https://eduwings-client.vercel.app`), and redeploy the backend service.
+
+---
+
+### Step 5: Post-Deployment Smoke Test
+1. Open your Vercel URL in a browser.
+2. Sign in using the 1-click Demo credentials (**Admin**, **Faculty**, or **Counsellor**).
+3. Verify that student list loads, risk scores render from the ML model, and interventions can be created and saved.
 
 ---
 

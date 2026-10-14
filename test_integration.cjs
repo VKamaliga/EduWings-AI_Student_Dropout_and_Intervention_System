@@ -44,7 +44,7 @@ async function testAll() {
     // 2. Auth - Admin Login
     const adminLogin = await request('POST', '/auth/login', {
       email: 'admin@eduwings.edu',
-      password: 'Admin@123'
+      password: 'EduWingsAdmin@2026!'
     });
     console.log(`✅ Admin Login: HTTP ${adminLogin.status} - User: ${adminLogin.data.user?.name} (${adminLogin.data.user?.role})`);
     const adminToken = adminLogin.data.token;
@@ -52,7 +52,7 @@ async function testAll() {
     // 3. Auth - Faculty Login
     const facultyLogin = await request('POST', '/auth/login', {
       email: 'faculty@eduwings.edu',
-      password: 'Faculty@123'
+      password: 'EduWingsFaculty@2026!'
     });
     console.log(`✅ Faculty Login: HTTP ${facultyLogin.status} - Dept: ${facultyLogin.data.user?.department}`);
     const facultyToken = facultyLogin.data.token;
@@ -60,7 +60,7 @@ async function testAll() {
     // 4. Auth - Counsellor Login
     const counsellorLogin = await request('POST', '/auth/login', {
       email: 'counsellor@eduwings.edu',
-      password: 'Counsellor@123'
+      password: 'EduWingsCounsellor@2026!'
     });
     console.log(`✅ Counsellor Login: HTTP ${counsellorLogin.status} - Role: ${counsellorLogin.data.user?.role}`);
 

@@ -13,11 +13,42 @@ const settingRoutes = require('./routes/setting.routes');
 const reportRoutes = require('./routes/report.routes');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
-// Middleware
-const clientUrl = process.env.CLIENT_URL || 'http://localhost:5173';
-app.use(cors({ origin: [clientUrl, 'http://localhost:5173'], credentials: true }));
+// CORS configuration: in production allow only CLIENT_URL; in development allow localhost:5173 as well
+const isProduction = process.env.NODE_ENV === 'production';
+const rawClientUrl = process.env.CLIENT_URL || '';
+const clientOrigins = rawClientUrl
+  .split(',')
+  .map((url) => url.trim().replace(/\/+$/, ''))
+  .filter(Boolean);
+
+const allowedOrigins = [...clientOrigins];
+
+if (!isProduction) {
+  if (!allowedOrigins.includes('http://localhost:5173')) {
+    allowedOrigins.push('http://localhost:5173');
+  }
+  if (!allowedOrigins.includes('http://127.0.0.1:5173')) {
+    allowedOrigins.push('http://127.0.0.1:5173');
+  }
+}
+
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      // Allow requests with no origin (like curl, server-to-server, or local dev tools)
+      if (!origin) return callback(null, true);
+
+      const cleanOrigin = origin.trim().replace(/\/+$/, '');
+      if (allowedOrigins.includes(cleanOrigin)) {
+        return callback(null, true);
+      }
+      return callback(new Error(`CORS policy violation: Origin '${origin}' is not allowed.`));
+    },
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));

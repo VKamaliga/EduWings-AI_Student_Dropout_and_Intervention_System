@@ -2,7 +2,7 @@ const { calculateRuleBasedRisk } = require('./ruleEngine');
 const Setting = require('../models/Setting');
 const { RISK_THRESHOLDS } = require('../config/constants');
 
-const ML_SERVICE_URL = process.env.ML_SERVICE_URL || 'http://127.0.0.1:8000';
+const ML_SERVICE_URL = (process.env.ML_SERVICE_URL || 'http://127.0.0.1:8000').trim().replace(/\/+$/, '');
 
 /**
  * Fetch current risk thresholds from Setting collection or default
