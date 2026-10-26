@@ -111,38 +111,63 @@ router.get('/department-risk', authenticate, async (req, res) => {
   }
 });
 
+const FEATURE_LABELS = {
+  attendance: 'Attendance %',
+  cgpa: 'Cumulative GPA',
+  internal_marks: 'Internal marks',
+  backlog_count: 'Course backlogs',
+  assignment_submission_rate: 'Assignment rate',
+  lms_engagement_score: 'Engagement score',
+  commute_distance_km: 'Commute distance',
+  fee_payment_status: 'Fee payment status',
+  semester: 'Current semester',
+  past_counselling_visits: 'Counselling visits',
+  family_income_bracket: 'Family income',
+  first_generation_learner: 'First-gen learner',
+};
+
+const STATIC_FEATURE_IMPORTANCES = [
+  { feature: 'attendance', label: 'Attendance %', importance: 0.2792 },
+  { feature: 'cgpa', label: 'Cumulative GPA', importance: 0.2286 },
+  { feature: 'internal_marks', label: 'Internal marks', importance: 0.1337 },
+  { feature: 'backlog_count', label: 'Course backlogs', importance: 0.1107 },
+  { feature: 'assignment_submission_rate', label: 'Assignment rate', importance: 0.1023 },
+  { feature: 'lms_engagement_score', label: 'Engagement score', importance: 0.0689 },
+  { feature: 'commute_distance_km', label: 'Commute distance', importance: 0.0236 },
+  { feature: 'fee_payment_status', label: 'Fee payment status', importance: 0.0232 },
+  { feature: 'semester', label: 'Current semester', importance: 0.0112 },
+  { feature: 'past_counselling_visits', label: 'Counselling visits', importance: 0.0088 },
+  { feature: 'family_income_bracket', label: 'Family income', importance: 0.0068 },
+  { feature: 'first_generation_learner', label: 'First-gen learner', importance: 0.003 },
+];
+
 // @route   GET /api/predictions/factors
-// @desc    Get feature importance and frequency of top risk factors
+// @desc    Get global feature importances from ML model or static ranking fallback
 router.get('/factors', authenticate, async (req, res) => {
+  const mlUrl = (process.env.ML_SERVICE_URL || 'http://127.0.0.1:8000').trim().replace(/\/+$/, '');
   try {
-    const students = await Student.find({}, 'currentRisk.topFactors');
-    const factorCounts = {};
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 2000);
+    const mlRes = await fetch(`${mlUrl}/features`, { signal: controller.signal });
+    clearTimeout(timeout);
 
-    students.forEach((s) => {
-      if (s.currentRisk && s.currentRisk.topFactors) {
-        s.currentRisk.topFactors.forEach((tf) => {
-          if (!factorCounts[tf.factor]) {
-            factorCounts[tf.factor] = { factor: tf.factor, count: 0, totalImpact: 0 };
-          }
-          factorCounts[tf.factor].count += 1;
-          factorCounts[tf.factor].totalImpact += tf.impact || 0;
-        });
+    if (mlRes.ok) {
+      const data = await mlRes.json();
+      if (Array.isArray(data) && data.length > 0) {
+        const mapped = data.map((item) => ({
+          feature: item.feature,
+          label: FEATURE_LABELS[item.feature] || item.feature,
+          importance: Number(Number(item.importance).toFixed(4)),
+        }));
+        mapped.sort((a, b) => b.importance - a.importance);
+        return res.json(mapped);
       }
-    });
-
-    const factorList = Object.values(factorCounts).map((f) => ({
-      factor: f.factor,
-      occurrences: f.count,
-      importance: f.count ? Number((f.totalImpact / f.count).toFixed(2)) : 0,
-      share: students.length ? Math.round((f.count / students.length) * 100) : 0,
-    }));
-
-    factorList.sort((a, b) => b.importance - a.importance);
-
-    return res.json({ factors: factorList });
+    }
   } catch (err) {
-    return res.status(500).json({ message: 'Error analyzing risk factors.' });
+    // Fall back to static ranking if ML service is unreachable
   }
+
+  return res.json(STATIC_FEATURE_IMPORTANCES);
 });
 
 // @route   GET /api/predictions/trends

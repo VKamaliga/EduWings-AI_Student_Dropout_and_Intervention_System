@@ -251,6 +251,31 @@ def health_check():
         "metadata": METADATA
     }
 
+@app.get("/features")
+@app.get("/feature-importance")
+def get_global_feature_importances():
+    global MODEL, METADATA
+    if MODEL is None or METADATA is None:
+        load_artifacts()
+
+    features = METADATA.get("features", []) if METADATA else []
+    importances = []
+
+    if MODEL is not None and hasattr(MODEL, "feature_importances_"):
+        raw_importances = MODEL.feature_importances_
+        importances = [
+            {"feature": f, "importance": float(imp)}
+            for f, imp in zip(features, raw_importances)
+        ]
+    elif METADATA and "importances" in METADATA:
+        importances = [
+            {"feature": f, "importance": float(METADATA["importances"].get(f, 0.0))}
+            for f in features
+        ]
+
+    importances.sort(key=lambda x: x["importance"], reverse=True)
+    return importances
+
 @app.post("/predict", response_model=PredictionResult)
 def predict_single(data: StudentFeatureInput):
     global MODEL

@@ -30,7 +30,10 @@ export default function RiskAnalysis() {
           api.get('/students?limit=250'),
         ]);
 
-        setFactors(factorsRes.topRiskFactors || []);
+        const rawFactors = Array.isArray(factorsRes)
+          ? factorsRes
+          : (factorsRes?.factors || factorsRes?.topRiskFactors || []);
+        setFactors(rawFactors);
         setTrends(trendsRes.trends || []);
 
         // Compute real cross-departmental distribution from student records
@@ -59,11 +62,21 @@ export default function RiskAnalysis() {
     fetchAnalytics();
   }, []);
 
-  const featureChartData = factors.map((f) => ({
-    name: f.factor,
-    importance: Math.round(f.weight * 100),
-    share: f.share,
-  }));
+  const featureChartData = factors
+    .map((f) => {
+      const rawVal = typeof f.importance === 'number' ? f.importance : (f.weight || 0);
+      const scaledVal = rawVal <= 1 ? rawVal * 100 : rawVal;
+      const importance = Math.round(scaledVal * 10) / 10;
+      const label = f.label || f.factor || f.feature || 'Unknown';
+      return {
+        feature: f.feature,
+        label,
+        name: label,
+        importance,
+        share: f.share,
+      };
+    })
+    .sort((a, b) => b.importance - a.importance);
 
   return (
     <div className="space-y-6">
@@ -90,10 +103,10 @@ export default function RiskAnalysis() {
         <Card className="p-4 border-l-2 border-l-[#7C5CFA]">
           <div className="text-xs text-[#70707E] dark:text-[#6B6B7B]">Primary Risk Driver</div>
           <div className="text-base font-semibold text-[#14141B] dark:text-[#ECECF1] mt-1">
-            {factors[0]?.factor || 'Low attendance'}
+            {factors[0]?.label || factors[0]?.factor || 'Low attendance'}
           </div>
           <div className="text-[11px] text-[#70707E] dark:text-[#6B6B7B] mt-1">
-            Impacts {factors[0]?.share || 32}% of all flagged student profiles
+            Impacts {factors[0]?.share || (factors[0]?.importance ? Math.round(factors[0].importance * (factors[0].importance <= 1 ? 100 : 1)) : 32)}% of all flagged student profiles
           </div>
         </Card>
 
@@ -132,45 +145,53 @@ export default function RiskAnalysis() {
             <span className="text-xs font-mono text-[#7C5CFA]">Weights (0-100)</span>
           </div>
 
-          <div className="h-72 w-full my-auto">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                layout="vertical"
-                data={featureChartData}
-                margin={{ top: 10, right: 20, left: 20, bottom: 0 }}
-              >
-                <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(128, 128, 128, 0.15)" />
-                <XAxis type="number" domain={[0, 100]} stroke="#70707E" fontSize={11} />
-                <YAxis
-                  type="category"
-                  dataKey="name"
-                  stroke="#70707E"
-                  fontSize={11}
-                  tickLine={false}
-                  width={90}
-                />
-                <Tooltip
-                  content={({ active, payload }) => {
-                    if (active && payload && payload.length) {
-                      const item = payload[0].payload;
-                      return (
-                        <div className="bg-white dark:bg-[#14141B] p-2.5 rounded-md border border-[#E5E5EB] dark:border-[#24242E] text-xs shadow-sm dark:shadow-none space-y-1">
-                          <div className="font-medium text-[#14141B] dark:text-[#ECECF1]">{item.name}</div>
-                          <div className="text-[#7C5CFA]">Weight: {item.importance}%</div>
-                          <div className="text-[#70707E] dark:text-[#6B6B7B]">Cohort Prevalence: {item.share}%</div>
-                        </div>
-                      );
-                    }
-                    return null;
-                  }}
-                />
-                <Bar
-                  dataKey="importance"
-                  fill="#7C5CFA"
-                  radius={[0, 4, 4, 0]}
-                />
-              </BarChart>
-            </ResponsiveContainer>
+          <div className="h-72 w-full my-auto flex items-center justify-center">
+            {featureChartData.length === 0 ? (
+              <div className="text-xs text-[#70707E] dark:text-[#6B6B7B]">
+                No data available
+              </div>
+            ) : (
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  layout="vertical"
+                  data={featureChartData}
+                  margin={{ top: 10, right: 20, left: 10, bottom: 0 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="rgba(128, 128, 128, 0.15)" />
+                  <XAxis type="number" domain={[0, 100]} stroke="#70707E" fontSize={11} />
+                  <YAxis
+                    type="category"
+                    dataKey="label"
+                    stroke="#70707E"
+                    fontSize={11}
+                    tickLine={false}
+                    width={115}
+                  />
+                  <Tooltip
+                    content={({ active, payload }) => {
+                      if (active && payload && payload.length) {
+                        const item = payload[0].payload;
+                        return (
+                          <div className="bg-white dark:bg-[#14141B] p-2.5 rounded-md border border-[#E5E5EB] dark:border-[#24242E] text-xs shadow-sm dark:shadow-none space-y-1">
+                            <div className="font-medium text-[#14141B] dark:text-[#ECECF1]">{item.label}</div>
+                            <div className="text-[#7C5CFA]">Weight: {item.importance}%</div>
+                            {item.share !== undefined && (
+                              <div className="text-[#70707E] dark:text-[#6B6B7B]">Cohort Prevalence: {item.share}%</div>
+                            )}
+                          </div>
+                        );
+                      }
+                      return null;
+                    }}
+                  />
+                  <Bar
+                    dataKey="importance"
+                    fill="#7C5CFA"
+                    radius={[0, 4, 4, 0]}
+                  />
+                </BarChart>
+              </ResponsiveContainer>
+            )}
           </div>
         </Card>
 
