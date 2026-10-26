@@ -1,18 +1,32 @@
 # Dependencies
 node_modules/
 .pnpm-store/
+**/node_modules/
 
 # Environment files
-.env.local
-.env.*.local
+.env
+.env.*
+!.env.example
+!**/.env.example
 
-# Python
+# Python & Virtual Environments
 venv/
 .venv/
+**/venv/
+**/__pycache__/
 __pycache__/
 *.py[cod]
 *$py.class
 *.egg-info/
+
+# Model artifacts must NOT be ignored
+!ml-service/model/model.joblib
+!ml-service/model/feature_names.json
+!**/model/*.joblib
+!**/model/*.json
+
+# Production build artifacts
+client/dist/
 
 # macOS / OS
 .DS_Store
@@ -30,3 +44,14 @@ pnpm-debug.log*
 .vscode/
 .idea/
 *.sw?
+
+# secrets and local environments
+.env
+.env.*
+!.env.example
+node_modules/
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+dist/
