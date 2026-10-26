@@ -35,8 +35,24 @@ MODEL_DIR = os.path.join(BASE_DIR, 'model')
 MODEL_PATH = os.path.join(MODEL_DIR, 'model.joblib')
 META_PATH = os.path.join(MODEL_DIR, 'feature_names.json')
 
+# Ensure model artifacts can be loaded from relative path
+if not (os.path.exists(MODEL_PATH) and os.path.exists(META_PATH)):
+    rel_model = os.path.join('model', 'model.joblib')
+    rel_meta = os.path.join('model', 'feature_names.json')
+    if os.path.exists(rel_model) and os.path.exists(rel_meta):
+        MODEL_PATH = rel_model
+        META_PATH = rel_meta
+
 def load_artifacts():
     global MODEL, METADATA
+    target_model = MODEL_PATH
+    target_meta = META_PATH
+    if not (os.path.exists(target_model) and os.path.exists(target_meta)):
+        rel_model = os.path.join('model', 'model.joblib')
+        rel_meta = os.path.join('model', 'feature_names.json')
+        if os.path.exists(rel_model) and os.path.exists(rel_meta):
+            target_model = rel_model
+            target_meta = rel_meta
     if not (os.path.exists(MODEL_PATH) and os.path.exists(META_PATH)):
         logger.info("⚠️ Model artifacts not found. Automatically training initial model...")
         try:

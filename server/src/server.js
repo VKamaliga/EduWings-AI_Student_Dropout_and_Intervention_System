@@ -53,6 +53,14 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
+// Health check (registered before any route or auth middleware)
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok' });
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/students', studentRoutes);
@@ -61,23 +69,6 @@ app.use('/api/interventions', interventionRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/settings', settingRoutes);
 app.use('/api/reports', reportRoutes);
-
-// Health check
-app.get('/api/health', (req, res) => {
-  res.json({
-    status: 'ok',
-    system: 'EduWings Backend Service',
-    time: new Date().toISOString(),
-  });
-});
-
-app.get('/health', (req, res) => {
-  res.json({
-    status: 'ok',
-    system: 'EduWings Backend Service',
-    time: new Date().toISOString(),
-  });
-});
 
 // 404 handler
 app.use((req, res) => {

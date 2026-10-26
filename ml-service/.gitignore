@@ -1,0 +1,18 @@
+# Python virtual environments & bytecode
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Model artifacts must NOT be ignored
+!model/model.joblib
+!model/feature_names.json
+
+# Editor & OS
+.DS_Store

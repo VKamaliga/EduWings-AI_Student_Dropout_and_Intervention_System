@@ -5,7 +5,7 @@
   "scripts": {
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
-    "dev:ml": "cd ml-service && python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload",
+    "dev:ml": "cd ml-service && (./venv/bin/uvicorn main:app --host 0.0.0.0 --port 8000 --reload || python3 -m uvicorn main:app --host 0.0.0.0 --port 8000 --reload)",
     "seed": "cd server && npm run seed",
     "install:all": "cd server && npm install && cd ../client && npm install",
     "test:ml": "cd ml-service && python3 test_predict.py"
